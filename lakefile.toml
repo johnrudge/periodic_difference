@@ -1,0 +1,20 @@
+name = "periodicDifference"
+version = "0.1.0"
+keywords = ["math"]
+defaultTargets = ["PeriodicDifference"]
+
+[leanOptions]
+pp.unicode.fun = true
+relaxedAutoImplicit = false
+maxSynthPendingDepth = 3
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "v4.28.0"
+
+[[lean_lib]]
+name = "PeriodicDifference"
+# `PeriodicDifference/APLemmaCT.lean` elaborates the 5012-entry chord table of Lemma A as one list
+# literal, which needs a deeper thread stack than the default.
+moreLeanArgs = ["--tstack=2000000"]

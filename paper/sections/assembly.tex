@@ -1,0 +1,94 @@
+\section{Proof of the main theorem}
+\label{sec:assembly}
+
+By \autoref{cor:red-primitive} it is
+enough to show the following: if an equation \eqref{eq:familya} is
+globally periodic, its support $S$ is primitive and its coefficients
+satisfy $c_j=c_{k-j}$, then its normalised data is of known type
+(\autoref{def:red-known}). So let such an equation be given. Since
+$c_j=c_{k-j}$, its support is palindromic.
+
+\emph{$|S|\le2$.} By the case analysis at the start of \autoref{sec:small},
+either $S=\emptyset$, which is case (K1); or $k=2$ and $S=\{1\}$, where
+\autoref{thm:order2} gives case (K2); or $k=3$ and $S=\{1,2\}$, where
+\autoref{thm:order3} gives case (K3); or \autoref{thm:twoterm} shows that the
+equation is not globally periodic, a contradiction.
+
+\emph{$|S|\ge3$.} I show that no such equation is globally periodic,
+which leaves only the three cases above. If $S$ is the full support
+$\{1,\dots,k-1\}$, then $k\ge4$ and \autoref{thm:fullsupport} applies. So
+suppose $S$ is not the full support. If $k$ is odd, \autoref{thm:oddk}
+applies. If $k=6$ and $S=\{1,3,5\}$, \autoref{prop:order6cert} applies.
+Otherwise $k$ is even and $(k,S)\ne(6,\{1,3,5\})$, and $S$ carries a
+$\sigma$-bump: by \autoref{thm:notallodd} if $S$ has an even element, and
+by \autoref{thm:alloddall} if every element of $S$ is odd. In either case
+\autoref{thm:sigmabump} shows that no equation with support $S$ is
+globally periodic.
+
+So every globally periodic equation \eqref{eq:familya} with primitive support and
+palindromic coefficients has normalised data of known type. By
+\autoref{cor:red-primitive}, a globally periodic equation \eqref{eq:family} is
+therefore the shift or has the coefficients listed in \autoref{lem:red-members},
+and these are exactly the equations listed in \autoref{thm:main}. This completes
+the proof of \autoref{thm:main}. \qed
+
+The argument for supports with three or more elements never uses the
+coefficients, and it therefore also proves a statement about the min-plus
+recursion alone, extending the result of \citet{CsornyeiLaczkovich2001} for the
+full support (\autoref{sec:fullsupport}).
+
+\begin{corollary}[the min-plus map is not periodic]
+\label{cor:trop-nonperiodic}
+Let $S\subseteq\{1,\dots,k-1\}$ be palindromic with $|S|\ge3$, and let
+$\theta\in\{0,1\}$. Then no power of the min-plus map $T$ of
+\autoref{def:trop-minplus} is the identity: for every $p\ge1$ there is an
+integer window $w\in\Z^k$ with $T^{\,p}(w)\ne w$.
+\end{corollary}
+
+\begin{proof}
+Suppose first that $S$ is primitive. The proof of \autoref{thm:main} above
+provides an integer solution $e$ of the min-plus recursion \eqref{eq:trop-rec}
+for $(k,S,\theta)$ that carries an unbounded integer tangent solution $d$: for
+the full support by \autoref{lem:fs-carrier} and \autoref{lem:fs-ray}; at
+odd order by the construction in the proof of \autoref{prop:odd-second}, with
+the solutions of the reduced recursion given in the proof of
+\autoref{thm:odd-nondil}, or by a $\sigma$-bump; for $\{1,3,5\}$ at order $6$ by
+the construction in the proof of \autoref{prop:trop-cert}; and otherwise by a
+$\sigma$-bump and \autoref{lem:trop-bumptangent}. None of these constructions
+involves the coefficients $c_j$, so \autoref{thm:tangent}(ii) applies.
+
+If $S$ is not primitive, let $\ell=\gcd(S\cup\{k\})$, and let $S'$ and
+$k'$ be as in \autoref{lem:unfold}; then $S'$ is primitive and palindromic,
+with $|S'|=|S|\ge3$. As in the proof of \autoref{lem:unfold}(ii), if $z$ is an
+integer solution of the min-plus recursion for $(k',S',\theta)$, then
+$x_n=z_{\lfloor n/\ell\rfloor}$ is one for $(k,S,\theta)$. So if $T^{\,p}=\id$,
+every such $x$ is $p$-periodic, and $z_{m+p}=x_{m\ell+p\ell}=x_{m\ell}=z_m$;
+that is, the min-plus map for $(k',S',\theta)$ has $p$-th power the identity,
+against the primitive case.
+\end{proof}
+
+Since $\Z^k\subset\R^k$, the min-plus map is not periodic on $\R^k$ either.
+Note that the corollary asserts only that $T$ is not periodic. Unlike the
+theorems of \citeauthor{CsornyeiLaczkovich2001} for the full support, it does
+not exhibit a single non-periodic orbit, since the window $w$ depends on $p$. The
+hypothesis $|S|\ge3$ cannot simply be dropped: with $\theta=1$ the min-plus
+maps for $S=\{1\}$ at order $2$ and $S=\{1,2\}$ at order $3$ are periodic,
+with periods $5$ and $8$ (\autoref{sec:small}).
+
+The corollary leaves the two-term supports $\{j,k-j\}$ open, since the proof
+of \autoref{thm:main} settles them with the linearisation. For $k=4$ and
+$S=\{1,3\}$ the tangent certificates (\autoref{def:trop-cert}) with
+$E=(-1,-1,-1,-1)$ and
+\begin{align*}
+\theta=1:&\quad q=11,\ V=(-1,-1,0,-1),\ W=(0,0,1,1),\
+(w_t)=1,1,1,3,0,1,3,3,3,3,1,\\
+\theta=0:&\quad q=66,\ V=(-1,-1,0,0),\ W=(4,0,0,0),\
+(w_t)=1^63^51^63^51^63^61^53^61^53^61^53^5,
+\end{align*}
+($1^6$ stands for six consecutive entries $1$) are valid along the
+$11$-periodic solution with window $E$, so, by the argument above, no power
+of the min-plus map for $(4,\{1,3\},\theta)$ is the identity, for either
+$\theta$. Whether this holds for every two-term support other than $\{m,2m\}$ at order
+$3m$ with $\theta=1$, where the map is periodic by unfolding the order-$3$
+case, and which
+non-palindromic supports have a periodic min-plus map, I leave open.

@@ -1,0 +1,427 @@
+\section{Reduction to the reciprocal family}
+\label{sec:reduction}
+
+Here I show that a globally periodic equation \eqref{eq:family} is the shift
+or of the reciprocal form \eqref{eq:familya} with palindromic coefficients,
+and that it is enough to treat supports with $\gcd(S\cup\{k\})=1$
+(\autoref{cor:red-primitive}).
+
+Most of this is known. The reduction to the reciprocal form and palindromy
+are the Reduction Theorem (Theorem~2.4) of \citet{CimaGasullManosas2004}, and
+\citet[Theorem~4]{CsornyeiLaczkovich2001} proved $|c_j|=|c_{k-j}|$ for
+complex coefficients. I follow the route of Cima, Gasull and Ma\~nosas
+(preimages of a one-parameter family of states, a Lyapunov function, and the
+derivative at a fixed point), and give self-contained proofs because the
+linearisation is needed again in \autoref{sec:small} and palindromy follows
+from a short period-sum argument. That the linearisation of a periodic
+recurrence at a fixed point has finite order goes back to
+\citet[Theorem~3.2]{KurshanGopinath1974}; it was used by
+\citet{KocicLadasRodrigues1993}, \citet[Lemma~2]{CsornyeiLaczkovich2001} and,
+with affine normal forms at order two, \citet{RubioMasseguManosa2007}.
+
+\subsection{The state map}
+
+Throughout, the coefficients of \eqref{eq:family} are nonnegative, with
+$A_0+\sum_{i\ge1}A_i>0$ and $B_0+\sum_{i\ge1}B_i>0$. Note that $A_{i+1}$ and
+$B_{i+1}$ are the coefficients of $x_{n+i}$, for $0\le i\le k-1$; in particular
+$A_1$ and $B_1$ multiply the oldest term $x_n$. Write
+$\Omega=(0,\infty)^k$, and for $u=(u_1,\dots,u_k)\in\Omega$ put
+\begin{equation}
+g(u)=\frac{A_0+\sum_{i=1}^kA_iu_i}{B_0+\sum_{i=1}^kB_iu_i},
+\qquad
+F(u)=\bigl(u_2,\dots,u_k,\,g(u)\bigr).
+\end{equation}
+For $u\in\Omega$ the numerator and denominator of $g(u)$ are both positive,
+since each contains a positive coefficient multiplied by a positive number. So
+$F$ maps $\Omega$ to itself, every positive initial window
+$(x_0,\dots,x_{k-1})$ extends to a unique positive solution of
+\eqref{eq:family}, and the window $(x_n,\dots,x_{n+k-1})$ of that solution is
+$F^{\,n}(x_0,\dots,x_{k-1})$. The equation is \textit{globally $p$-periodic}
+($p\ge1$) when every positive solution satisfies $x_{n+p}=x_n$ for all $n$, and
+this holds precisely when $F^{\,p}=\id$ on $\Omega$. In particular a globally
+periodic $F$ maps $\Omega$ onto itself. The first step of the reduction,
+\autoref{thm:red-dichotomy}, uses only this surjectivity; the second,
+\autoref{thm:red-shift}, uses periodicity itself.
+
+\subsection{The dichotomy}
+
+The idea is to ask for a preimage of a single one-parameter family of states,
+$(1,\dots,1,t)$ with $t>0$. That alone forces most of the coefficients to
+vanish.
+
+\begin{theorem}[dichotomy]
+\label{thm:red-dichotomy}
+Suppose $F(\Omega)=\Omega$. Then one of the following holds:
+\begin{enumerate}
+\item[(a)] $A_1=0$, $B_0=0$ and $B_i=0$ for all $i\ge2$, so that $B_1>0$ and
+\eqref{eq:family} reads
+$B_1x_{n+k}x_n=A_0+A_2x_{n+1}+\cdots+A_kx_{n+k-1}$;
+\item[(b)] $B_1=0$, $A_0=0$ and $A_i=0$ for all $i\ge2$, so that $A_1>0$ and
+\eqref{eq:family} reads
+$x_{n+k}=A_1x_n/\bigl(B_0+B_2x_{n+1}+\cdots+B_kx_{n+k-1}\bigr)$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Fix $t>0$. A preimage of $(1,\dots,1,t)$ under $F$ must have the form
+$(u,1,\dots,1)$ with $u>0$ and $g(u,1,\dots,1)=t$. Writing
+$A'=\sum_{i\ge2}A_i$ and $B'=\sum_{i\ge2}B_i$ (both zero when $k=1$), the
+hypothesis therefore says that for every $t>0$ there is a $u>0$ with
+\begin{equation}
+t\,(B_0+B_1u+B')=A_0+A_1u+A'.
+\label{eq:red-dagger}
+\end{equation}
+There are four cases, according to the signs of $A_1$ and $B_1$.
+
+If $A_1=B_1=0$, then $u$ drops out of \eqref{eq:red-dagger}, and taking $t=1$
+and $t=2$ gives $B_0+B'=A_0+A'=2(B_0+B')$. Hence $B_0+B'=0$, so all
+the $B_i$ vanish, which is excluded.
+
+If $A_1=0<B_1$, then $tB_1u=A_0+A'-t(B_0+B')$ with $u>0$, so
+$t(B_0+B')<A_0+A'$ for every $t>0$. Letting $t\to\infty$ gives
+$B_0+B'\le0$, that is $B_0=0$ and $B_i=0$ for $i\ge2$: this is case (a).
+
+If $B_1=0<A_1$, then symmetrically $A_1u=t(B_0+B')-A_0-A'$ with $u>0$, so
+$A_0+A'<t(B_0+B')$ for every $t>0$. Letting $t\to0^+$ gives $A_0+A'\le0$,
+that is $A_0=0$ and $A_i=0$ for $i\ge2$: this is case (b).
+
+Finally, suppose $A_1>0$ and $B_1>0$, and put $\lambda=A_1/B_1$. At $t=\lambda$
+the terms in $u$ cancel from \eqref{eq:red-dagger}, leaving
+$\lambda(B_0+B')=A_0+A'$. Subtracting this from \eqref{eq:red-dagger} at
+$t=\lambda+1$ leaves $(B_0+B')+B_1u=0$ for some $u>0$, which is impossible.
+
+In case (a) the denominator is $B_1x_n$, so $B_1>0$; in case (b) the numerator
+is $A_1x_n$, so $A_1>0$.
+\end{proof}
+
+\subsection{Branch (b) is the shift}
+
+Genuine periodicity, rather than surjectivity, now removes the rest of branch
+(b). Two simple tools are used. The first is a Lyapunov function: the
+coordinate sum $\Sigma(u)=\sum_iu_i$ changes under one step by
+\begin{equation}
+\Sigma(F(u))-\Sigma(u)=g(u)-u_1 ,
+\label{eq:red-lyap}
+\end{equation}
+so if $g(u)<u_1$ for every $u\in\Omega$ then $\Sigma(F^{\,p}(u))<\Sigma(u)$ for
+every $p\ge1$, and $F^{\,p}=\id$ is impossible; the same holds if $g(u)>u_1$
+throughout. The second is the derivative at an interior fixed point: if
+$F^{\,p}=\id$ and $F(u^*)=u^*$, the chain rule gives $DF(u^*)^p=I$.
+
+\begin{theorem}[branch (b) is the shift]
+\label{thm:red-shift}
+A globally periodic equation of type (b) has $A_1=B_0$ and $B_i=0$ for all
+$i\ge2$; that is, it is the shift $x_{n+k}=x_n$.
+\end{theorem}
+
+\begin{proof}
+Let the equation be globally $p$-periodic, so that $F^{\,p}=\id$ on $\Omega$.
+In type (b), $g(u)=A_1u_1/\bigl(B_0+\sum_{i\ge2}B_iu_i\bigr)$. Write
+$\beta=\sum_{i\ge2}B_i$.
+
+Suppose first that $\beta=0$. Then $B_0>0$ (the denominator is not zero) and
+$g(u)=(A_1/B_0)u_1$. If $A_1<B_0$ then $g(u)<u_1$ throughout $\Omega$, and if
+$A_1>B_0$ then $g(u)>u_1$ throughout; both are excluded by
+\eqref{eq:red-lyap}. So $A_1=B_0$, which is the conclusion.
+
+Suppose next that $\beta>0$ and $A_1\le B_0$. Then for $u\in\Omega$ the
+denominator exceeds $B_0\ge A_1$, so $g(u)<u_1$ throughout $\Omega$, which is
+again excluded.
+
+There remains the case $\beta>0$, $A_1>B_0$, which must be shown impossible.
+Here $x^*=(A_1-B_0)/\beta>0$ satisfies $B_0+\beta x^*=A_1$, so the point
+$u^*=(x^*,\dots,x^*)$ is fixed by $F$. The map $F$ is rational, with a
+denominator that is positive on the open set $\Omega$, so it is smooth there,
+and $F^{\,p}=\id$ gives $DF(u^*)^p=D(F^{\,p})(u^*)=I$ by the chain
+rule. At $u^*$ the denominator of $g$ equals $A_1$, so
+$\partial g/\partial u_1=1$ and $\partial g/\partial u_i=-x^*B_i/A_1$ for
+$i\ge2$; thus, with $d_i=B_ix^*/A_1\ge0$,
+\[
+DF(u^*)\,w=\Bigl(w_2,\dots,w_k,\;w_1-\sum_{i\ge2}d_iw_i\Bigr).
+\]
+Put $\phi(\lambda)=\lambda^k+\sum_{i\ge2}d_i\lambda^{i-1}$. Then $\phi(0)=0$
+and $\phi(1)=1+\beta x^*/A_1>1$, so by the intermediate value theorem there is
+a $\lambda\in(0,1)$ with $\phi(\lambda)=1$. The vector
+$v=(1,\lambda,\dots,\lambda^{k-1})$ then satisfies $DF(u^*)\,v=\lambda v$,
+since the last coordinate of $DF(u^*)\,v$ is
+$1-\sum_{i\ge2}d_i\lambda^{i-1}=\lambda^k$. Hence $v=DF(u^*)^pv=\lambda^pv$,
+so $\lambda^p=1$, which is impossible for $0<\lambda<1$.
+\end{proof}
+
+\subsection{The reciprocal form and its normalisation}
+
+\begin{theorem}[reduction]
+\label{thm:reduction}
+Every globally periodic equation of the form \eqref{eq:family} is either the
+shift $x_{n+k}=x_n$ (that is, $A_1=B_0>0$ and every other coefficient is zero),
+or satisfies $A_1=B_0=0$ and $B_i=0$ for $i\ge2$, with $B_1>0$. In the second
+case, dividing through by $B_1$, its positive solutions are exactly the positive
+solutions of
+\begin{equation}
+x_{n+k}\,x_n=c_0+\sum_{j\in S}c_j\,x_{n+j},
+\qquad c_j>0 \text{ for } j\in S\subseteq\{1,\dots,k-1\},\quad c_0\ge0,
+\label{eq:familya}
+\end{equation}
+where
+\begin{equation}
+c_0=\frac{A_0}{B_1},\qquad
+c_j=\frac{A_{j+1}}{B_1}\quad(1\le j\le k-1),\qquad
+S=\{\,j\in\{1,\dots,k-1\} : A_{j+1}>0\,\},
+\label{eq:red-normalise}
+\end{equation}
+and $S\ne\emptyset$ or $c_0>0$.
+\end{theorem}
+
+\begin{proof}
+A globally periodic $F$ maps $\Omega$ onto itself, so \autoref{thm:red-dichotomy}
+applies. In case (b), \autoref{thm:red-shift} gives the shift. In case (a) the
+equation is $B_1x_{n+k}x_n=A_0+\sum_{j=1}^{k-1}A_{j+1}x_{n+j}$, and dividing by
+$B_1>0$ gives \eqref{eq:familya} with the data \eqref{eq:red-normalise}, after
+dropping the terms with $A_{j+1}=0$. The last condition is the hypothesis that
+the numerator of \eqref{eq:family} is not identically zero (recall $A_1=0$).
+\end{proof}
+
+From now on an equation of the form \eqref{eq:familya} is described by its
+\textit{normalised data}: the order $k$, the support $S$ and the coefficients
+$c_0$ and $c_j$ ($j\in S$); it is convenient to put $c_j=0$ for
+$j\in\{1,\dots,k-1\}\setminus S$, and $\theta\in\{0,1\}$ records whether
+$c_0>0$, as in the introduction. The
+normalisation \eqref{eq:red-normalise} is a division of numerator and
+denominator by $B_1$, not a change of variable, so the normalised equation has
+the same solutions as the original one, and global periodicity of the one is
+global periodicity of the other. When $k=1$ the support is empty and
+\eqref{eq:familya} is $x_{n+1}x_n=c_0$.
+
+\subsection{The linearisation}
+
+The reciprocal family always has an interior equilibrium. Write
+$s=\sum_{j\in S}c_j$. Since $s+c_0>0$, the equation $x^2=c_0+s x$
+has exactly one positive root,
+\begin{equation}
+x^*=\tfrac12\Bigl(s+\sqrt{s^2+4c_0}\Bigr),
+\end{equation}
+and the constant sequence $x_n=x^*$ is a solution of \eqref{eq:familya}. Put
+\begin{equation}
+\eps_j=\frac{c_j}{x^*}\quad(1\le j\le k-1),
+\qquad\text{so that}\qquad
+\sum_{j=1}^{k-1}\eps_j=\frac{s}{x^*}=1-\frac{c_0}{x^{*2}}\le1,
+\label{eq:red-ej}
+\end{equation}
+with equality exactly when $c_0=0$. The \textit{linearisation} of
+\eqref{eq:familya} at $x^*$ is the linear recurrence
+\begin{equation}
+y_{n+k}+y_n=\sum_{j=1}^{k-1}\eps_j\,y_{n+j},
+\label{eq:red-linrec}
+\end{equation}
+whose characteristic polynomial is
+\begin{equation}
+\chi(\lambda)=\lambda^k+1-\sum_{j=1}^{k-1}\eps_j\,\lambda^j .
+\label{eq:red-chi}
+\end{equation}
+Every initial window $(y_0,\dots,y_{k-1})$ extends to a unique solution of
+\eqref{eq:red-linrec}, and the window advances by the companion matrix $\Gamma$,
+\[
+\Gamma(w_1,\dots,w_k)=\Bigl(w_2,\dots,w_k,\;-w_1+\sum_{j=1}^{k-1}\eps_jw_{j+1}\Bigr).
+\]
+
+\begin{theorem}[linearisation]
+\label{thm:spectral}
+Suppose \eqref{eq:familya} is globally $p$-periodic. Then:
+\begin{enumerate}
+\item[(i)] $\Gamma^{\,p}=I$, so every solution of \eqref{eq:red-linrec} is
+$p$-periodic;
+\item[(ii)] every complex root $\lambda$ of $\chi$ satisfies $\lambda^p=1$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) By \autoref{thm:reduction} the state map of \eqref{eq:familya} is
+$F(u)=\bigl(u_2,\dots,u_k,\,g(u)\bigr)$ with
+$g(u)=\bigl(c_0+\sum_jc_ju_{j+1}\bigr)/u_1$, a rational map whose denominator
+is positive on $\Omega$, and it fixes $u^*=(x^*,\dots,x^*)$. Using
+$x^{*2}=c_0+\sum_jc_jx^*$, the partial derivatives of $g$ at $u^*$ are
+$\partial g/\partial u_1=-x^{*2}/x^{*2}=-1$ and
+$\partial g/\partial u_{j+1}=c_j/x^*=\eps_j$, so $DF(u^*)=\Gamma$. Since
+$F^{\,p}=\id$ on the open set $\Omega$, the chain rule gives
+$\Gamma^{\,p}=D(F^{\,p})(u^*)=I$.
+
+(ii) If $\chi(\lambda)=0$, then $v=(1,\lambda,\dots,\lambda^{k-1})$ satisfies
+$\Gamma v=\lambda v$, since the last coordinate of $\Gamma v$ is
+$-1+\sum_j\eps_j\lambda^j=\lambda^k$. So $v=\Gamma^{\,p}v=\lambda^pv$, and
+$\lambda^p=1$.
+\end{proof}
+
+\subsection{Palindromy}
+
+The first structural consequence of \autoref{thm:spectral} is that the
+coefficients are palindromic. The reason is that a linear map of finite order
+preserves a positive definite quadratic form, so its inverse is its adjoint.
+Here the form can be written down explicitly: on $p$-periodic sequences the
+\textit{period sum}
+\[
+\langle u,v\rangle=\sum_{n=0}^{p-1}u_nv_n
+\]
+is positive definite, and it is unchanged by shifting both sequences,
+$\sum_{n<p}u_{n+a}v_{n+a}=\langle u,v\rangle$, since $n\mapsto u_nv_n$ is
+$p$-periodic. The recurrence \eqref{eq:red-linrec} must therefore be the same when
+it is run backwards, and that is palindromy.
+
+\begin{theorem}[palindromy]
+\label{thm:palindromy}
+If \eqref{eq:familya} is globally periodic, then $c_j=c_{k-j}$ for
+$1\le j\le k-1$. In particular the support is palindromic, $S=k-S$; in the
+notation of \eqref{eq:family}, $A_i=A_{k+2-i}$ for $2\le i\le k$.
+\end{theorem}
+
+\begin{proof}
+Let the equation be globally $p$-periodic. By \autoref{thm:spectral}(i), every
+real solution of \eqref{eq:red-linrec} is $p$-periodic. For a solution $v$, put
+\[
+\rho_n=v_n+v_{n+k}-\sum_{j=1}^{k-1}\eps_j\,v_{n+k-j}.
+\]
+Let $u$ be another solution, and expand $\sum_{n<p}u_n\rho_n$ into three period
+sums. Shifting the first by $k$ and the terms of the third by $j$,
+\[
+\sum_{n<p}u_nv_n=\sum_{n<p}u_{n+k}v_{n+k},\qquad
+\sum_{n<p}u_nv_{n+k-j}=\sum_{n<p}u_{n+j}v_{n+k},
+\]
+so that
+\[
+\sum_{n<p}u_n\rho_n
+=\sum_{n<p}v_{n+k}\Bigl(u_{n+k}+u_n-\sum_{j=1}^{k-1}\eps_ju_{n+j}\Bigr)=0,
+\]
+because $u$ solves \eqref{eq:red-linrec}. On the other hand, using
+\eqref{eq:red-linrec} for $v$ to replace $v_n+v_{n+k}$, and reindexing the sum
+$j\mapsto k-j$,
+\[
+\rho_n=\sum_{j=1}^{k-1}\bigl(\eps_j-\eps_{k-j}\bigr)\,v_{n+j}.
+\]
+This is a linear combination of shifts of $v$, so $\rho$ is itself a solution of
+\eqref{eq:red-linrec}. Taking $u=\rho$ gives $\sum_{n<p}\rho_n^2=0$, so $\rho_n=0$ for
+$n<p$, and hence for all $n$ by periodicity.
+
+Now fix $1\le j\le k-1$ and let $v$ be the solution with initial window
+$v_j=1$ and $v_i=0$ for the other $i<k$. Then
+$0=\rho_0=\eps_j-\eps_{k-j}$, and multiplying by $x^*$ gives $c_j=c_{k-j}$. The
+statement about $S$ follows because $S=\{j:c_j>0\}$, and the statement about the
+$A_i$ from \eqref{eq:red-normalise}.
+\end{proof}
+
+\subsection{Known types and primitive supports}
+
+The five equations \eqref{eq:fivefamilies} have a simple description in terms
+of normalised data. Recall that the \textit{$\ell$-fold unfolding} of an equation
+$x_{n+k'}=f(x_n,x_{n+1},\dots,x_{n+k'-1})$ of order $k'$ is the equation
+$x_{n+\ell k'}=f(x_n,x_{n+\ell},\dots,x_{n+(k'-1)\ell})$ of order $\ell k'$; its solutions
+are exactly the sequences whose $\ell$ interleaved subsequences
+$m\mapsto x_{m\ell+r}$ ($0\le r<\ell$) each solve the original equation.
+(\citet{Gasull2021} describes this operation without a name, and uses the
+word \emph{unfold} for the rescaled family $y_n=\alpha x_n$ instead.)
+
+\begin{definition}
+\label{def:red-known}
+The normalised data $(k,S,c)$ of an equation \eqref{eq:familya} is of
+\textit{known type} if one of the following holds:
+\begin{enumerate}
+\item[(K1)] $S=\emptyset$;
+\item[(K2)] $k=2m$, $S=\{m\}$, and $c_0=0$ or $c_0=c_m^2$;
+\item[(K3)] $k=3m$, $S=\{m,2m\}$, $c_m=c_{2m}$ and $c_0=c_m^2$.
+\end{enumerate}
+\end{definition}
+
+\begin{lemma}
+\label{lem:red-members}
+If the normalised data of an equation of type (a) is of known type, then the
+equation is equivalent, under a rescaling $y_n=x_n/\lambda$ ($\lambda>0$) and
+an unfolding, to one of the equations \eqref{eq:fivefamilies}. In terms of the
+coefficients of \eqref{eq:family}, with $m$ as in \autoref{def:red-known}:
+in case (K1), $A_i=0$ for all $i\ge1$; in case (K2), $A_i=0$ for
+$i\notin\{0,m+1\}$, and $A_0=0$ or $A_0B_1=A_{m+1}^2$; in case (K3), $A_i=0$
+for $i\notin\{0,m+1,2m+1\}$, $A_{m+1}=A_{2m+1}$ and $A_0B_1=A_{m+1}^2$.
+\end{lemma}
+
+\begin{proof}
+If $x$ solves \eqref{eq:familya}, then $y_n=x_n/\lambda$ solves
+$y_{n+k}y_n=c_0/\lambda^2+\sum_{j\in S}(c_j/\lambda)\,y_{n+j}$. In case (K1),
+$c_0>0$ by \autoref{thm:reduction}; with $\lambda=\sqrt{c_0}$ the equation
+becomes $y_{n+k}=1/y_n$, the $k$-fold unfolding of $y_{n+1}=1/y_n$. In case
+(K2), $\lambda=c_m$ gives $y_{n+2m}y_n=y_{n+m}$ or $y_{n+2m}y_n=1+y_{n+m}$,
+the $m$-fold unfoldings of $y_{n+2}=y_{n+1}/y_n$ and of the Lyness equation
+$y_{n+2}=(1+y_{n+1})/y_n$. In case (K3), $\lambda=c_m$ gives
+$y_{n+3m}y_n=1+y_{n+m}+y_{n+2m}$, the $m$-fold unfolding of
+$y_{n+3}=(1+y_{n+1}+y_{n+2})/y_n$. The coefficient conditions follow from
+\eqref{eq:red-normalise}: $c_0=c_m^2$ reads $A_0/B_1=A_{m+1}^2/B_1^2$.
+\end{proof}
+
+The last step of the reduction removes common factors from the support. If
+every element of $S$ and $k$ itself are multiples of some $\ell>1$, then the
+equation only ever couples terms whose indices agree modulo $\ell$, and it splits
+into $\ell$ independent copies of an equation of order $k/\ell$, as
+\citet{CimaGasullManosas2004} observe at order four, where they split a
+solution into its odd and even subsequences. Call $S$
+\textit{primitive} (at order $k$) when $\gcd(S\cup\{k\})=1$.
+
+\begin{lemma}[folding]
+\label{lem:unfold}
+Let \eqref{eq:familya} have normalised data $(k,S,c)$, and let
+$\ell=\gcd(S\cup\{k\})$ (so $\ell=k$ when $S=\emptyset$). Put $k'=k/\ell$,
+$S'=\{j/\ell:j\in S\}$, $c'_0=c_0$ and $c'_{j'}=c_{j'\ell}$ for $j'\in S'$. Then:
+\begin{enumerate}
+\item[(i)] equation \eqref{eq:familya} is the $\ell$-fold unfolding of the
+equation
+\begin{equation}
+x_{n+k'}\,x_n=c'_0+\sum_{j'\in S'}c'_{j'}\,x_{n+j'}
+\label{eq:red-folded}
+\end{equation}
+of order $k'$, which has the same $\theta$;
+\item[(ii)] if \eqref{eq:familya} is globally $p$-periodic, then so is
+\eqref{eq:red-folded};
+\item[(iii)] $S'$ is primitive at order $k'$, and if $c_j=c_{k-j}$ for all $j$,
+then $c'_{j'}=c'_{k'-j'}$ for all $j'$ (in particular $S'$ is palindromic);
+\item[(iv)] if the data $(k',S',c')$ is of known type, then so is $(k,S,c)$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(i) Every element of $S$ is a multiple of $\ell$, and so is $k$. Writing
+$n=m\ell+r$ with $0\le r<\ell$ and $j=j'\ell$, equation \eqref{eq:familya} at $n$ reads
+\begin{equation*}
+x_{(m+k')\ell+r}\,x_{m\ell+r}=c'_0+\sum_{j'\in S'}c'_{j'}\,x_{(m+j')\ell+r},
+\end{equation*}
+which is \eqref{eq:red-folded} at $m$ for the subsequence $m\mapsto x_{m\ell+r}$.
+
+(ii) Let $z$ be a positive solution of \eqref{eq:red-folded}, and put
+$x_n=z_{\lfloor n/\ell\rfloor}$. Each subsequence $m\mapsto x_{m\ell+r}$ equals $z$,
+so by (i) $x$ is a positive solution of \eqref{eq:familya}, and it is therefore
+$p$-periodic, hence also $p\ell$-periodic. So
+$z_{m+p}=x_{m\ell+p\ell}=x_{m\ell}=z_m$ for every $m$.
+
+(iii) and (iv) are immediate from the definitions:
+$\gcd(S'\cup\{k'\})=\gcd(S\cup\{k\})/\ell=1$, and for (iv) one replaces $m$
+by $m\ell$ in \autoref{def:red-known}.
+\end{proof}
+
+\begin{corollary}
+\label{cor:red-primitive}
+Suppose that every globally periodic equation \eqref{eq:familya} whose support
+$S$ is primitive and whose coefficients satisfy $c_j=c_{k-j}$ for all $j$ has
+normalised data of known type. Then every globally periodic equation of the
+form \eqref{eq:family} is either the shift $x_{n+k}=x_n$, or is equivalent,
+under a rescaling and an unfolding, to one of the equations
+\eqref{eq:fivefamilies}, with coefficients as in \autoref{lem:red-members}.
+\end{corollary}
+
+\begin{proof}
+Let \eqref{eq:family} be globally $p$-periodic. By \autoref{thm:reduction} it
+is either the shift or has the normalised form \eqref{eq:familya}, which is
+globally $p$-periodic. In the second case, \autoref{thm:palindromy} gives
+$c_j=c_{k-j}$, and \autoref{lem:unfold} gives a globally $p$-periodic folded
+equation \eqref{eq:red-folded} with primitive support and palindromic
+coefficients. By hypothesis its data is of known type, so by
+\autoref{lem:unfold}(iv) the data of \eqref{eq:familya} is of known type, and
+\autoref{lem:red-members} finishes the proof.
+\end{proof}
+
+The remaining sections therefore work with a primitive palindromic support
+$S$, coefficients $c_j=c_{k-j}>0$ on $S$, and either value of $\theta$, and
+show that global periodicity forces known type.

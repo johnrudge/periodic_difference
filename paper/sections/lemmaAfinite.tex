@@ -1,0 +1,192 @@
+\section{The finite range of the progression theorem}
+\label{app:lemmaA-finite}
+
+This appendix completes the proof of \autoref{thm:lemmaA}. It gives the
+certificate for the $127$ orders $92\le k\le2730$ with at least three odd
+prime factors, the only ones not covered by \autoref{prop:lemmaA-twoprime}
+or \autoref{prop:lemmaA-tail}, and proves the two bounds on
+Jacobsthal's function used in \autoref{sec:lemmaA-tail} for the orders above
+$2730$. The notation is that of \autoref{sec:lemmaA}.
+
+\subsection{The orders up to 2730 with three or more odd primes}
+
+By \autoref{lem:lemmaA-frame}(b), (c) and \autoref{lem:lemmaA-zero}, the
+normalised shortest vector of $\Lambda$ at an order $k\le2730$ gives a triple
+in $\mathcal V$ with $g\mid2k$ and $3l^4\le16k^2$: indeed
+$l^4\le16\cdot2730^2/3$ gives $l^2\le6304<6400$, so $l\le80$. Besides the chord table (C1) of
+\autoref{sec:lemmaA-tail}, the finite certificate has two more parts.
+\begin{enumerate}
+\item[(C2)] \emph{Jacobsthal values.} A list of $224$ pairs $(n,m)$ with
+$J(n)\le m$. Each is checked over one period: for every residue $y$ modulo
+$n$ some $0\le i<m$ has $\gcd(y+i,n)=1$.
+\item[(C3)] \emph{The per-order certificate.} For each of the $127$ even
+$k$ with $92\le k\le2730$ that have at least three odd prime factors, either
+(C2) contains a pair $(n,m)$ with $n$ the product of the primes of $2k$ such
+that $k$ satisfies the tail condition \eqref{eq:lemmaA-tailcond} with bound
+$m$ (the \emph{tail alternative}), or, for each $(g;p,q)\in\mathcal V$ with $g\mid2k$ and
+$3\bigl(g^2(p^2+q^2)\bigr)^2\le16k^2$, one of the following is verified:
+\begin{enumerate}
+\item[(i)] a pair $(n,m)$ from (C2) with $n\mid2k$, $\gcd(n,g)=1$, every
+prime of $2k$ dividing $ng$, and $2k\psi>mg$, where $\psi$ is the length
+of the chord witness in (C1); or
+\item[(ii)] for each of the $g^2$ pairs $0\le s,t<g$, with
+$(A,E)=(p+\tfrac{2k}{g}s,\,q+\tfrac{2k}{g}t)$: a unit $\nu<100$
+satisfying \eqref{eq:lemmaA-good}, or $\gcd(A,E,2k)>1$, or an
+$m$ with $0<m<g$ and $2k\mid m(pE-qA)$.
+\end{enumerate}
+\end{enumerate}
+The tail alternative of (C3) holds at $65$ of these $127$ orders, and
+alternative (ii) is needed only at $18$ orders, all at most $924$.
+
+\begin{proposition}
+\label{prop:lemmaA-finite}
+\autoref{thm:lemmaA} holds at the $127$ even orders $92\le k\le2730$ with at
+least three odd prime factors.
+\end{proposition}
+
+\begin{proof}
+If the tail alternative of (C3) holds, then $J(2k)=J(n)\le m$ and $k$
+satisfies the tail condition with bound $m$, hence with bound $J(2k)$, and
+\autoref{prop:lemmaA-tail} applies. Otherwise, let $v=gu$ be a normalised shortest vector of
+$\Lambda$. As noted above, $(g;p,q)\in\mathcal V$, $g\mid2k$ and
+$3l^4\le16k^2$, so (C3) applies to it. In case (i), $J(n)\le m$ and $2k\psi>J(n)g$, and
+\autoref{prop:lemmaA-table} shows that $(a,e)$ has a witness; the conditions on $n$
+are those of \autoref{lem:lemmaA-line}. In case (ii), let $(s,t)$ be the
+class given by \autoref{lem:lemmaA-class}. Its two exclusions are ruled out
+by that lemma, so the certificate gives a unit $\nu$ showing that $(A,E)$ has a
+witness, and then so does $(a,e)$, by \autoref{lem:lemmaA-class}.
+\end{proof}
+
+
+\subsection{Elementary bounds on Jacobsthal's function}
+\label{app:lemmaA-jacbounds}
+
+This subsection proves \autoref{cor:lemmaA-jac}, the two inequalities for
+Jacobsthal's function used in \autoref{prop:lemmaA-tail}, by a union bound and
+a progression trick.
+
+\begin{lemma}
+\label{lem:lemmaA-jactools}
+\begin{enumerate}
+\item[(a)] Suppose every $m$ consecutive integers include at least $c$ that
+are prime to $N$, and $\mathcal T$ is a finite set of primes with
+$\sum_{p\in\mathcal T}\lceil m/p\rceil<c$. Then $J(n)\le m$ for every $n\ge1$
+whose prime factors divide $N$ or lie in $\mathcal T$.
+\item[(b)] If $\gcd(f,N)=1$ then $J(fN)\le f\,J(N)$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) Among $m$ consecutive integers at most $\lceil m/p\rceil$ are multiples
+of $p$. So fewer than $c$ of them are divisible by a prime of $\mathcal T$,
+and one of the $c$ integers prime to $N$ escapes; it is prime to $n$.
+
+(b) Given a run $y,y+1,\dots,y+fJ(N)-1$, choose $0\le r<f$ with
+$y+r\equiv1\pmod f$, and consider $y_i=y+r+fi$ for $0\le i<J(N)$, all in the
+run. Each $y_i$ is prime to $f$. With $f'$ an inverse of $f$ modulo $N$,
+$f'y_i\equiv f'(y+r)+i\pmod N$ runs through $J(N)$ consecutive integers, so
+some $y_i$ is prime to $N$, hence to $fN$.
+\end{proof}
+
+Let $\varpi_1<\varpi_2<\dots<\varpi_8$ be the primes $17,19,23,29,31,37,41,43$ and
+$\Pi_r=\varpi_1\cdots \varpi_r$ (with $\Pi_0=1$), and recall that $\omega(n)$ is the
+number of distinct prime factors of $n$.
+
+\begin{lemma}[at most eight prime factors]
+\label{lem:lemmaA-pattern}
+Let $n\ge1$ with $\omega(n)\le8$. Let $B$ be the product of the primes
+$p\le13$ dividing $n$, and $r$ the number of primes $p>13$ dividing $n$.
+Then $B\Pi_r\le n$, and there is an $m$ with $J(n)\le m$ such that
+\begin{enumerate}
+\item[(i)] if $B$ is even, $178\,m^2\le10\max\bigl(B\Pi_r,\
+B(\lfloor2730/B\rfloor+1)\bigr)$;
+\item[(ii)] $m\le8$, or $1000\,m<102\,B\Pi_r$.
+\end{enumerate}
+\end{lemma}
+
+The maximum in (i) is the better of two lower bounds for an order $k$ to
+which the lemma will be applied: $k\ge B\Pi_r$, and, as $k$ is a multiple
+of $B$ above $2730$, $k\ge B(\lfloor2730/B\rfloor+1)$. So (i) gives the first
+inequality of the tail condition, and (ii) gives $J(g)\le8$ or
+$J(g)<0.102\,g$, as needed for the band.
+
+\begin{proof}
+The $i$-th smallest prime above $13$ is $\varpi_i$, so the primes
+$p_1<\dots<p_r$ of $n$ above $13$ satisfy $p_i\ge \varpi_i$. Hence
+$n\ge B\,p_1\cdots p_r\ge B\Pi_r$, and
+$\sum_i\lceil m/p_i\rceil\le\sum_i\lceil m/\varpi_i\rceil$ for every $m$.
+
+The rest is a finite table. For each of the $64$ sets $\mathcal P$ of primes
+$\le13$, with product $B$, and each $r$ with $0\le r\le8-|\mathcal P|$, there is an
+entry; this gives $384$ pairs $(B,r)$. For each the table supplies integers
+$m$ and $c$ such that
+\begin{enumerate}
+\item[(P1)] every $m$ consecutive integers include at least $c$ that are
+prime to $B$;
+\item[(P2)] $\sum_{i=1}^r\lceil m/\varpi_i\rceil<c$;
+\item[(P3)] (i) and (ii) hold for this $m$.
+\end{enumerate}
+Condition (P1) is checked by sliding a window of length $m$ over one period
+$\{0,\dots,B-1\}$ of the starting point; (P2) and (P3) are arithmetic. The
+largest $m$ needed is $84$. Given the table, (P1), (P2)
+and the inequality above give exactly the situation of
+\autoref{lem:lemmaA-jactools}(a), with $N=B$ and $\mathcal T$ the primes of
+$n$ above $13$, so $J(n)\le m$.
+\end{proof}
+
+\begin{lemma}[at least nine prime factors]
+\label{lem:lemmaA-crude}
+Let $n$ have $\omega=\omega(n)\ge9$ distinct prime factors. Let $B$ be the product of the primes $p\le \omega$
+dividing $n$, and $R$ the product of the remaining $r$ primes of $n$. Then
+$BR\le n$, $J(n)\le B(r+1)$, and
+\[
+178\,B(r+1)^2\le10R,\qquad1000(r+1)<102R.
+\]
+\end{lemma}
+
+\begin{proof}
+Every prime of $R$ exceeds $\omega\ge r$, so $r+1$ consecutive integers include
+at most one multiple of each, and \autoref{lem:lemmaA-jactools}(a) (with
+$N=1$, $c=m=r+1$) gives $J(R)\le r+1$. Since $\gcd(B,R)=1$,
+\autoref{lem:lemmaA-jactools}(b) gives $J(BR)\le B(r+1)$, and $J(n)=J(BR)$.
+
+For the inequalities, the $r$ primes of $R$ are distinct integers above
+$\omega$, so $R\ge(\omega+1)(\omega+2)\cdots(\omega+r)$. The other $\omega-r$ primes are at most
+$\omega$, so $B$ divides the primorial $\omega\#=\prod_{p\le \omega}p$ and $r\ge \omega-\pi(\omega)$. If
+$\omega\le63$, it suffices to check that
+$178\,(\omega\#)(r+1)^2\le10\prod_{i=1}^r(\omega+i)$ and
+$1000(r+1)<102\prod_{i=1}^r(\omega+i)$ for every $9\le \omega\le63$ and
+$\omega-\pi(\omega)\le r\le \omega$, a finite computation. If $\omega\ge64$, use the classical bound $\omega\#\le4^\omega$ and the
+count $\pi(\omega)\le \omega/2+1$ (the odd primes up to $\omega$ are distinct odd numbers
+in $[3,\omega]$). The bound on $\omega\#$ holds for $\omega\le2$ by inspection and follows
+by induction: for even $\omega>2$, $\omega\#=(\omega-1)\#$; for $\omega=2m+1$, the primes in
+$(m+1,2m+1]$ all divide $\binom{2m+1}{m}$, which is at most $4^m$ because it
+and $\binom{2m+1}{m+1}$ are equal and sum to at most $2^{2m+1}$, so
+$(2m+1)\#\le(m+1)\#\,4^m\le4^{m+1}4^m$. Then $r\ge \omega/2-1\ge31$,
+$\omega\le2r+2$, $\prod_{i=1}^r(\omega+i)\ge64^r$ and $B\le4^\omega\le16\cdot16^r$, so
+$178B(r+1)^2\le16^r\cdot2848(r+1)^2\le16^r\cdot10\cdot4^r=10\cdot64^r$,
+using $2848(r+1)^2\le10\cdot4^r$ for $r\ge8$ (true at $r=8$, and the right
+side grows faster). The second inequality is then immediate.
+\end{proof}
+
+\begin{corollary}
+\label{cor:lemmaA-jac}
+\begin{enumerate}
+\item[(a)] Every even $k>2730$ satisfies $178\,J(2k)^2\le10k$, that is,
+$17.8\,J(2k)^2\le k$.
+\item[(b)] Every $g\ge1$ satisfies $J(g)\le8$ or $1000\,J(g)<102\,g$.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+(a) Note $J(2k)=J(k)$. If $\omega(k)\le8$, apply
+\autoref{lem:lemmaA-pattern} to $n=k$. Then $B$ is even, and $k\ge B\Pi_r$;
+also $k$ is a multiple of $B$ exceeding $2730$, so
+$k\ge B(\lfloor2730/B\rfloor+1)$. So $178J(k)^2\le178m^2\le10k$. If
+$\omega(k)\ge9$, \autoref{lem:lemmaA-crude} gives
+$178J(k)^2\le178B^2(r+1)^2\le10BR\le10k$.
+(b) If $\omega(g)\le8$, \autoref{lem:lemmaA-pattern}(ii) gives $J(g)\le m\le8$
+or $1000J(g)\le1000m<102B\Pi_r\le102g$. If $\omega(g)\ge9$,
+\autoref{lem:lemmaA-crude} gives $1000J(g)\le1000B(r+1)<102BR\le102g$.
+\end{proof}
+

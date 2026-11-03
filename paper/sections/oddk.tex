@@ -1,0 +1,523 @@
+\section{Odd orders}
+\label{sec:oddk}
+
+At odd order the palindromic supports have a rigid shape, and this section
+uses it to dispose of every one of them except the full support.
+
+\begin{theorem}[odd orders]
+\label{thm:oddk}
+Let $k$ be odd, and let $S\subseteq\{1,\dots,k-1\}$ be primitive and
+palindromic with $|S|\ge3$ and $S\ne\{1,\dots,k-1\}$. Then no equation
+\eqref{eq:familya} with support $S$ is globally periodic, whatever its
+positive coefficients and for either value of $\theta$.
+\end{theorem}
+
+Write $k=2h+1$. Each pair $\{j,k-j\}$ contains
+exactly one even number, so a palindromic support is determined by its even
+elements; halving them gives a set $X\subseteq\{1,\dots,h\}$ with
+\begin{equation}
+S=\{\,2x,\ k-2x\ :\ x\in X\,\}.
+\label{eq:odd-coords}
+\end{equation}
+Two quite different mechanisms are needed, according to whether or not $X$
+is a \emph{dilated interval}, that is $X=\mu\cdot\{1,\dots,M\}$ for some
+integers $\mu,M\ge1$.
+If $X$ is not a dilated interval (\autoref{sec:odd-nondil}), an unbounded
+tangent solution along a fixed periodic orbit, which alternates between low
+values at odd positions and high values at even ones, can be written down in
+closed form; whether it exists turns on rigidity statements about
+translates and reflections of $X$ modulo $k$, which fail only for dilated
+intervals. If $X$ is a dilated interval (\autoref{sec:odd-dil}), the support
+carries a $\sigma$-bump. The first mechanism cannot simply be replaced by
+the second. At $k=7$ there are
+exactly two primitive palindromic supports with a non-dilated $X$,
+$\{1,2,5,6\}$ and $\{1,3,4,6\}$, and neither carries a
+$\sigma$-bump, as one can check by running through the four choices of
+$\sigma$ and the $2^7$ anti-periodic sets; this explains the choice of
+method, but it is not used in the proof and is not formalised. The tangent
+solutions along the alternating orbit give a short uniform argument instead, and the
+$\sigma$-bump is used only where rigidity fails, for the dilated intervals.
+
+The alternating orbit has a precedent in the work of
+\citet{CimaGasullManosas2004}. At odd order a palindromic equation has a
+one-parameter family of $2$-periodic solutions, equal to $t$ at even and
+$(st+c_0)/(t-s)$ at odd positions, where $t>s=\sum_{j\in S,\,j\text{ even}}c_j$;
+along it the eigenvalues of the derivative of the second iterate must be
+constant roots of unity \citep[Proposition~2.6]{CimaGasullManosas2004}, which
+gives polynomial conditions on the coefficients that they solve at
+$k=5,7,9,11$. Taking $t-s$ a fixed multiple of $\delta^3$ and letting
+$\delta\to0^+$ gives the $2$-periodic min-plus solution equal to $0$ at even
+and $-3$ at odd positions, and the alternating orbit below changes it at two
+positions in each period $2k$. The mechanism here is different, however: the
+tangent recursion along the alternating orbit depends only on $S$, so it
+disposes of every choice of coefficients at once.
+
+Throughout, $k=2h+1$ is odd, and residues modulo $k$ are identified with
+their representatives in $\{0,\dots,k-1\}$; for a residue $n$ and a set $X$
+of residues, $n+X$ and $n-X$ denote the translate and the reflection of $X$
+taken modulo $k$. The set $X$ always lies in the lower half
+$\{1,\dots,h\}$, and two elementary facts about such sets are used
+repeatedly: for $x,y\in X$,
+\begin{equation}
+x+y\not\equiv0\pmod k,
+\qquad\text{and}\qquad
+-x\equiv k-x\in\{h+1,\dots,2h\}\ \text{lies outside } X\cup\{0\},
+\label{eq:odd-half}
+\end{equation}
+because $2\le x+y\le 2h<k$. I write $\mathbf 1[\,\cdot\,]$ for the indicator
+of a statement, equal to $1$ if it is true and $0$ otherwise, and
+$\mathbf 1_U(y)=\mathbf 1[\,y\in U\,]$ for the indicator function of a set
+$U$.
+
+\begin{lemma}[coordinates]
+\label{lem:odd-coords}
+Let $S\subseteq\{1,\dots,k-1\}$ be palindromic, and put
+$X=\{s/2:\ s\in S\text{ even}\}$. Then $X\subseteq\{1,\dots,h\}$,
+\eqref{eq:odd-coords} holds, and $|S|=2|X|$. In particular $|S|\ge3$ forces
+$|X|\ge2$, and then $S$ contains at least two odd elements.
+\end{lemma}
+
+\begin{proof}
+By palindromy $S$ is the union of pairs $\{j,k-j\}$, each consisting of one
+even element $2x\le 2h$ and one odd element $k-2x$, and these $2|X|$ numbers
+are distinct.
+\end{proof}
+
+\subsection{The alternating orbit and the reduced recursion}
+\label{sec:odd-carrier}
+
+The periodic orbit used below alternates, low on odd positions and high on
+even ones, except for a single raised value at one odd position of each
+period $2k$, compensated a half-period later. For $n\ge0$ put
+\begin{equation}
+E_n=\begin{cases}
+-2 & n \text{ odd},\ n\equiv1 \pmod{2k},\\
+-3 & n \text{ odd},\ n\not\equiv1 \pmod{2k},\\
+-1 & n \text{ even},\ n\equiv k+1 \pmod{2k},\\
+\phantom{-}0 & n \text{ even},\ n\not\equiv k+1 \pmod{2k}.
+\end{cases}
+\end{equation}
+I call $E$ the \emph{alternating orbit}.
+
+\begin{lemma}[the alternating orbit]
+\label{lem:odd-carrier}
+Let $S$ be palindromic with at least two odd elements. Then $E$ is a
+$2k$-periodic integer solution of the min-plus recursion with support $S$,
+for either value of $\theta$: $E_{n+k}+E_n=-3$ for every $n$, the minimum
+over the slots at time $n$ is $-3$, and it is attained exactly at the taps
+\begin{equation}
+A_n=\{\,j\in S\ :\ n+j \text{ odd},\ n+j\not\equiv1\pmod{2k}\,\};
+\end{equation}
+the constant slot, when $\theta=1$, never attains.
+\end{lemma}
+
+\begin{proof}
+As $k$ is odd, $n$ and $n+k$ have opposite parities, and $n\equiv1$ exactly
+when $n+k\equiv k+1 \pmod{2k}$; so the two exceptional values $-2$ and $-1$
+are always paired, and $E_{n+k}+E_n=-3$ in every case. Every value of $E$ is
+at least $-3$, with equality exactly at the odd positions other than those
+$\equiv1\pmod{2k}$, and the constant slot is worth $0>-3$. It remains to see
+that $A_n$ is nonempty. If $n$ is even, $A_n$ consists of the odd taps $j$
+with $n+j\not\equiv1$; there are at least two odd taps and at most one of
+them has $n+j\equiv1\pmod{2k}$. If $n$ is odd, the same argument applies to
+the even taps, of which there are as many as odd ones.
+\end{proof}
+
+The tangent recursion along $E$ is
+\begin{equation}
+d_{n+k}+d_n=\min_{j\in A_n} d_{n+j}\qquad(n\ge0),
+\label{eq:odd-tangent}
+\end{equation}
+and every tap in $A_n$ reads $d$ at an odd position. So the values of $d$ at
+odd positions should determine everything, and they do. Write
+$v_t=d_{2t+1}$, and use the coordinates \eqref{eq:odd-coords}. At the odd
+time $n=2t+1$ the attaining taps are the even ones, $j=2x$, which read
+$d_{2(t+x)+1}=v_{t+x}$ and are absent when $2(t+x)+1\equiv1\pmod{2k}$, that
+is when $t+x\equiv0\pmod k$. At the even time $n=2t+1+k$ they are the odd
+ones, $j=k-2x$, which read $v_{t+k-x}$ and are absent when $t-x\equiv0\pmod
+k$. This motivates the two \emph{read sets}, of the time $2t+1$ and of the
+time $2t+1+k$ half a period later,
+\begin{equation}
+R_+(t)=\{\,t+x\ :\ x\in X,\ t+x\not\equiv0\,\},
+\qquad
+R_-(t)=\{\,t+k-x\ :\ x\in X,\ t-x\not\equiv0\,\},
+\label{eq:odd-reads}
+\end{equation}
+with congruences modulo $k$; these are sets of positive integers. Modulo $k$,
+$R_+(t)$ lies in the translate $t+X$ and $R_-(t)$ in the reflection $t-X$,
+which explains the signs. Each is nonempty when $|X|\ge2$,
+since at most one $x\in X$ can satisfy $t\pm x\equiv0$. Note that no read
+ever lands on a multiple of $k$: the tap that would have done so is exactly
+the one that is absent. The \emph{reduced recursion} is
+\begin{equation}
+v_{t+k}-v_t=\min_{y\in R_-(t)}v_y-\min_{y\in R_+(t)}v_y\qquad(t\ge0).
+\label{eq:odd-vrec}
+\end{equation}
+
+\begin{proposition}[reduction to the odd positions]
+\label{prop:odd-second}
+Let $S$ be palindromic with $|S|\ge3$, with $X$ as in \autoref{lem:odd-coords}.
+If the reduced recursion \eqref{eq:odd-vrec} has an unbounded integer
+solution $(v_t)_{t\ge0}$, then no equation \eqref{eq:familya} with support
+$S$ is globally periodic, for any positive coefficients and either $\theta$.
+\end{proposition}
+
+\begin{proof}
+Define $d_n$ for $n\ge0$ by $d_{2t+1}=v_t$ at odd positions, and at even
+positions by
+\[
+d_n=\min_{j\in A_n}d_{n+j}-d_{n+k}\qquad(n\text{ even});
+\]
+the right-hand side involves only odd positions ($n+j$ for odd $j$, and
+$n+k$), so this is a definition. Then \eqref{eq:odd-tangent} holds at every
+even $n$ by construction. At an odd time $n=2t+1$ the position $n+k$ is even,
+so by the definition and the description of the attaining taps above,
+\[
+d_{n+k}=\min_{j\in A_{n+k}}d_{n+k+j}-d_{n+2k}=\min_{y\in R_-(t)}v_y-v_{t+k},
+\]
+and hence
+$d_{n+k}+d_n=\min_{R_-(t)}v-v_{t+k}+v_t=\min_{R_+(t)}v
+=\min_{j\in A_n}d_{n+j}$ by \eqref{eq:odd-vrec}. So $d$ is an integer
+solution of the tangent recursion along the alternating orbit $E$ of
+\autoref{lem:odd-carrier}, which applies because $|X|\ge2$; and $d$ is
+unbounded because $v$ is. The conclusion is \autoref{thm:tangent}.
+\end{proof}
+
+\subsection{Rays}
+\label{sec:odd-rays}
+
+The unbounded solutions of the reduced recursion used below are
+\emph{rays of the reduced recursion}: they satisfy
+$v_{t+k}=v_t+\Delta(t\bmod k)$ for a fixed function $\Delta$ on $\Z/k$, not
+identically zero. Only residues modulo $k$ matter for the read sets
+\eqref{eq:odd-reads}: the residues of $R_+(t)$ and $R_-(t)$ are
+\begin{equation}
+\bar R_+(r)=(r+X)\setminus\{0\},
+\qquad
+\bar R_-(r)=(r-X)\setminus\{0\},
+\qquad r=t\bmod k,
+\end{equation}
+the punctured translate and the punctured reflection of $X$. For a set
+$U\subseteq\Z/k$, say that $r$ is \emph{reflection-blocked} if
+$\bar R_-(r)\subseteq U$, and \emph{translate-blocked} if
+$\bar R_+(r)\subseteq U$.
+
+\begin{lemma}[indicator rays]
+\label{lem:odd-ray}
+Let $|X|\ge2$ and $U\subseteq\Z/k\setminus\{0\}$, and define
+$\Delta:\Z/k\to\Z$ by
+\begin{equation}
+\Delta(r)=\mathbf 1[\,r\text{ reflection-blocked}\,]-\mathbf 1[\,r\text{ translate-blocked}\,].
+\label{eq:odd-raycond}
+\end{equation}
+Suppose that $0$ is translate-blocked and not reflection-blocked, that no
+$r\ne0$ is translate-blocked, and that every reflection-blocked $r$ lies in
+$U$. Suppose also the \emph{vanishing condition}: every blocked read set, that
+is $\bar R_-(r)$ for $r$ reflection-blocked and $\bar R_+(r)$ for $r$
+translate-blocked, contains a residue at which $\Delta$ vanishes. Then
+\[
+v_t=\mathbf 1_U(t\bmod k)-\mathbf 1[\,t\equiv0\,]+\lfloor t/k\rfloor\,\Delta(t\bmod
+k)\qquad(t\ge0)
+\]
+solves the reduced recursion \eqref{eq:odd-vrec}, and $v_{mk}=-1-m$, so $v$
+is unbounded.
+\end{lemma}
+
+\begin{proof}
+The hypotheses say that $\Delta(0)=-1$, that $\Delta\ge0$ elsewhere, and
+that $\Delta=0$ outside $U\cup\{0\}$. Clearly $v_{t+k}-v_t=\Delta(t\bmod k)$,
+and $v_{mk}=-1-m$ because $0\notin U$.
+Now look at the value of $v$ at a read $y$, whose residue $\rho=y\bmod k$ is
+never $0$, by \eqref{eq:odd-reads}. If $\rho\notin U$ then $\Delta(\rho)=0$ and $v_y=0$. If $\rho\in
+U$ then $v_y=1+\lfloor y/k\rfloor\Delta(\rho)\ge1$, with equality when
+$\Delta(\rho)=0$. Hence the minimum of $v$ over a read set is $0$ if some
+read lies outside $U$, and is exactly $1$ if all reads lie in $U$, that is,
+if the read set is blocked; in that case the vanishing condition supplies a
+read with $\Delta(\rho)=0$. So the right-hand side of \eqref{eq:odd-vrec} is
+$\mathbf 1[\,r\text{ reflection-blocked}\,]-\mathbf 1[\,r\text{ translate-blocked}\,]$
+with $r=t\bmod k$, which is $\Delta(r)$.
+\end{proof}
+
+\begin{remark}[the tangent solution is a ray]
+\label{rem:odd-ray2k}
+This remark is not used in the proof of \autoref{thm:oddk}. For a solution
+$v$ as in \autoref{lem:odd-ray}, the tangent solution $d$ built from $v$ in
+the proof of \autoref{prop:odd-second} is a ray in the sense of
+\autoref{def:trop-ray}, with $q=2k$. At odd positions,
+$d_{2t+1+2k}=v_{t+k}=v_t+\Delta(t\bmod k)$. At an even position $n$, write
+$n+k=2\tau+1$; there $d_n$ is the minimum of $v$ over a read set, less
+$d_{n+k}=v_\tau$. By the proof of \autoref{lem:odd-ray}, that minimum is $0$
+or $1$ and depends only on the residues read, which do not change when $n$
+increases by $2k$; so $d_{n+2k}=d_n-\Delta(\tau\bmod k)$. Thus
+$d_{n+2k}=d_n+u_n$ with $u$ $2k$-periodic, and $u$ is not identically zero
+since $\Delta(0)=-1$.
+\end{remark}
+
+The whole difficulty is to choose $U$ so that the blocking hypotheses hold,
+and for that one needs to know when a punctured translate or reflection of $X$ can lie inside
+$X$ or a slight enlargement of it.
+
+\subsection{Rigidity of translates and reflections}
+\label{sec:odd-rigid}
+
+Say that $X$ is \emph{symmetric about} $j\in\Z/k$ if $j-X\subseteq X$
+(equivalently $j-X=X$), and that $W=X\cup\{0\}$ is \emph{symmetric about}
+$z$ if $z\in X$ and $z-x\in X$ for every $x\in X\setminus\{z\}$ (equivalently
+$z-W=W$). The first three statements below conclude that $X$ is a dilated
+interval.
+
+\begin{lemma}[translate rigidity]
+\label{lem:odd-trigid}
+Let $\emptyset\ne X\subseteq\{1,\dots,h\}$ and $\zeta\not\equiv0\pmod k$.
+If $\zeta+X\subseteq X\cup\{0\}$ modulo $k$, then $X$ is a dilated interval.
+\end{lemma}
+
+\begin{proof}
+Take $0<\zeta<k$. If $\zeta\le h$, then for $x_{\max}=\max X$ the integer
+$x_{\max}+\zeta$ lies in $(x_{\max},2h]$, so modulo $k$ it is neither $0$
+nor an element of $X$; hence $\zeta>h$. Put $\mu=k-\zeta\in\{1,\dots,h\}$, so
+that translation by $\zeta$ is $x\mapsto x-\mu$ modulo $k$. For $x\in X$ with
+$x<\mu$, the residue $x-\mu+k$ lies in $\{h+1,\dots,2h\}$ and is neither $0$
+nor in $X$; so every $x\in X$ has $x\ge\mu$ and $x-\mu\in X\cup\{0\}$. By
+induction every element of $X$ is a multiple of $\mu$, and stepping down
+from $\max X=M\mu$ by $\mu$ stays inside $X$ until it reaches $0$; so
+$X=\mu\cdot\{1,\dots,M\}$.
+\end{proof}
+
+\begin{lemma}[translates of a symmetric set]
+\label{lem:odd-symfail}
+Let $\emptyset\ne X\subseteq\{1,\dots,h\}$ be symmetric about $j$, and let
+$\zeta\not\equiv0$. If $\zeta+X\subseteq X\cup\{0,j\}$, then $X$ is a dilated
+interval.
+\end{lemma}
+
+\begin{proof}
+The translate can leave $X$ only at $0$ and at $j$. It cannot leave at both:
+if $x_1+\zeta\equiv0$ and $x_2+\zeta\equiv j$ with $x_1,x_2\in X$, then
+$y=j-x_2\in X$ and $y\equiv\zeta\equiv-x_1$, against \eqref{eq:odd-half}. If
+it never leaves at $j$, \autoref{lem:odd-trigid} applies directly. If it
+leaves only at $j$, reflect: for $y\in X$ put $x=j-y\in X$. Either
+$x+\zeta\in X$, and then $y-\zeta=j-(x+\zeta)\in X$; or $x+\zeta\equiv j$, and
+then $y-\zeta\equiv0$. So $-\zeta+X\subseteq X\cup\{0\}$, and
+\autoref{lem:odd-trigid} applies to $-\zeta$.
+\end{proof}
+
+\begin{lemma}[uniqueness of the centre of $W$]
+\label{lem:odd-wunique}
+Let $\emptyset\ne X\subseteq\{1,\dots,h\}$. If $W=X\cup\{0\}$ is symmetric
+about two distinct residues $z$ and $z'$, then $X$ is a dilated interval.
+\end{lemma}
+
+\begin{proof}
+Put $\zeta=z'-z\not\equiv0$; I check $\zeta+X\subseteq X\cup\{0\}$ and apply
+\autoref{lem:odd-trigid}. For $x=z$, $x+\zeta=z'\in X$. For $x\ne z$, $y=z-x$
+lies in $X$, and $x+\zeta=z'-y$; this is $0$ if $y=z'$, and lies in $X$
+otherwise, by the symmetry of $W$ about $z'$.
+\end{proof}
+
+Finally, reflection blocking against $X$ itself is always a symmetry.
+
+\begin{lemma}[reflection blocking]
+\label{lem:odd-frigid}
+If $(r-X)\setminus\{0\}\subseteq X$, then $X$ is symmetric about $r$ or $W$
+is symmetric about $r$.
+\end{lemma}
+
+\begin{proof}
+If $r\notin X$ then no $r-x$ vanishes, and $r-X\subseteq X$. If $r\in X$
+then $r-x\not\equiv0$ for every $x\in X\setminus\{r\}$, so $r-x\in X$ for all
+such $x$, which is the symmetry of $W$ about $r$.
+\end{proof}
+
+\subsection{The non-dilated sets}
+\label{sec:odd-nondil}
+
+\begin{theorem}[non-dilated sets]
+\label{thm:odd-nondil}
+Let $S$ be palindromic with $|S|\ge3$, and suppose that the set $X$ of
+\autoref{lem:odd-coords} is not a dilated interval. Then no equation
+\eqref{eq:familya} with support $S$ is globally periodic, for any positive
+coefficients and either $\theta$.
+\end{theorem}
+
+\begin{proof}
+By \autoref{prop:odd-second} and \autoref{lem:odd-ray} it suffices to
+exhibit $U$ satisfying the hypotheses of \autoref{lem:odd-ray}. Here
+$|X|\ge2$ by \autoref{lem:odd-coords}. If $X$ is symmetric about some $j$, then $j\ne0$, since $-X$ is
+disjoint from $X$ by \eqref{eq:odd-half}, and $j\notin X$, since otherwise
+$0=j-j\in X$; take $U=X\cup\{j\}$. Otherwise take $U=X$. In both cases $0$ is
+translate-blocked, since $\bar R_+(0)=X$, and no $r\ne0$ is translate-blocked:
+blocking would mean $r+X\subseteq U\cup\{0\}$, and \autoref{lem:odd-trigid}
+or \autoref{lem:odd-symfail} would make $X$ a dilated interval. It remains to
+find the reflection-blocked residues and to check the vanishing condition.
+
+\emph{$U=X\cup\{j\}$.} Reflection blocking happens exactly at $r=j$, which
+lies in $U$. Indeed $\bar R_-(j)=j-X=X\subseteq U$. At $r=0$, $\bar R_-(0)=-X$ has at least two elements,
+none in $X$, so they cannot all equal $j$. At $r\notin\{0,j\}$, put
+$\zeta=r-j\not\equiv0$; for $y\in X$, the residue $x=j-y$ lies in $X$ and
+$y+\zeta=r-x$, so reflection blocking at $r$ would give
+$\zeta+X\subseteq X\cup\{0,j\}$, and \autoref{lem:odd-symfail} would make $X$
+a dilated interval. So $\Delta=\mathbf 1_{\{j\}}-\mathbf 1_{\{0\}}$, and the
+two blocked read sets are $\bar R_-(j)=X$ and $\bar R_+(0)=X$, on which
+$\Delta$ vanishes.
+
+\emph{$U=X$.} The residue $0$ is not reflection-blocked, since $-X$ is
+disjoint from $X$. If $r$ is reflection-blocked, \autoref{lem:odd-frigid}
+makes $X$ or $W$ symmetric about $r$; the first is excluded, so $W$ is
+symmetric about $r$, which puts $r$ in $X=U$. By \autoref{lem:odd-wunique}
+there is at most one such $r$. So $\Delta$ vanishes on all of $X$ except at
+most one point, and $\bar R_+(0)=X$, having at least two elements, contains a
+zero of $\Delta$. If $z$ is reflection-blocked, then for $x\in X$ with $x\ne z$
+the read $z-x\in\bar R_-(z)$ is neither $0$ nor $z$, so $\Delta(z-x)=0$; such
+an $x$ exists as $|X|\ge2$, so $\bar R_-(z)$ also contains a zero of
+$\Delta$. This is the vanishing condition.
+\end{proof}
+
+\subsection{Dilated intervals}
+\label{sec:odd-dil}
+
+When $X=\mu\cdot\{1,\dots,M\}$ the support is
+\begin{equation}
+S=\{\,2\mu i,\ k-2\mu i\ :\ 1\le i\le M\,\},\qquad 2\mu M\le 2h<k,
+\label{eq:odd-prog}
+\end{equation}
+and the rigidity lemmas of \autoref{sec:odd-rigid} no longer rule out
+blocking. These supports carry a $\sigma$-bump with $\sigma$ even. Since $k$
+is odd, every residue modulo $2k$ is uniquely of the form $2u$ or $2u+k$ with
+$u\in\Z/k$, so an anti-periodic set is the same thing as a function on
+$\Z/k$, and (B1) and (B2) become conditions on translates and reflections of
+$X$.
+
+For $s\in\Z/k$, the translate $s+X$ and the reflection $s-X$ are called the
+two \emph{runs} at $s$.
+
+\begin{lemma}[carriers on $\Z/k$]
+\label{lem:odd-fold}
+Let $S$ be palindromic, with $X$ as in \autoref{lem:odd-coords}, and let
+$x_0\in X$ and $\sigma=2x_0$. For $\gamma:\Z/k\to\{0,1\}$ let $P_\gamma$ be
+the set of residues modulo $2k$ of the form $2u$ with $\gamma(u)=1$ or $2u+k$
+with $\gamma(u)=0$. Then $P_\gamma$ is anti-periodic, every anti-periodic set
+is $P_\gamma$ for exactly one $\gamma$, and $(\sigma,P_\gamma)$ is a
+$\sigma$-bump for $S$ if and only if
+\begin{enumerate}
+\item[(F1)] $\gamma(0)=0$, $\gamma(x_0)=1$, $\gamma(x)=0$ for
+$x\in X\setminus\{x_0\}$, and $\gamma(-x)=1$ for $x\in X$;
+\item[(F2)] for every $s\in\Z/k\setminus\{0\}$, the values $\gamma(u)$ for
+$u$ in the run $s+X$ and $1-\gamma(u)$ for $u$ in the run $s-X$, with
+$u\notin\{0,x_0\}$,
+include both $0$ and $1$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+As $k$ is odd, $u\mapsto 2u$ is a bijection from $\Z/k$ onto the even
+residues modulo $2k$, and $u\mapsto2u+k$ onto the odd ones. Write
+$g(n)=\mathbf 1[\,n\in P\,]$ for a set $P$ of residues modulo $2k$. For
+$P=P_\gamma$, $g(2u)=\gamma(u)$ and $g(2u+k)=1-\gamma(u)$, so $P_\gamma$ is
+anti-periodic. Conversely, if $P$ is anti-periodic, then with
+$\gamma(u)=g(2u)$ one gets $g(2u+k)=1-\gamma(u)$, so $P=P_\gamma$, and
+$\gamma$ is determined by $P$.
+
+\emph{(B1).} The position $0=2\cdot0$ lies in $P_\gamma$ iff $\gamma(0)=1$,
+the even tap $2x$ lies in $P_\gamma$ iff $\gamma(x)=1$, and the
+odd tap $k-2x=2(-x)+k$ lies in $P_\gamma$ iff $\gamma(-x)=0$. So
+$P_\gamma\cap(\{0\}\cup S)=\{\sigma\}$ says exactly (F1).
+
+\emph{(B2).} Let $0<i<k$, and let $s\in\Z/k$ be the residue with
+$2s\equiv i\pmod k$; then $s\ne0$, and $i\mapsto s$ is a bijection from
+$\{1,\dots,k-1\}$ onto $\Z/k\setminus\{0\}$. By the Chinese remainder
+theorem $i\equiv2s\pmod{2k}$ if $i$ is even and $i\equiv2s+k$ if $i$ is
+odd. So for $x\in X$ the tap $2x$ reads the position
+$i+2x\equiv2(s+x)$ or $2(s+x)+k$, and the tap $k-2x$ reads
+$i+k-2x\equiv2(s-x)+k$ or $2(s-x)$. When $i$ is even the reads are therefore
+$\gamma(s+x)$ and $1-\gamma(s-x)$, and when $i$ is odd they are the
+complements of these. The tap $2x$ is deleted when $i+2x\equiv0$ or
+$i+2x\equiv\sigma=2x_0\pmod k$, that is when $s+x\equiv0$ or $x_0$, since $2$ is a unit
+modulo $k$; likewise the tap $k-2x$ is deleted when $s-x\equiv0$ or $x_0$.
+Complementing every read does not change whether both values occur, so
+(B2) at $i$ is (F2) at $s$.
+\end{proof}
+
+A unit modulo $k$ carries the conditions (F1) and (F2) from one set to
+another. Indeed, let $\mu$ be a unit modulo $k$, let $X'=\mu X$ and
+$x_0'=\mu x_0$, and put $\gamma'(u)=\gamma(\mu^{-1}u)$. The map
+$u\mapsto\mu^{-1}u$ fixes $0$, carries $x_0'$ to $x_0$ and $X'$ to $X$, and
+carries the runs $s\pm X'$ to the runs $\mu^{-1}s\pm X$, with
+$\mu^{-1}s\ne0$ when $s\ne0$. So if $\gamma$ satisfies (F1) and (F2) for
+$(X,x_0)$, then $\gamma'$ satisfies them for $(X',x_0')$. This reduces the
+dilated intervals to $X=\{1,\dots,M\}$ and $x_0=1$, where the following
+explicit function works.
+
+\begin{theorem}[the interval carrier]
+\label{thm:odd-rowcarrier}
+Let $k=2h+1$ be odd and $M\ge2$ with $2M+3\le k$, and represent the residues
+modulo $k$ by $u\in[-h,h]$. Define $\gamma:\Z/k\to\{0,1\}$ by
+\[
+\gamma(0)=0,\quad \gamma(1)=1,\quad \gamma(u)=0\ (2\le u\le M),\quad
+\gamma(-u)=1\ (1\le u\le M),
+\]
+\[
+\gamma(u)=\mathbf 1[\,u\equiv M+1\pmod 2\,],\qquad \gamma(-u)=1-\gamma(u)
+\qquad(M<u\le h).
+\]
+Then $\gamma$ satisfies (F1) and (F2) for $X=\{1,\dots,M\}$ and $x_0=1$.
+\end{theorem}
+
+\begin{proof}
+Here $h\ge M+1\ge3$, so the five sets $\{0\}$, $[1,M]$, $[-M,-1]$,
+$I_+=[M+1,h]$ and $I_-=[-h,-M-1]$ partition $[-h,h]$, and $\gamma$ is well
+defined. Condition (F1) holds by construction. Call the residues $0$ and $1$
+\emph{excluded}; they are the residues removed in (F2). The function $\gamma$
+has three properties.
+\begin{itemize}
+\item[(i)] $\gamma(-u)=1-\gamma(u)$ for $2\le u\le h$: for $u\le M$ both
+sides are $1$, and for $u>M$ this is the definition.
+\item[(ii)] $\gamma$ changes value between $M$ and $M+1$, between $-M-1$ and
+$-M$, and between $h$ and $h+1\equiv-h$. Indeed $\gamma(M)=0$ and
+$\gamma(M+1)=1$, $\gamma(-M)=1$ and $\gamma(-M-1)=0$ by (i), and
+$\gamma(-h)=1-\gamma(h)$ by (i).
+\item[(iii)] $\gamma$ takes both values on any two consecutive residues of
+$I_+$, since exactly one of them is $\equiv M+1\pmod 2$, and likewise of
+$I_-$, by (i).
+\end{itemize}
+Also $\gamma(-1)=1\ne0=\gamma(2)$.
+
+Going round $\Z/k$, the residues fall into the consecutive arcs $[2,M]$, $I_+$, $I_-$, $[-M,-1]$, followed by the excluded
+pair $\{0,1\}$ and then $[2,M]$ again. By (ii) and the last remark, $\gamma$
+changes value between the last residue of each of the four arcs and the
+first residue of the next (across the excluded pair, between $-1$ and $2$).
+So if $\gamma$ is constant on the non-excluded elements of a run $R$ of $M$
+consecutive residues, then $R$ meets only one of the four arcs, since an
+arc of fewer than $k$ residues that meets two of them contains a boundary
+pair. It cannot lie in $I_\pm$, by (iii), as $M\ge2$; so $R\subseteq[-M,1]$
+or $R\subseteq[0,M]$.
+
+Suppose now that (F2) fails at $s\ne0$. Then $\gamma$ is constant on the
+non-excluded elements of both runs. The run $s+\{1,\dots,M\}$ lies in
+$[-M,1]$ or in $[0,M]$, which forces $s\in[-M-1,1-M]$ or $s\in\{-1,0\}$; the
+run $s-\{1,\dots,M\}$ likewise forces $s\in\{0,1,2\}$ or $s\in\{M,M+1\}$.
+All these residues lie in $[-M-1,M+1]$, whose $2M+3\le k$ elements are
+distinct modulo $k$. The first list lies in $[-M-1,0]$ and the second in
+$\{0\}\cup[1,M+1]$, so the only residue in both is $0$. This contradicts
+$s\ne0$.
+\end{proof}
+
+\subsection{Proof of \autoref{thm:oddk}}
+\label{sec:odd-proof}
+
+\begin{proof}[Proof of \autoref{thm:oddk}]
+Let $k=2h+1$ and $S$ be as in the theorem, and let $X$ be as in
+\autoref{lem:odd-coords}, so that $|X|\ge2$. If $X$ is not a dilated interval,
+\autoref{thm:odd-nondil} applies. Otherwise $X=\mu\cdot\{1,\dots,M\}$, and
+$S$ is \eqref{eq:odd-prog}, with $M=|X|\ge2$ and $2\mu M\le2h$. Every element
+of $S$ is $2\mu i$ or $k-2\mu i$, so $\gcd(\mu,k)$ divides every element of
+$S\cup\{k\}$, and primitivity gives $\gcd(\mu,k)=1$. If $\mu=1$ and $M=h$,
+then $S$ is the full support, which is excluded. If $\mu=1$ and $M\le h-1$,
+then $2M+3\le k$. If $\mu\ge2$, then $4M\le2\mu M<k$, and $2M+3\le4M<k$ since
+$M\ge2$. In either of the last two cases \autoref{thm:odd-rowcarrier} gives a
+function satisfying (F1) and (F2) for $\{1,\dots,M\}$ and $1$; multiplying
+its argument by $\mu^{-1}$ modulo $k$, as above, gives one for $X$ and
+$x_0=\mu$, and \autoref{lem:odd-fold} turns it into a $2\mu$-bump for $S$.
+\autoref{thm:sigmabump} now shows that no equation with support $S$ is
+globally periodic, for any positive coefficients and either $\theta$.
+\end{proof}

@@ -1,0 +1,103 @@
+\section{The formalisation}
+\label{app:lean}
+
+The proof of \autoref{thm:main} has been formalised in the \textsc{Lean}~4
+proof assistant, using the \textsc{Mathlib} library. The formal statement
+is, in the notation of \eqref{eq:family},
+\begin{quote}
+\emph{if every positive solution of \eqref{eq:family} satisfies
+$x_{n+p}=x_n$ for some fixed $p\ge1$, then \eqref{eq:family} is one of the
+equations listed in \autoref{thm:main}},
+\end{quote}
+with each of the five cases written out as explicit conditions on the
+coefficients $A_i,B_i$, exactly as in the theorem. The formal proof has no
+hypotheses beyond those of the theorem, and it depends on no axioms other
+than the three standard ones of \textsc{Lean}'s logic (propositional
+extensionality, the axiom of choice and the soundness of quotients).
+The converse, that each of the equations listed in \autoref{thm:main} is
+globally periodic, is formalised as well, so that the formal statement is an
+equivalence: \eqref{eq:family} is globally periodic if and only if it is
+one of the listed equations. The main theorem and the equivalence are,
+respectively,
+\begin{center}
+\texttt{PeriodicDifference.Problem11.problem11\_complete}\quad and\quad
+\texttt{PeriodicDifference.Problem11.problem11\_iff}.
+\end{center}
+The tropical \autoref{cor:trop-nonperiodic} is formalised too, as
+\begin{center}
+\texttt{PeriodicDifference.Trop.trop\_nonperiodic},
+\end{center}
+which I state for the window map of
+\autoref{def:trop-minplus}, with the constant slot $0$ added to $S$ when
+$\theta=1$.
+% TODO: add the repository URL (and a commit or archive DOI) for the
+% formalisation and the witness data.
+The formalisation and the data for its finite computations are available
+from the author.
+
+The formalisation follows the structure of this paper result by result,
+including the period-sum proof of \autoref{thm:palindromy}. In a few places
+the formal proof takes a different, usually more elementary, route:
+\begin{itemize}
+\item \emph{Linearisation} (\autoref{thm:red-shift} and
+\autoref{thm:spectral}). Instead of the chain rule for $F^{\,p}$, the formal
+proof uses an exact identity $F(u^*+\eps w)=u^*+\eps\,G_\eps(w)$, where $G_\eps$
+is an explicit map that depends continuously on $\eps$ and $G_0=DF(u^*)$ is
+linear. Global periodicity gives $G_\eps^{\,p}=\id$ for $\eps>0$, and letting
+$\eps\to0$ gives $G_0^{\,p}=\id$.
+\item \emph{Order three with $c_0=0$} (\autoref{thm:order3}). Instead of the
+algebraic-integer step, a root $\lambda$ of $\lambda^2-\tfrac32\lambda+1$
+satisfies $\lambda^m=\alpha_m\lambda+\beta_m$ with rational $\alpha_m,\beta_m$ and
+$2^{m-1}\alpha_m$ an odd integer for $m\ge1$; so $\alpha_m\ne0$ and, as $\lambda$ is not
+real, $\lambda^m\ne1$.
+\item \emph{Small orders in \autoref{thm:twoterm}.} Step~2 of the proof
+(that $n_0\ge9$) is replaced by the same kind of expansion: with
+$\zeta^2-\eps\zeta+1=0$, $\zeta^r=P_r(\eps)\zeta+Q_r(\eps)$ for polynomials
+$P_r,Q_r$, and $\zeta^r=1$ would force $P_r(\eps)=0$, which is checked to be
+impossible for $1\le r\le8$ and $0<\eps\le\frac12$.
+\item \emph{Odd indices} (\autoref{lem:allodd-oddhalf}). Instead of the
+argument with the gaps between phases, the formal proof is local: if
+$H_\nu(u)\ne H_\nu(v)$, then at every odd index the four taps $u$, $k-u$, $v$,
+$k-v$, less the deleted one, already read both values, which is a case
+analysis on the residues $\nu i$, $\nu u$ and $\nu v$ modulo $2k$.
+\item \emph{The band} (\autoref{prop:lemmaA-band}). To stay in rational
+arithmetic, the incircle of $\Delta_1$ is replaced by a slightly smaller
+disc inside $\Delta_1$, of radius $0.207\,k$ about a rational point close to
+the incentre. With the same band half-width $0.102\,k$ its chords are longer
+than $0.36024\,k$ rather than $0.3604\,k$, and the bound $J(n)\,l<0.36021\,k$
+obtained in the proof of \autoref{prop:lemmaA-tail} still suffices.
+\end{itemize}
+
+Every finite computation in the paper is carried out in exact integer
+arithmetic inside \textsc{Lean}'s kernel by the \texttt{decide} tactic, so no
+step of the proof relies on compiled code or on an external program. In some
+the kernel finds the required objects itself by search (or none are needed);
+in the others they were produced outside \textsc{Lean} and are imported as
+data, which the kernel only checks:
+\begin{center}
+\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.46\textwidth}%
+>{\raggedright\arraybackslash}p{0.46\textwidth}@{}}
+found by the kernel & imported as data and checked\\\hline
+units witnessing the triples of \autoref{lem:allodd-pf} outside
+$\mathcal F$, and in step~1 of the proof of \autoref{thm:allodd-e3all}
+outside $F_k$ (search over the units modulo $2n$ or $2k$) &
+the seventeen carriers of \autoref{tab:allodd-base}\\
+the enumeration of lower halves in step~2 of that proof &
+the certificate of \autoref{prop:order6cert}\\
+the ratios of $\mathcal F$ in \autoref{lem:allodd-nofail}, and the entries
+of $\mathcal F$ used at $k=120$ in \autoref{thm:allodd-e3all} &
+the list $\mathcal F$ and the sets $F_k$\\
+the orders of \autoref{prop:lemmaA-twoprime} (a divisor test), and the
+per-order check (C3) for \autoref{thm:lemmaA} at the others, which looks up the
+pairs of (C2) and finds the units $\nu<100$ of alternative (ii) by search &
+the units satisfying (T) in step~3 of the proof of
+\autoref{thm:allodd-e3all}\\
+the check $9\le\omega\le63$ in \autoref{lem:lemmaA-crude} &
+the chord table (C1), the Jacobsthal pairs (C2), and the table of
+\autoref{lem:lemmaA-pattern}
+\end{tabular}
+\end{center}
+The case tables of \autoref{app:checks} and the chains of
+\autoref{tab:lemmaA-chains} hold for all values of the parameters, and they
+are formalised as case analyses.

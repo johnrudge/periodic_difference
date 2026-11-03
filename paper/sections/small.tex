@@ -1,0 +1,317 @@
+\section{Supports with at most two elements}
+\label{sec:small}
+
+This section deals with the supports with at most two elements. By
+\autoref{thm:palindromy} a globally periodic equation of the form
+\eqref{eq:familya} has a palindromic support, and by \autoref{lem:unfold} it
+suffices to treat primitive supports. A palindromic support with at most two
+elements is $\emptyset$, $\{k/2\}$ or $\{j,k-j\}$ with $1\le j<k/2$, since
+$k/2$ is the only index paired with itself. Primitivity then leaves three
+cases:
+\begin{itemize}
+\item $S=\emptyset$, which is primitive only at $k=1$. There the reciprocal
+form is $x_{n+1}x_n=c_0$ with $c_0>0$, which is of known type, so there is
+nothing to prove.
+\item $S=\{k/2\}$, which is primitive only at $k=2$: the support $S=\{1\}$
+of order two (\autoref{thm:order2}).
+\item $S=\{j,k-j\}$ with $\gcd(j,k)=1$. The case $k=3j$ forces $j=1$, and
+is the support $\{1,2\}$ of order three (\autoref{thm:order3}); every other
+case is settled by \autoref{thm:twoterm}.
+\end{itemize}
+
+At orders two and three with $c_0>0$ neither the linearisation nor the
+min-plus recursion can decide the question: at order two the characteristic
+polynomial $\lambda^2-\eps_1\lambda+1$ has roots of unity whenever
+$\eps_1=2\cos(2\pi q/p)$ for integers $q$ and $p\ge1$, and with $\theta=1$ the min-plus recursion is itself
+periodic, with period $5$ at order two and $8$ at order three
+\citep[Theorem~9]{CsornyeiLaczkovich2001}. What decides it is the second half
+of \autoref{thm:P}: once round a cycle of the min-plus recursion the leading
+coefficients are multiplied by a fixed factor, which must be $1$.
+
+\subsection{Order two}
+
+At $k=2$ with $S=\{1\}$ the equation \eqref{eq:familya} reads
+\begin{equation}
+x_{n+2}x_n=c_0+c_1x_{n+1},\qquad c_1>0,\quad c_0\ge0.
+\label{eq:small-order2}
+\end{equation}
+The substitution $x_n=c_1y_n$ turns it into
+\begin{equation}
+y_{n+2}y_n=\alpha+y_{n+1},\qquad \alpha=\frac{c_0}{c_1^2}\ge0,
+\label{eq:small-lyness}
+\end{equation}
+and it preserves positivity and periodicity of solutions. For $\alpha=1$
+this is the Lyness equation \citep{Lyness1942}, of period $5$; for
+$\alpha=0$ it has period $6$. The following theorem is known:
+\citet{KocicLadasRodrigues1993} showed that the periods $5$ and $6$ occur only
+for $\alpha=1$ and $\alpha=0$, and the theorem itself was proved by
+\citet{BarbeauGelbordTanny1995} on the whole real plane, by
+\citet{CsornyeiLaczkovich2001} with complex coefficients, and by
+\citet[Theorem~3.1]{CimaGasullManosas2004}. I sketch the proof, which is
+essentially that of \citet[Lemma~5]{CsornyeiLaczkovich2001} and of a remark of
+\citet[Section~3]{BarbeauGelbordTanny1995}, because it is the model for order
+three, where the details are given. The formalisation (\autoref{app:lean})
+contains a complete proof along the lines of the sketch.
+
+\begin{theorem}[order two]
+\label{thm:order2}
+If \eqref{eq:small-order2} is globally periodic, then $c_0=0$ or
+$c_0=c_1^2$.
+\end{theorem}
+
+\begin{proof}[Sketch of proof]
+Let $c_0>0$, so that $\alpha>0$ and $\theta=1$. The min-plus recursion
+$e_{n+2}+e_n=\min(0,e_{n+1})$ started from $(e_0,e_1)=(1,0)$ runs through
+the $5$-cycle $1,0,-1,-1,0$. Following the leading coefficients
+\eqref{eq:trop-lead} of \autoref{thm:leading} once round this cycle, with
+$c_1=1$ and constant term $\alpha$, multiplies $C_{5s+1}$ by $\alpha$: the first
+two steps give $C_{5s+4}=1/C_{5s+1}$, and at $n=5s+4$ the constant slot alone
+attains the minimum, so $C_{5s+6}=\alpha/C_{5s+4}=\alpha\,C_{5s+1}$. Hence
+$C_{5s+1}=\alpha^s$. By \autoref{thm:P} the period $p$ is a multiple of $5$,
+and $C_{p+1}=C_1$ gives $\alpha^{p/5}=1$, that is $\alpha=1$.
+\end{proof}
+
+\subsection{Order three}
+
+At $k=3$ with $S=\{1,2\}$, \autoref{thm:palindromy} gives $c_1=c_2$ for a
+globally periodic equation, so the equation is
+\begin{equation}
+x_{n+3}x_n=c_0+c_1(x_{n+1}+x_{n+2}),\qquad c_1>0,\quad c_0\ge0.
+\label{eq:small-order3}
+\end{equation}
+The substitution $x_n=c_1y_n$ turns it into
+\begin{equation}
+y_{n+3}y_n=\alpha+y_{n+1}+y_{n+2},\qquad\alpha=\frac{c_0}{c_1^2}\ge0.
+\label{eq:small-todd}
+\end{equation}
+For $\alpha=1$ this is the period-$8$ equation of \eqref{eq:fivefamilies}.
+The following theorem is also known. With complex coefficients it follows from
+Theorems~1 and~4 of \citet{CsornyeiLaczkovich2001}, and with nonnegative
+coefficients it is the case $m=1$ of \citet[Theorem~4.1]{CimaGasullManosas2004};
+\citet{KocicLadasRodrigues1993} had shown that the period $8$ occurs exactly
+when $c_0=c_1^2$. For $c_0>0$
+the proof below is that of \citet[Lemma~5(ii)]{CsornyeiLaczkovich2001}, written
+in the language of \autoref{thm:leading}.
+
+\begin{theorem}[order three]
+\label{thm:order3}
+If $x_{n+3}x_n=c_0+c_1x_{n+1}+c_2x_{n+2}$, with $c_1,c_2>0$ and $c_0\ge0$,
+is globally periodic, then $c_1=c_2$ and $c_0=c_1^2$. In particular
+$c_0>0$.
+\end{theorem}
+
+\begin{proof}
+Suppose the equation is globally $p$-periodic with $p\ge1$. By
+\autoref{thm:palindromy}, $c_1=c_2$, so it has the form
+\eqref{eq:small-order3}. The two values of $\theta$ are handled separately.
+
+First suppose $c_0>0$, so that \eqref{eq:small-todd} is globally
+$p$-periodic with $\alpha>0$. The argument follows the sketch for order two. The min-plus
+recursion is $e_{n+3}+e_n=\min(0,e_{n+1},e_{n+2})$, and the solution with initial
+window $(e_0,e_1,e_2)=(1,0,-1)$ is $8$-periodic, with
+\[
+\begin{array}{c|cccccccc}
+n\bmod8 & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7\\
+\hline
+e_n & 1 & 0 & -1 & -2 & -2 & -1 & 0 & 1\\
+A_n & \{2\} & \{2\} & \{1,2\} & \{1\} & \{1\} & \{0,1\} & \{0\} & \{0,2\}
+\end{array}.
+\]
+The period is exactly $8$, so \autoref{thm:P} gives $p=8r$ with $r\ge1$. If
+$C_{8s}=\xi$, $C_{8s+1}=\eta$ and $C_{8s+2}=\zeta$, the eight steps
+$n=8s,\dots,8s+7$ of \eqref{eq:trop-lead} give in turn
+\begin{gather*}
+C_{8s+3}=\frac{\zeta}{\xi},\quad
+C_{8s+4}=\frac{\zeta}{\xi\eta},\quad
+C_{8s+5}=\frac{\eta+1}{\xi\eta},\quad
+C_{8s+6}=\frac1\eta,\quad
+C_{8s+7}=\frac{\eta+1}{\zeta},\\
+C_{8s+8}=\frac{\xi(\alpha\eta+1)}{\eta+1},\quad
+C_{8s+9}=\alpha\eta,\quad
+C_{8s+10}=\alpha\zeta .
+\end{gather*}
+For example, at $n=8s+2$ both taps attain, so
+$C_{8s+5}C_{8s+2}=C_{8s+3}+C_{8s+4}$. Since $C_1=1$, induction gives
+$C_{8s+1}=\alpha^s$, and \autoref{thm:P} gives $\alpha^r=C_{p+1}=C_1=1$. Hence
+$\alpha=1$, that is $c_0=c_1^2$.
+
+Now suppose $c_0=0$, so the equation is $x_{n+3}x_n=c_1(x_{n+1}+x_{n+2})$.
+Its positive equilibrium is $x^*=2c_1$, so $\eps_1=\eps_2=\tfrac12$ in
+\eqref{eq:red-ej}, and the
+characteristic polynomial of \autoref{thm:spectral} is
+\[
+\chi(\lambda)=\lambda^3-\tfrac12\lambda^2-\tfrac12\lambda+1
+=(\lambda+1)\bigl(\lambda^2-\tfrac32\lambda+1\bigr).
+\]
+By \autoref{thm:spectral} every root of $\chi$ is a $p$-th root of unity.
+Let $\lambda$ be a root of the quadratic factor. Its discriminant is
+negative, so its two roots are $\lambda$ and $\bar\lambda$, and
+$\lambda\bar\lambda=1$; hence $\lambda+\lambda^{-1}=\tfrac32$. But $\lambda$
+is a root of unity, hence an algebraic integer, and so is $\lambda^{-1}$;
+so $\tfrac32$ would be a rational algebraic integer, that is, an integer.
+This contradiction shows that $c_0=0$ is impossible.
+\end{proof}
+
+\subsection{Two-term supports}
+
+The remaining small supports are the two-term supports $\{j,k-j\}$ at
+every order.
+
+\begin{theorem}[two-term supports]
+\label{thm:twoterm}
+Let $1\le j$, $2j<k$, $\gcd(j,k)=1$ and $k\ne3j$, and let $S=\{j,k-j\}$.
+Then no equation \eqref{eq:familya} with support $S$ is globally periodic,
+for either value of $\theta$.
+\end{theorem}
+
+Note that $\gcd(S\cup\{k\})=\gcd(j,k)$, so the hypothesis $\gcd(j,k)=1$ is
+exactly primitivity of $S$; and for primitive $S$ the condition $k\ne3j$
+only excludes $(k,j)=(3,1)$, the order-three support of
+\autoref{thm:order3}.
+
+Throughout this subsection, for $t\in\C$ I write
+\begin{equation}
+\chi_t(\lambda)=\lambda^k+1-t\,(\lambda^j+\lambda^{k-j}),
+\end{equation}
+which is the characteristic polynomial of \autoref{thm:spectral} for the
+support $\{j,k-j\}$ with $\eps_j=\eps_{k-j}=t$. Let $\eta_1,\dots,\eta_k$
+be its roots, listed with multiplicity, and let
+$s_r=\sum_{i=1}^k\eta_i^r$ be their power sums.
+
+The first step is to compute a few power sums. Because $\chi_t$ has only
+four terms, Newton's identities collapse to a short recursion.
+
+\begin{lemma}[power sums]
+\label{lem:small-newton}
+Let $1\le j$ and $2j<k$. Then
+\begin{enumerate}
+\item for $1\le r<k-j$, $s_r=j\,t^{r/j}$ if $j\mid r$, and $s_r=0$
+otherwise;
+\item $s_{k-j}=(k-j)\,t+t\,s_{k-2j}$;
+\item $s_k=t\,(s_{k-j}+s_j)-k$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Write $\chi_t(\lambda)=\lambda^k+a_1\lambda^{k-1}+\dots+a_k$. Since
+$1\le j<k-j<k$, the only nonzero coefficients are $a_j=a_{k-j}=-t$ and
+$a_k=1$. Newton's identities
+$s_r+a_1s_{r-1}+\dots+a_{r-1}s_1+r\,a_r=0$, for $1\le r\le k$, therefore
+read
+\[
+s_r=t\,s_{r-j}\,[j<r]+t\,s_{r-(k-j)}\,[k-j<r]
++r\,t\,[r=j]+r\,t\,[r=k-j]-k\,[r=k],
+\]
+where $[\,\cdot\,]$ is $1$ if the condition holds and $0$ otherwise. For
+$r<k-j$ only the first and third terms can be present, so $s_r=t\,s_{r-j}$
+for $j<r<k-j$, $s_j=jt$ and $s_r=0$ for $r<j$; part 1 follows by
+induction on $r$. Parts 2 and 3 are the cases $r=k-j$ and $r=k$, using
+$k-(k-j)=j$.
+\end{proof}
+
+The power sums replace a delicate analysis of where the roots of $\chi_t$
+leave the unit circle: if every $|\eta_i|=1$ then $|s_r|\le k$ for every $r$,
+and for a suitable $r$ the power sum $s_r$ is an explicit function of $t$
+that grows too fast.
+
+\begin{lemma}[interval bound]
+\label{lem:small-bound}
+Let $1\le j$, $2j<k$, $\gcd(j,k)=1$ and $k\ne3j$, and let $t\in\C$. If
+every root of $\chi_t$ has modulus $1$, then $t$ is real, $|t|\le2$ and
+$t\le\sqrt2$.
+\end{lemma}
+
+\begin{proof}
+First, $t$ is real. The polynomial $\chi_t$ is self-reciprocal,
+$\lambda^k\chi_t(1/\lambda)=\chi_t(\lambda)$, and $\chi_t(0)=1$, so
+\[
+\chi_t(\lambda)=\lambda^k\chi_t(1/\lambda)=\prod_i(1-\eta_i\lambda)
+=\prod_i(-\eta_i)\prod_i\bigl(\lambda-\eta_i^{-1}\bigr)
+=\prod_i\bigl(\lambda-\eta_i^{-1}\bigr),
+\]
+since $\prod_i(-\eta_i)=\chi_t(0)=1$. So the inverses $\eta_i^{-1}$ are the roots
+of $\chi_t$ again, with multiplicity. As $|\eta_i|=1$, $\eta_i^{-1}=\bar\eta_i$,
+and therefore $s_j=\sum_i\eta_i^{-j}=\sum_i\bar\eta_i^{\,j}=\bar s_j$. By
+\autoref{lem:small-newton}, $s_j=jt$, so $t=\bar t$ is real.
+
+Second, $|s_r|\le\sum_i|\eta_i|^r=k$ for every $r$. Suppose $j\ge2$. Then
+$0<k-2j<k-j$, and $j\nmid k-2j$, since otherwise $j\mid k$ and
+$j=\gcd(j,k)=1$. By \autoref{lem:small-newton},
+$s_{k-2j}=0$, $s_{k-j}=(k-j)t$, $s_j=jt$ and
+\[
+s_k=t\bigl((k-j)t+jt\bigr)-k=k\,(t^2-1).
+\]
+So $k|t^2-1|\le k$, whence $t^2\le2$, and $|t|\le\sqrt2$.
+
+Suppose instead $j=1$. Then $k>2$ and $k\ne3$, so $k\ge4$, and
+\autoref{lem:small-newton} gives $s_{k-2}=t^{k-2}$ and
+$s_{k-1}=(k-1)t+t\,s_{k-2}=(k-1)t+t^{k-1}$. From the first,
+$|t|^{k-2}\le k\le2^{k-2}$ (as $k\ge4$), so $|t|\le2$. From the second, if
+$t>1$ then $s_{k-1}>(k-1)+1=k$, which is impossible; so $t\le1\le\sqrt2$.
+\end{proof}
+
+The last ingredient is Kronecker's theorem \citep{Kronecker1857}: if $L$ is
+a number field and $\zeta\in L$ is a nonzero algebraic integer with
+$|\varphi(\zeta)|\le1$ for every field embedding $\varphi:L\to\C$, then
+$\zeta$ is a root of unity; for a modern account see
+\citet[Theorem~1.5.9]{BombieriGubler2006}.
+
+\begin{proof}[Proof of \autoref{thm:twoterm}]
+Suppose that an equation \eqref{eq:familya} with support $S=\{j,k-j\}$ is
+globally $p$-periodic. By \autoref{thm:palindromy}, $c_j=c_{k-j}$, so
+$\eps_j=\eps_{k-j}=:\eps$, and \eqref{eq:red-ej} gives
+$2\eps=\eps_j+\eps_{k-j}\le1$. Thus
+\[
+0<\eps\le\tfrac12,
+\]
+and by \autoref{thm:spectral} every root $\eta_i$ of $\chi_\eps$ is a
+$p$-th root of unity. The idea of the proof is that $\eps=\zeta+\zeta^{-1}$
+for a root of unity $\zeta$. The bound $0<\eps\le\tfrac12$ forces $\zeta$ to
+have order at least $9$, and then some conjugate of $\eps$ is larger than
+$\sqrt2$, which \autoref{lem:small-bound} forbids.
+
+\emph{Step 1: $\eps$ is $\zeta+\zeta^{-1}$ for a root of unity $\zeta$.}
+The coefficient of $\lambda^{k-j}$ in
+$\chi_\eps=\prod_i(\lambda-\eta_i)$ is $-\eps$, and it is also $(-1)^j$
+times the $j$-th elementary symmetric function of $\eta_1,\dots,\eta_k$.
+Roots of unity are algebraic integers, so $\eps$ is an algebraic integer. Let $\zeta$ be a
+root of $z^2-\eps z+1$; then $\zeta$ is an algebraic integer (a root of a
+monic polynomial whose coefficients are algebraic integers), $\zeta\ne0$,
+and $\eps=\zeta+\zeta^{-1}$. Let $L=\Q(\zeta,\eta_1,\dots,\eta_k)$,
+a number field containing $\eps$. Let $\varphi:L\to\C$ be an embedding.
+Applying $\varphi$ to the coefficients of
+$\chi_\eps=\prod_i(\lambda-\eta_i)$ gives
+$\chi_{\varphi(\eps)}=\prod_i(\lambda-\varphi(\eta_i))$, and each
+$\varphi(\eta_i)$ is again a $p$-th root of unity, so of modulus $1$. By
+\autoref{lem:small-bound}, $r=\varphi(\eps)$ is real with $|r|\le2$. Now
+$\varphi(\zeta)$ is a root of $z^2-rz+1$, a real quadratic with
+discriminant $r^2-4\le0$; its two roots are therefore complex conjugates
+(or equal to $\pm1$) with product $1$, so $|\varphi(\zeta)|=1$. By
+Kronecker's theorem, $\zeta$ is a root of unity.
+
+\emph{Step 2: the order of $\zeta$.} Let $n_0$ be the order of $\zeta$.
+Since $|\zeta|=1$, $\zeta^{-1}=\bar\zeta$, so
+$\eps=2\cos(2\pi b/n_0)$ for some integer $b$ coprime to $n_0$, and I may
+take $0\le b\le n_0/2$. Since $\cos$ is decreasing on $[0,\pi]$, with
+$\cos(5\pi/12)=(\sqrt6-\sqrt2)/4>\tfrac14$ and $\cos(\pi/2)=0$, the
+condition $0<\eps\le\tfrac12$ forces
+\[
+\frac5{24}<\frac b{n_0}<\frac14,
+\]
+that is, $5n_0<24b<6n_0$. If $n_0\le8$ then $24b<48$, so $b=1$ (as $b=0$ is
+excluded), and $5n_0<24<6n_0$ has no integer solution. Hence $n_0\ge9$.
+
+\emph{Step 3: a large conjugate.} The cyclotomic polynomial
+$\Phi_{n_0}$ is irreducible over $\Q$, so it is the minimal polynomial of
+$\zeta$, and $\e^{2\pi i/n_0}$ is another of its roots. There is therefore a
+field embedding of $\Q(\zeta)$ into $\C$ sending $\zeta$ to $\e^{2\pi i/n_0}$,
+and since $\zeta\in L$ it extends to an embedding $\varphi:L\to\C$. Then
+\[
+\varphi(\eps)=\varphi(\zeta)+\varphi(\zeta)^{-1}
+=\e^{2\pi i/n_0}+\e^{-2\pi i/n_0}=2\cos(2\pi/n_0),
+\]
+and, as in Step 1, \autoref{lem:small-bound} gives
+$2\cos(2\pi/n_0)\le\sqrt2$. But $n_0\ge9$ gives $0<2\pi/n_0<\pi/4$, so
+$2\cos(2\pi/n_0)>2\cos(\pi/4)=\sqrt2$. This contradiction proves the
+theorem.
+\end{proof}

@@ -1,0 +1,280 @@
+\section{Introduction}
+\label{sec:intro}
+
+A difference equation is \emph{globally periodic} if all of its orbits are
+periodic with a common period. The celebrated example is the Lyness
+equation
+\begin{equation}
+x_{n+2} = \frac{1+x_{n+1}}{x_n},
+\end{equation}
+every positive solution of which repeats with period $5$
+\citep{Lyness1942}. Global periodicity is a fragile property, and
+equations that have it are rare. In a survey of open problems in
+low-dimensional dynamics, \citet{Gasull2021} records five globally periodic
+rational difference equations with nonnegative coefficients,
+\begin{equation}
+x_{n+1}=x_n,\quad
+x_{n+1}=\frac{1}{x_n},\quad
+x_{n+2}=\frac{x_{n+1}}{x_n},\quad
+x_{n+2}=\frac{1+x_{n+1}}{x_n},\quad
+x_{n+3}=\frac{1+x_{n+1}+x_{n+2}}{x_n},
+\label{eq:fivefamilies}
+\end{equation}
+of periods $1$, $2$, $6$, $5$ and $8$ respectively. The $8$-cycle of the
+last was found by H.~Todd \citep{Lyness1945,KocicLadasRodrigues1993}. New examples can be
+made from these in two trivial ways: by \emph{rescaling}, $y_n=\alpha x_n$
+with $\alpha>0$, and by \emph{unfolding}: multiplying every index in an equation of
+order $k$ by an integer $\ell\ge1$ gives an equation of order $\ell k$
+whose solutions are the interleavings of $\ell$ solutions of the original
+one, and which is therefore again globally periodic (Gasull uses the word
+differently; see \autoref{sec:reduction}). Gasull's Problem~11
+asks whether there are any others. More precisely, consider the equations of order
+$k\ge1$,
+\begin{equation}
+x_{n+k}=\frac{A_0+A_1x_n+A_2x_{n+1}+\cdots+A_kx_{n+k-1}}
+             {B_0+B_1x_n+B_2x_{n+1}+\cdots+B_kx_{n+k-1}},
+\label{eq:family}
+\end{equation}
+with $A_i,B_i\ge 0$, $\sum_i A_i>0$ and $\sum_i B_i>0$, acting on positive
+initial data. (Gasull also assumes $A_1^2+B_1^2\ne0$, so that the equation
+genuinely involves $x_n$; I do not need this, because global periodicity
+forces it, as the first step of the proof shows. He also calls an equation
+$p$-periodic only when $p$ is the least common period, which makes no
+difference to the question.) Is every globally periodic equation of the form
+\eqref{eq:family} obtained from one of \eqref{eq:fivefamilies} by
+rescaling and unfolding?
+
+Here I show that the answer is yes at every order.
+
+\begin{theorem}
+\label{thm:main}
+Let \eqref{eq:family} be globally periodic, that is, suppose there is a
+$p\ge1$ such that every positive solution satisfies $x_{n+p}=x_n$. Then,
+up to multiplying the numerator and denominator by a common positive
+constant, \eqref{eq:family} is one of the following equations, written from
+the second on with the denominator cleared:
+\begin{enumerate}
+\item the shift $x_{n+k}=x_n$;
+\item $x_{n+k}\,x_n=a$, with $a>0$;
+\item $k=2m$ and $x_{n+2m}\,x_n=b\,x_{n+m}$, with $b>0$;
+\item $k=2m$ and $x_{n+2m}\,x_n=b^2+b\,x_{n+m}$, with $b>0$;
+\item $k=3m$ and $x_{n+3m}\,x_n=b^2+b\,(x_{n+m}+x_{n+2m})$, with $b>0$.
+\end{enumerate}
+These are, respectively, the $k$-fold unfoldings of the first two
+equations of \eqref{eq:fivefamilies} and the $m$-fold unfoldings of the
+last three, after rescaling; so every globally periodic equation of the
+form \eqref{eq:family} is equivalent to one of the five equations of
+\eqref{eq:fivefamilies}.
+\end{theorem}
+
+Conversely, each equation in the list is globally periodic, with periods
+$k$, $2k$, $6m$, $5m$ and $8m$ respectively, since it is an unfolding of a
+rescaling of one of \eqref{eq:fivefamilies}; so \autoref{thm:main} is a
+complete classification.
+
+The requirement of a \emph{common} period loses nothing: if every orbit in
+$(0,\infty)^k$ is periodic, the state map is a continuous bijection, hence a
+homeomorphism by invariance of domain, and a pointwise periodic homeomorphism
+of a connected manifold is periodic \citep{Montgomery1937}; often it can even
+be linearised globally \citep{CimaGasullManosas2012}. (Discontinuous maps can
+be pointwise periodic without being periodic
+\citep{CimaGasullManosaManosas2022}.) This remark is not used in the proof.
+
+The question has a long history. Essentially the same question was asked by
+\citet[Research problem~1.24]{GrahamKnuthPatashnik1989}; the generalisation that
+Graham had in mind for his Problem~1343 in \emph{Mathematics Magazine} asks for
+equations of much the same form \citep[Remark~1]{KocicLadasRodrigues1993}. A version of the
+question is posed by \citet[p.~161]{GroveLadas2005}; at order two it is Conjecture~6.5.6 of
+\citet{KulenovicLadas2000}. After partial results of
+\citet{KocicLadasRodrigues1993}, order two was settled by
+\citet{BarbeauGelbordTanny1995}, and \citet{CsornyeiLaczkovich2001} settled,
+even for complex coefficients, orders two and three and the reciprocal
+equations $x_{n+k}x_n=c_0+\sum_{j=1}^{k-1}c_jx_{n+j}$ in which every $c_j$
+is nonzero (the full support). \citet{CimaGasullManosas2004} reduced the
+problem to a reciprocal family with palindromic coefficients, and showed,
+using a continuum of $2$-periodic points at odd order (\autoref{sec:oddk}),
+that the answer is yes for $k\in\{1,2,3,4,5,7,9,11\}$. The general case has
+remained open. Different approaches to
+the global periodicity problem are surveyed by
+\citet{CimaGasullManosaManosas2016}.
+Over the complex numbers and with arbitrary coefficients, periodic linear
+fractional recurrences have been studied from the point of view of
+birational geometry by \citet{BedfordKim2006,BedfordKim2014} at orders $2$
+and $3$, and \citet{BedfordKim2011} show that for every $k$ there are
+such recurrences of order $k$ and period $4k$;
+positivity of the coefficients, which is essential here, plays no role
+there.
+
+The proof has two quite different halves. The first is analytic and
+short. A surjectivity argument, followed by a Lyapunov function and the
+derivative at a fixed point, shows that a globally periodic equation is
+either the shift or of the \emph{reciprocal} form
+\begin{equation}
+x_{n+k}\,x_n = c_0 + \sum_{j\in S} c_j\,x_{n+j},
+\qquad c_0\ge0,\quad c_j > 0 \text{ for } j \in S \subseteq \{1,\dots,k-1\},
+\end{equation}
+and linearising at the interior equilibrium shows that the coefficients
+are palindromic, $c_j=c_{k-j}$. Throughout, $\theta=1$ if $c_0>0$ and
+$\theta=0$ if $c_0=0$; most of the arguments treat both values at once. Unfolding then lets me assume that the
+\emph{support} $S$ is primitive, $\gcd(S\cup\{k\})=1$. When $S$ has at
+most two elements, the problem reduces to equations of order at most
+three, which are settled with the min-plus recursion described below
+(and, at order three with $c_0=0$, with the linearisation), and to a spectral statement about the
+polynomial $\lambda^k+1-\eps(\lambda^j+\lambda^{k-j})$, which is settled
+with Kronecker's theorem on algebraic integers whose conjugates all lie
+on the unit circle.
+
+The second half, which is most of the paper, deals with supports of three
+or more elements, and it is combinatorial. The key observation is that
+global periodicity survives degeneration. If the initial data are taken
+to be powers $\delta^{e_i}$ of a small parameter $\delta$, the exponents of
+the solution follow a piecewise-linear (min-plus) recursion that depends
+only on the support and on $\theta$. For the Lyness equation, for example,
+$x_n\approx\delta^{e_n}$ turns $x_{n+2}x_n=1+x_{n+1}$ into
+$e_{n+2}+e_n=\min(0,e_{n+1})$, and every integer solution of this recursion
+has period $5$, just as the solutions of the equation do. In general a
+globally periodic equation forces its min-plus recursion to be periodic.
+Because all the coefficients are positive, there is no cancellation: each
+term of the solution behaves like a positive multiple of a power of
+$\delta$, and these leading coefficients follow a recursion of their own,
+which must also be periodic; this is what settles orders two and three when
+$c_0>0$. The passage to a piecewise-linear recursion is the limiting
+procedure of \citet{TokihiroTTMS1996}, now called ultradiscretisation and
+familiar from integrable systems
+\citep{Nobe2008,InoueTakenawa2008,InoueKunibaTakagi2012}; for the full
+support it was already used by \citet{CsornyeiLaczkovich2001}. Tropical
+versions also appear in the theory of cluster algebras, where
+\citet{FominZelevinsky2003} use them to prove the periodicity of
+Zamolodchikov's $Y$-systems, of which the Lyness equation is the case of type
+$A_2$; here the information flows the other way, from the equation to its
+tropical version.
+
+For larger supports, global periodicity of an equation is refuted, for
+\emph{every} choice of positive coefficients at once, by exhibiting an
+unbounded solution of the \emph{tangent recursion}, the linearisation of the
+min-plus recursion along a periodic solution. The idea is to perturb a
+periodic orbit of the min-plus recursion slightly. Only the terms that attain
+the minimum see the perturbation, so it follows a recursion of the same kind,
+and if the perturbation can grow without bound, the min-plus recursion, and
+with it the equation, cannot be periodic. For the supports with at least three
+elements, the periodic orbits used have, except at order $6$, a minimum that is
+always negative, so that the constant term never attains it, and both values of
+$\theta$ are refuted at once.
+
+I construct the unbounded tangent solutions explicitly, case by case
+(\autoref{tab:intro-cases}). Apart from the full support and most supports
+at odd order, which have tangent solutions of their own, the workhorse is the
+\emph{$\sigma$-bump}: a linearly growing tangent solution supported on two
+positions in every block of $k$, whose existence reduces to a purely
+combinatorial condition on a set of residues modulo $2k$
+(\autoref{def:bump}). The hardest case is even order with every element of
+$S$ odd, where the residues are chosen as a half-arc
+$\{y: \nu y \bmod 2k \in [0,k)\}$ for a suitable odd multiplier $\nu$, and
+what is needed is a lemma about three-term arithmetic progressions under
+unit multipliers modulo $2k$, proved with the geometry of numbers in a plane
+lattice of determinant $2k$ and Jacobsthal's function.
+
+Several steps finish with a finite computation, for instance at small
+orders where the general arguments do not yet apply; each is stated
+precisely in the text and listed in \autoref{tab:intro-cases}. Every finite
+computation is carried out in exact integer arithmetic, and the whole proof,
+including these computations, has been formalised and kernel-checked in the
+\textsc{Lean} proof assistant (\autoref{app:lean}).
+
+As far as I know, the following ingredients are new: the tangent recursion
+and the two-scale pinning lemma (\autoref{lem:trop-pinning}), which turn an
+unbounded solution of the linearised min-plus recursion into a proof that the
+equation is not periodic; the use of such tangent solutions to refute global
+periodicity for every choice of coefficients at once; the $\sigma$-bump and
+its carriers (the parity, band and half-arc carriers); and the theorem on
+three-term progressions under unit multipliers (\autoref{thm:lemmaA}).
+Ultradiscretisation itself is not new, nor is the use of the leading
+coefficients at orders two and three, which goes back to
+\citet{CsornyeiLaczkovich2001}. I am not aware of an earlier use of the derivative of a min-plus map along a
+periodic orbit to show that the map is not periodic (``linearised'' means
+something different in the ultradiscrete literature, namely straight-line
+motion on a tropical Jacobian). A by-product is a purely
+tropical statement: for every palindromic support with at least three
+elements, and either $\theta$, no power of the min-plus map is the identity
+(\autoref{cor:trop-nonperiodic}).
+
+\autoref{sec:reduction} reduces the problem to primitive palindromic
+supports of the reciprocal form and \autoref{sec:tropical} develops the
+min-plus machinery and the $\sigma$-bump; Sections~\ref{sec:small}--\ref{sec:lemmaA}
+treat the cases of \autoref{tab:intro-cases}, \autoref{sec:assembly} puts
+them together, and the appendices hold the finite range of
+\autoref{thm:lemmaA} and the bounds on Jacobsthal's function, the most
+mechanical case checks, and a description of the formalisation. A reader who wants only the shape of the argument can
+read Sections~\ref{sec:reduction} and~\ref{sec:tropical}, the statements of
+the main theorems of the later sections, and \autoref{sec:assembly}.
+
+\begin{table}
+\centering
+\footnotesize
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.15\textwidth}%
+>{\raggedright\arraybackslash}p{0.19\textwidth}%
+>{\raggedright\arraybackslash}p{0.27\textwidth}%
+>{\raggedright\arraybackslash}p{0.23\textwidth}%
+>{\raggedright\arraybackslash}p{0.05\textwidth}@{}}
+case & mechanism & results used & finite computations & \S\\\hline
+every support & reduction to \eqref{eq:familya}, palindromy, folding &
+Theorems~\ref{thm:red-dichotomy}, \ref{thm:red-shift},
+\ref{thm:reduction}, \ref{thm:spectral}, \ref{thm:palindromy};
+\autoref{lem:unfold} & none & \ref{sec:reduction}\\
+$k=2$, $S=\{1\}$ & leading coefficients & \autoref{thm:order2}, from
+Theorems~\ref{thm:leading} and \ref{thm:P} & none & \ref{sec:small}\\
+$k=3$, $S=\{1,2\}$ & leading coefficients; for $c_0=0$, the linearisation &
+\autoref{thm:order3}, from Theorems~\ref{thm:leading}, \ref{thm:P} and (for
+$c_0=0$) \ref{thm:spectral} & none & \ref{sec:small}\\
+two-term supports $\{j,k-j\}$ & the linearisation and Kronecker's theorem &
+\autoref{thm:twoterm}, from \autoref{thm:spectral},
+Lemmas~\ref{lem:small-newton} and \ref{lem:small-bound} & none &
+\ref{sec:small}\\
+full support, $k\ge4$ & a closed-form tangent solution on the carrier
+$Q=\{1\}$ & \autoref{thm:fullsupport}, from Lemmas~\ref{lem:fs-carrier}
+and \ref{lem:fs-ray} and \autoref{thm:tangent} & none &
+\ref{sec:fullsupport}\\
+odd $k$, $X$ not a dilated interval & rays along the alternating orbit &
+\autoref{thm:odd-nondil}, from \autoref{prop:odd-second},
+\autoref{lem:odd-ray}, the lemmas of \autoref{sec:odd-rigid} and
+\autoref{thm:tangent} & none & \ref{sec:odd-nondil}\\
+odd $k$, $X$ a dilated interval & a $\sigma$-bump &
+Theorems~\ref{thm:odd-rowcarrier} and \ref{thm:sigmabump},
+\autoref{lem:odd-fold} & none & \ref{sec:odd-dil}\\
+even $k$, some element of $S$ even & $\sigma$-bumps on parity carriers, or
+on two explicit carriers & \autoref{thm:notallodd}, from
+Theorems~\ref{thm:nao-evenmin} and \ref{thm:nao-struct} and
+\autoref{cor:nao-bothfailing}; \autoref{thm:sigmabump} & none &
+\ref{sec:notallodd}\\
+even $k$, all odd, $1\in S$ & $\sigma$-bumps on small explicit carriers &
+\autoref{prop:allodd-one}; \autoref{thm:sigmabump} & none &
+\ref{sec:allodd}\\
+even $k$, all odd, $1\notin S$, $|L|=1$ & $\sigma$-bumps on half-arc
+carriers & \autoref{thm:allodd-threeall} (all but five supports);
+\autoref{thm:sigmabump} & $k\le22$: five carriers of
+\autoref{tab:allodd-base} & \ref{sec:allodd}\\
+even $k$, all odd, $1\notin S$, $|L|\ge2$ & $\sigma$-bumps on half-arc
+carriers, with \autoref{thm:lemmaA} & \autoref{prop:allodd-e3bump},
+\autoref{thm:allodd-e3all}, \autoref{thm:lemmaA}; \autoref{thm:sigmabump} &
+\autoref{lem:allodd-pf}; $k\le90$ in \autoref{thm:allodd-e3all}; twelve carriers of
+\autoref{tab:allodd-base}; for \autoref{thm:lemmaA}, the chord table (C1),
+the chains of \autoref{tab:lemmaA-chains}, the certificate (C2)--(C3) at the
+$127$ orders $92\le k\le2730$ with three or more odd prime factors, and the
+checks in
+Lemmas~\ref{lem:lemmaA-pattern} and \ref{lem:lemmaA-crude} &
+\ref{sec:allodd}, \ref{sec:lemmaA}\\
+$k=6$, $S=\{1,3,5\}$ & a tangent certificate &
+Propositions~\ref{prop:order6cert} and \ref{prop:trop-cert};
+\autoref{thm:tangent} & the certificate of \autoref{prop:order6cert} &
+\ref{sec:tropical}
+\end{tabular}
+\caption{The cases of the proof, the mechanism and results each uses, and
+the steps that rest on a finite computation (``none'' means that the case is
+proved by hand for all parameters). Every case uses the reduction of the
+first row. Except in the rows for $|S|\le2$, $|S|\ge3$, and $S$ is not the
+full support unless stated; $\theta$ is arbitrary throughout. At odd order
+$k$, $X$ is the set of halved even elements of $S$ (\autoref{lem:odd-coords});
+$L=\{s\in S:2s<k\}$.}
+\label{tab:intro-cases}
+\end{table}

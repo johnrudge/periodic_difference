@@ -1,0 +1,509 @@
+\section{Even orders: supports with an even element}
+\label{sec:notallodd}
+
+Throughout this section the order $k$ is even. With \autoref{thm:sigmabump},
+the following theorem disposes of every support at even order, other than the
+full support, that is not all-odd. Reads are described in the vocabulary of
+\autoref{sec:nao-reading}, in particular \eqref{eq:read-reads} and
+\eqref{eq:read-pins}, and \autoref{lem:nao-mirror} turns reads of $1$ into
+reads of $0$.
+
+\begin{theorem}
+\label{thm:notallodd}
+Let $k$ be even and let $S\subseteq\{1,\dots,k-1\}$ be primitive and
+palindromic, not the full support, and containing an even element. Then
+$S$ carries a $\sigma$-bump $(\sigma,P)$.
+\end{theorem}
+
+The natural carriers at even order are the \emph{parity carriers}: $\sigma$
+together with every free residue that has the parity of $\sigma$. Because $k$ is even, the reflection $y\mapsto k-y$ preserves
+parity, and the argument splits along the two parity classes. Under (B1) the
+reads of the pins are fixed by \eqref{eq:read-pins}, and a parity carrier puts every free position of one class
+into $Q$, so an unwrapped tap that lands on a free position of that class
+reads $1$. A clause can therefore fail, for $\sigma$ or (by a reflection) for
+$k-\sigma$, only at an index $i$ where every unwrapped tap of the right class
+lands back in $S$, so that $S$ is almost closed under adding $i$. If
+$a=\min S$ is even, a failure of the odd class forces a gap in the even part
+of $S$, and taps reading into that gap make the even class work for every
+even $\sigma$ (\autoref{thm:nao-evenmin}). If $a$ is odd and both classes
+fail for every $\sigma$, the failures force a rigid progression structure
+(\autoref{thm:nao-struct}), which carries one of two explicit carriers at
+$\sigma=a$ (Lemmas~\ref{lem:nao-bfone} and~\ref{lem:nao-bfshadow}). On a
+first reading one can take Lemmas~\ref{lem:nao-noband},
+\ref{lem:nao-endend} and~\ref{lem:nao-endband} on trust.
+
+\subsection{Parity carriers}
+\label{sec:nao-parity}
+
+Write $S_0$ and $S_1$ for the even and odd elements of $S$, and refer to the
+residue of an integer modulo $2$ as its \emph{class}. Since $k$ is even,
+$s\equiv k-s\pmod2$ for every integer $s$, so $S_0$ and $S_1$ are each
+palindromic, and a nonempty class $S_c$ has largest element $k-\min S_c$.
+If $S$ is primitive then $S_1\ne\emptyset$, since otherwise $2$ would divide
+every element of $S\cup\{k\}$.
+
+\begin{definition}
+For $\sigma\in S$, the \emph{parity carrier} of $\sigma$ is
+\[
+Q_\sigma=\{\sigma\}\cup\{\,y\in\{1,\dots,k-1\}:\ y\notin S,\ y\equiv \sigma
+\pmod2\,\}.
+\]
+An index $i$ is \emph{silent} for $Q_\sigma$ if no surviving tap reads $1$
+at $i$. For an index $i$ and a class $c$, write $C_c(i)$ for the statement
+\begin{equation}
+j\in S,\quad i+j<k,\quad i+j\equiv c\pmod2\quad\Longrightarrow\quad i+j\in S .
+\label{eq:nao-cont}
+\end{equation}
+\end{definition}
+
+\begin{lemma}[reads of a parity carrier]
+\label{lem:nao-parity}
+Let $k$ be even, $S$ palindromic, $\sigma\in S$, and let $c$ be the class of
+$\sigma$.
+\begin{enumerate}
+\item[(a)] $Q_\sigma\cap S=\{\sigma\}$, so (B1) holds.
+\item[(b)] $y\in Q_{k-\sigma}\iff k-y\in Q_\sigma$ for $0<y<k$.
+\item[(c)] A surviving tap whose position has residue $y$ reads $1$ if and
+only if either it is unwrapped, $y$ is free and $y\equiv c$; or it is wrapped and
+$y\in S$ or $y\not\equiv c$.
+\item[(d)] If $(\sigma,Q_\sigma)$ is not a $\sigma$-bump, then for
+$\sigma'=\sigma$ or $\sigma'=k-\sigma$ (so $\sigma'\in S$ and
+$\sigma'\equiv\sigma$) some index is silent for $Q_{\sigma'}$.
+\item[(e)] If $i$ is silent for $Q_\sigma$, then $C_c(i)$ holds, and every
+wrapped tap at $i$ reads a position with residue in $Q_\sigma$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) is the definition. (b) holds because $y=k-\sigma\iff k-y=\sigma$, because
+$y$ is free exactly when $k-y$ is (palindromy), and because $y\equiv k-y$
+and $k-\sigma\equiv\sigma$.
+(c) is \eqref{eq:read-reads}, using that a surviving tap has $y\ne\sigma$.
+
+(d) By (a), the pair fails (B2) at some index $i$. If no surviving tap reads
+$1$ at $i$, take $\sigma'=\sigma$. Otherwise no surviving tap reads $0$ at
+$i$, and then by (b) and \autoref{lem:nao-mirror} no surviving tap reads $1$
+at the index $k-i$ for $Q_{k-\sigma}$; take $\sigma'=k-\sigma$. In both
+cases $\sigma'\equiv\sigma$ since $k$ is even.
+
+(e) Let $j\in S$ with $i+j<k$ and $i+j\equiv c$. If $i+j=\sigma$ then
+$i+j\in S$. Otherwise the tap $j$ survives, and since it does not read $1$,
+(c) says that $i+j$ is not free. For a wrapped tap whose position has residue
+$y$: if $y=\sigma$ then $y\in Q_\sigma$; otherwise the tap survives, and since it
+does not read $1$, $y$ is free and $y\equiv c$.
+\end{proof}
+
+For the rest of the section, $S$ is palindromic at even $k$ with an element
+of each class, $a=\min S$, and $b$ is the least element of the class not
+containing $a$. Then $\max S=k-a$, the class of $b$ has largest element
+$k-b$, and $b\le k-b$. Since also $a<b$,
+\begin{equation}
+2a<k,\qquad a+b<k .
+\label{eq:nao-ab}
+\end{equation}
+
+The next three lemmas say where a silent index can be. Near the start, the
+taps $k-a$ and $k-\min S_c$ read unwrapped positions above the largest
+element of their class, which are free.
+
+\begin{lemma}[the top taps]
+\label{lem:nao-ends}
+Let $\sigma\in S$, of class $c$. An index $i$ is not silent for $Q_\sigma$
+if either
+\begin{enumerate}
+\item[(i)] $i<a$ and $i\equiv a+c\pmod2$; or
+\item[(ii)] $i$ is even and $i<\min S_c$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(i) The tap $k-a$ reads the position $y=i+k-a$, with $k-a<y<k$. So it is unwrapped,
+$y$ is free because it exceeds $\max S$, and $y\equiv i+a\equiv c$. Being
+free, $y\ne\sigma$, so the tap survives, and it reads $1$ by
+\autoref{lem:nao-parity}(c).
+(ii) Put $m=\min S_c$. The tap $k-m$ reads the position $y=i+k-m$, with $k-m<y<k$, and
+$y\equiv m\equiv c$ since $i$ and $k$ are even. As $y$ is of class $c$ and
+exceeds $\max S_c=k-m$, it is free, and the tap reads $1$ as before.
+\end{proof}
+
+Beyond $a$ the wrapped taps take over. Every element of $Q_\sigma$ has the
+class of $\sigma$, and the wrapped taps $k-a$ and $k-b$ then confine a silent
+index to one parity and to the interval $(a,b]$.
+
+\begin{lemma}[the parity dichotomy]
+\label{lem:nao-dichotomy}
+Let $\sigma\in S$, of class $c$, and let $i>a$ be silent for $Q_\sigma$.
+Then $i\equiv a+c\pmod2$ and $i\le b$.
+\end{lemma}
+
+\begin{proof}
+All elements of $Q_\sigma$ have class $c$. The tap $k-a$ wraps at $i$
+(as $i>a$), and its position has residue $i-a$, so by
+\autoref{lem:nao-parity}(e) $i-a\equiv c$, that is $i\equiv a+c$. If $i>b$,
+the tap $k-b$ also wraps, and in the same way $i\equiv b+c$; but
+$b\not\equiv a$.
+\end{proof}
+
+Finally, a containment $C_c(i)$ at an odd index empties an interval of the
+other class.
+
+\begin{lemma}[the gap]
+\label{lem:nao-gap}
+Let $i$ be odd with $C_c(i)$, and suppose $S_c\ne\emptyset$. Then $S$ has no
+element of class $1-c$ in the open interval $(i,\ i+\min S_c)$.
+\end{lemma}
+
+\begin{proof}
+Let $s\in S$ have class $1-c$ and $s>i$. Then $k-s\in S$ has class $1-c$,
+$i+(k-s)<k$ and $i+(k-s)\equiv c$ since $i$ is odd. By $C_c(i)$,
+$i+k-s\in S_c$, so $i+k-s\le\max S_c=k-\min S_c$, that is $s\ge i+\min S_c$.
+\end{proof}
+
+\subsection{Even minimum}
+
+\begin{theorem}[parity carriers at even minimum]
+\label{thm:nao-evenmin}
+Let $k$ be even and $S$ primitive and palindromic with $a=\min S$ even. If
+$(\sigma_1,Q_{\sigma_1})$ is not a $\sigma$-bump for some odd
+$\sigma_1\in S$, then $(\sigma_0,Q_{\sigma_0})$ is a $\sigma$-bump for every
+even $\sigma_0\in S$. In particular $S$ carries a $\sigma$-bump on a parity
+carrier.
+\end{theorem}
+
+\begin{proof}
+Since $S$ is primitive, $S_1\neq\emptyset$, so $b=\min S_1$ exists, and
+$a<b$. By \autoref{lem:nao-parity}(d) some index $i_1$ is silent for
+$Q_{\sigma'}$, with $\sigma'\in S$ odd. \autoref{lem:nao-ends} with $c=1$
+excludes $i_1<a$ odd (by (i), as $a+1$ is odd), and $i_1\le a$ even (by
+(ii), as $\min S_1=b>a$). So $i_1>a$, and \autoref{lem:nao-dichotomy} gives
+$i_1$ odd and $i_1\le b$. By \autoref{lem:nao-parity}(e) $C_1(i_1)$ holds,
+and \autoref{lem:nao-gap} gives
+\begin{equation}
+S_0\cap(i_1,\ i_1+b)=\emptyset .
+\label{eq:nao-evengap}
+\end{equation}
+
+Now fix an even $\sigma\in S$. I claim that every index $i$ has a surviving
+tap reading $1$ for $Q_\sigma$. There are four cases.
+
+\emph{$i<a$, $i$ even.} \autoref{lem:nao-ends}(i) applies, as $i\equiv a$.
+
+\emph{$i<a$, $i$ odd.} The tap $b$ reads the unwrapped position $i+b<a+b<k$. The
+position $i+b$ is even and $i_1\le b<i+b<a+b<i_1+b$, so by
+\eqref{eq:nao-evengap} it is not in $S$. It is therefore free, of class
+$0$, and not $\sigma$, and the tap reads $1$.
+
+\emph{$i=a$.} Suppose $a$ is silent. Then $C_0(a)$ holds by
+\autoref{lem:nao-parity}(e). Let $s$ be the largest element of
+$Z=\{y\in S_0:\ y+i_1<k\}$, which contains $a$ because $a+i_1\le a+b<k$. By
+$C_1(i_1)$, $s+i_1\in S$, and it is odd, so $s+i_1\le\max S_1=k-b$. Then
+$a+s\le k-b-(i_1-a)<k$, so $C_0(a)$ puts $a+s\in S_0$; and
+$a+s+i_1\le a+k-b<k$. So $a+s\in Z$, against the maximality of $s$.
+
+\emph{$i>a$.} Suppose $i$ is silent. By \autoref{lem:nao-dichotomy} $i$ is
+even and $i\le b$, so $i<b$ since $b$ is odd; and $C_0(i)$ holds. Let $x$ be
+the largest element of $S_0$ with $x\le i_1$ (such elements exist, as
+$a<i_1$). Then $x+i<i_1+b\le 2b\le k$, so $C_0(i)$ gives $x+i\in S_0$. By the
+maximality of $x$, $x+i>i_1$, so $x+i$ lies in the interval
+\eqref{eq:nao-evengap}, a contradiction.
+
+This proves the claim. The same claim for the even element $k-\sigma$, with
+\autoref{lem:nao-parity}(b) and \autoref{lem:nao-mirror}, gives a surviving
+tap reading $0$ at every index for $Q_\sigma$. With
+\autoref{lem:nao-parity}(a), $(\sigma,Q_\sigma)$ is a $\sigma$-bump.
+
+For the last sentence: either $(\sigma,Q_\sigma)$ is a $\sigma$-bump for
+some odd $\sigma$, or it fails at $\sigma_1=b$ and then $(a,Q_a)$ is one.
+\end{proof}
+
+\subsection{Odd minimum: where the failures sit}
+
+From now on $a=\min S$ is odd and $S_0\ne\emptyset$, so that $b=\min S_0$
+in the notation above. Then $a<b\le k-b$, $\max S_1=k-a$ and
+$\max S_0=k-b$. Note that $a+b<k$, and that an odd number at most $b$
+is less than $b$.
+
+\begin{lemma}[localisation]
+\label{lem:nao-loc}
+\begin{enumerate}
+\item[(a)] If $\sigma\in S$ is even and $i$ is silent for $Q_\sigma$, then
+$C_0(i)$ holds and either $i=a$, or $i$ is odd with $a<i<b$.
+\item[(b)] If $\sigma\in S$ is odd and $i$ is silent for $Q_\sigma$, then
+$C_1(i)$ holds and either $i$ is odd with $i\le a$, or $i$ is even with
+$a<i\le b$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+The containments are \autoref{lem:nao-parity}(e). (a) An even $i<a$ is
+excluded by \autoref{lem:nao-ends}(ii), as $i<a<b=\min S_0$; an odd $i<a$
+by \autoref{lem:nao-ends}(i), as $i\equiv a$. If $i>a$, then
+\autoref{lem:nao-dichotomy} makes $i$ odd with $i\le b$, hence $i<b$.
+(b) An even $i<a$ is excluded by \autoref{lem:nao-ends}(i), as
+$i\equiv a+1$; and $i=a$ is odd. If $i>a$, then \autoref{lem:nao-dichotomy}
+makes $i$ even with $i\le b$.
+\end{proof}
+
+So a silent index of the even class sits at the end $i=a$ or in the odd part
+of the inner range $(a,b)$, and a silent index of the odd class at an odd
+end $i\le a$ or in the even part of the inner range $(a,b]$. When both classes fail,
+three of the four pairings are impossible, and the fourth is rigid.
+
+\begin{lemma}[no inner failure of the even class]
+\label{lem:nao-noband}
+Let $i_0$ be odd with $a<i_0<b$ and $C_0(i_0)$, and let $i_1$ satisfy
+$C_1(i_1)$, with either $i_1$ odd and $i_1\le a$, or $i_1$ even and
+$a<i_1\le b$. This is impossible.
+\end{lemma}
+
+\begin{proof}
+By \autoref{lem:nao-gap} with $c=0$, $S$ has no odd element in
+$(i_0,\ i_0+b)$.
+
+If $i_1$ is odd and $i_1\le a$, then $b+i_1<2b\le k$ is odd, so $C_1(i_1)$
+puts it in $S$; but $i_0<b<b+i_1<b+i_0$.
+
+If $i_1$ is even, let $x$ be the largest odd element of $S$ with $x\le i_0$
+(such elements exist, as $a<i_0$). Then $x+i_1<2b\le k$ is odd, so $x+i_1\in
+S$ by $C_1(i_1)$, and $x+i_1>i_0$ by the maximality of $x$. It cannot lie in
+the gap, so $x+i_1\ge i_0+b$, which with $x\le i_0$ forces $i_1=b$. But
+then $a+b\in S$ in the same way, and $i_0<a+b<i_0+b$.
+\end{proof}
+
+The pairing of the two end failures is excluded by primitivity, and this is
+where the full support appears as the one obstruction. This proof and the
+next use an elementary observation. Say that a finite set $W$ with largest
+element $w$ is \emph{closed under the step} $r>0$ if $y+r\in W$ for every
+$y\in W$ with $y\ne w$. Then, for every $y\in W$, the sequence
+$y,y+r,y+2r,\dots$ stays in $W$ until it reaches $w$, which it must do
+because $W$ is bounded by $w$; so $r\mid w-y$, and $y,y+r,\dots,w$ all lie in
+$W$.
+
+\begin{lemma}[two end failures]
+\label{lem:nao-endend}
+Let $S$ be primitive, and suppose $C_0(a)$ and $C_1(i_1)$ hold with $i_1$
+odd and $i_1\le a$. Then $S$ is the full support.
+\end{lemma}
+
+\begin{proof}
+Put $r=a+i_1$. Composing the two containments makes each class closed under
+a step, and the two steps turn out to be the same.
+
+\emph{The odd class has step $r$.} Let $y\in S_1$ with $y<k-a$. Then $a+y<k$
+is even, so $a+y\in S_0$ by $C_0(a)$, whence $a+y\le k-b$. Then
+$a+y+i_1<k$ (as $i_1<b$) is odd, so $y+r\in S_1$ by $C_1(i_1)$. So $S_1$
+is closed under the step $r$, with top $k-a$; every $y\in S_1$ has
+$r\mid k-a-y$, and in particular $r\mid k-2a$.
+
+\emph{$b=r$.} The position $k-b+i_1<k$ is odd, so it lies in $S_1$ by
+$C_1(i_1)$, and $k-b+i_1\le k-a$. If the inequality were strict, $C_0(a)$
+would put the even position $a+i_1+k-b<k$ in $S_0$, above
+$\max S_0=k-b$. So $k-b+i_1=k-a$, that is $b=r$.
+
+\emph{The even class has step $b$.} Let $y\in S_0$ with $y<k-b$. Then
+$y+i_1<k$ is odd, so $y+i_1\in S_1$ by $C_1(i_1)$; and
+$y+i_1<k-b+i_1=k-a$, so $a+y+i_1<k$ is even and lies in $S_0$ by $C_0(a)$.
+That is, $y+b\in S_0$. So $S_0$ is closed under the step $b$, with top
+$k-b$, and every $y\in S_0$ has $b\mid k-b-y$; at $y=b$ this gives
+$b\mid k$.
+
+\emph{Collapse.} Now $b\mid k$ and $b=r\mid k-2a$, so $b\mid 2a$; since
+$b>a$, $b=2a$, and $a\mid k$. Every odd $s\in S$ has $2a\mid k-a-s$ and
+every even $s\in S$ has $2a\mid k-2a-s$, so $a$ divides every element of
+$S\cup\{k\}$, and primitivity gives $a=1$. Then $r=2$, and the chain from $a=1$
+puts every odd number in $[1,k-1]$ in $S$; and for even $y\in(0,k)$,
+$y-1\in S$ is odd with $1+(y-1)<k$, so $y\in S$ by $C_0(1)$. So $S$ is full.
+\end{proof}
+
+\begin{lemma}[end against inner range]
+\label{lem:nao-endband}
+Suppose $C_0(a)$ and $C_1(i_1)$ hold with $i_1$ even and $a<i_1\le b$.
+Then $i_1=b$, $b\mid k-2a$, and
+$S_1=\{a,\ a+b,\ a+2b,\ \dots,\ k-a\}$.
+\end{lemma}
+
+\begin{proof}
+By \autoref{lem:nao-gap} with $i=a$ and $c=0$, $S$ has no odd element in
+$(a,a+b)$. The position $a+i_1\le a+b<k$ is odd, so it lies in $S$ by
+$C_1(i_1)$, hence $a+i_1\ge a+b$ and $i_1=b$. Now let $y\in S_1$ with
+$y<k-a$. Then $k-y\in S_1$ exceeds $a$, so $k-y\ge a+b$, that is
+$y+b\le k-a$; and $y+b$ is odd, so it lies in $S_1$ by $C_1(b)$.
+So $S_1$ is closed under the step $b$, with top $k-a$: every element of
+$S_1$ is $\equiv k-a\pmod b$, and the whole progression from $a$ to $k-a$
+lies in $S_1$. Hence $b\mid k-2a$ and $S_1$ is that progression.
+\end{proof}
+
+\begin{theorem}[the both-failing structure]
+\label{thm:nao-struct}
+Let $k$ be even and $S$ primitive and palindromic, not the full support,
+with $a=\min S$ odd and $S_0\ne\emptyset$; put $b=\min S_0$. Suppose that
+$(\sigma,Q_\sigma)$ is not a $\sigma$-bump for any $\sigma\in S$. Then
+\[
+k=2a+Mb\quad\text{for an integer } M\ge1,\qquad a<b<2a,
+\]
+\[
+S_1=\{a+mb:\ 0\le m\le M\},\qquad
+2a+mb\in S\ \text{ for } 0\le m<M .
+\]
+\end{theorem}
+
+\begin{proof}
+By \autoref{lem:nao-parity}(d) applied at $\sigma=b$, some index $i_0$ is
+silent for $Q_{\sigma_0}$ with $\sigma_0$ even, and at $\sigma=a$ some
+index $i_1$ is silent for $Q_{\sigma_1}$ with $\sigma_1$ odd.
+\autoref{lem:nao-loc} locates both, and \autoref{lem:nao-noband} rules out
+$i_0\ne a$. So $C_0(a)$ holds.
+
+Next, let $\sigma\in S$ be odd and let $i$ be any index silent for
+$Q_\sigma$. By \autoref{lem:nao-loc}(b) and \autoref{lem:nao-endend} (with
+$C_0(a)$ and since $S$ is not full), $i$ is even with $a<i\le b$, and then
+\autoref{lem:nao-endband} gives
+\begin{equation}
+i=b,\qquad b\mid k-2a,\qquad S_1=\{a,a+b,\dots,k-a\}.
+\label{eq:nao-band}
+\end{equation}
+Applying this to $i_1$ gives the description of $S_1$, with $M=(k-2a)/b$.
+Here $M\ge1$ because $2a<k$ by \eqref{eq:nao-ab}. For $0\le m<M$, the odd
+element $a+mb$ has $a+(a+mb)\le 2a+(M-1)b<k$, so $C_0(a)$ puts
+$2a+mb$ in $S$. At $m=0$, $2a\in S_0$, so $b\le 2a$.
+
+It remains to exclude $b=2a$; suppose it holds. If $M=1$ then $k=4a$,
+$S_1\subseteq\{a,3a\}$ and $S_0\subseteq[b,k-b]=\{2a\}$, so $a$ divides
+every element of $S\cup\{k\}$. Primitivity gives $a=1$, $k=4$, and
+$S\supseteq\{a,b,a+b\}=\{1,2,3\}$ is full, against the hypothesis. If
+$M\ge2$, then $3a=a+b\in S_1$, and by \autoref{lem:nao-parity}(d) some
+index $i_3$ is silent for $Q_{\sigma_3}$ with $\sigma_3\in\{3a,k-3a\}$. By
+\eqref{eq:nao-band} $i_3=b=2a$. But there the tap $k-a$ is wrapped and reads the
+pin $k+a$, of residue $a$, and $a\ne\sigma_3$ (as $k-3a=a$ would mean $k=4a$,
+that is $M=1$). So the tap survives and reads $1$ by
+\eqref{eq:read-pins}, and $i_3$ is not silent.
+\end{proof}
+
+\subsection{Carriers for the both-failing supports}
+
+The structure of \autoref{thm:nao-struct} leaves the even elements of $S$
+strictly inside $(b,k-b)$ largely undetermined. Both carriers below are
+built to be insensitive to them.
+
+\begin{lemma}[the case $M=1$]
+\label{lem:nao-bfone}
+Let $a$ be odd and $b$ even with $a<b<2a$, put $k=2a+b$, and let
+$S\subseteq\{1,\dots,k-1\}$ be palindromic with $a,b\in S$, with every odd
+element in $\{a,a+b\}$ and every even element in $[b,2a]$. Then $\sigma=a$
+with
+\[
+Q=\{a,\ 3a,\ b-a\}\cup\{\,y\in\{1,\dots,k-1\}:\ y \text{ even},\ y\notin S\,\}
+\]
+is a $\sigma$-bump.
+\end{lemma}
+
+\begin{proof}
+By palindromy $a+b=k-a$ and $2a=k-b$ lie in $S$. The positions $3a<k$ and
+$b-a>0$ are odd and differ from $a$ and $a+b$ (since $b\ne2a$), so
+$Q\cap S=\{a\}$, which is (B1). An odd position lies in $Q$ exactly when it
+is one of $a$, $3a$, $b-a$; an even position lies in $Q$ exactly when it is
+free, and in particular every even position in $(0,b)\cup(2a,k)$ lies in $Q$.
+
+For (B2) it suffices, at each index $i$, to name two surviving taps among
+$a$, $b$, $2a$, $a+b$ whose reads differ. The indices fall into twelve
+ranges, six of even and six of odd indices, cut out by the numbers $a$, $b$,
+$2a$, $a+b$, $2b$ and $3a$, and in each range the same two taps serve. The
+table of these taps, and the check that they survive and read different
+values, are in \autoref{app:checks-bfone}.
+\end{proof}
+
+For $M\ge2$ the carrier is the \emph{band carrier}: $a$ together with every
+free position strictly between $a$ and $k-a$.
+
+\begin{lemma}[the case $M\ge2$]
+\label{lem:nao-bfshadow}
+Let $S$ have the structure of \autoref{thm:nao-struct} with $M\ge2$, and let
+\[
+\mathcal B=\{\,y\notin S:\ a<y<k-a\,\}.
+\]
+Then $\sigma=a$ with $Q=\{a\}\cup\mathcal B$ is a $\sigma$-bump.
+\end{lemma}
+
+The idea is that at an index $i>a$ the tap $k-a$ reads the position $i-a$,
+wrapped, and so reads $1$ unless $i-a$ lies in $\mathcal B$; when it does, the
+gaps of $S$, which are shorter than $a$, supply an element $j$ of $S$ just
+below $i$, and the tap $k-j$ reads a position below $\mathcal B$. The mirror then
+gives the reads of $0$.
+
+\begin{proof}
+\begin{itemize}
+\item[(N1)] For $1\le m\le M$, $mb=k-(2a+(M-m)b)\in S$, by palindromy and
+the last clause of the structure.
+\item[(N2)] An odd $y\in[a,k-a]$ with $y-a$ not a multiple of $b$ is free,
+since $S_1=\{a+mb\}$.
+\item[(N3)] If $a<x\le k-a$, some $j\in S$ has $x\le j<x+a$.
+\end{itemize}
+For (N3), I first show that every $s\in S$ with $s<k-a=a+Mb$ has an
+element of $S$ in $(s,s+a]$. Write $s=qb+r$ with $0\le r<b$. If $r<a$,
+then $q\le M$ (as $qb\le s<a+Mb<(M+1)b$), and $a+qb\in S$ lies in
+$(s,s+a]$. If $r\ge a$, then $qb+a\le s<a+Mb$ gives $q<M$, and
+$(q+1)b\in S$ by (N1); it lies in $(s,s+a]$ because
+$(q+1)b-s=b-r\le b-a<a$. Now, given $x$, let $s$ be the largest element
+of $S$ below $x$ (there is one, $a$). Then $s<k-a$, so some $j\in S$ lies in
+$(s,s+a]$, and $j\ge x$ by the maximality of $s$, while $j\le s+a<x+a$.
+
+The set $\mathcal B$ consists of free positions, so $Q\cap S=\{a\}$, which is (B1).
+By palindromy $\mathcal B$ is symmetric under $y\mapsto k-y$, so $Q'=\{k-a\}\cup \mathcal B$ is
+the reflection of $Q$.
+
+\emph{Reads of $1$.} Let $z\in\{a,k-a\}$ and $Q^z=\{z\}\cup \mathcal B$; I show that
+every index $i$ has a surviving tap reading $1$ for $(z,Q^z)$. As
+$z\in S$, $z\notin \mathcal B$, and a tap whose position lies in $\mathcal B$ survives.
+\begin{itemize}
+\item If $i<a$ and $i$ is even, the tap $a$ reads $i+a$, which is odd, lies in
+$(a,2a)\subset(a,k-a)$, and has $(i+a)-a=i\in(0,b)$. By (N2) it lies in
+$\mathcal B$, and the tap, being unwrapped, reads $1$.
+\item If $i<a$ and $i$ is odd, the tap $b$ reads $i+b$, which is odd, lies
+in $(b,a+b)\subset(a,k-a)$, and has $(i+b)-a\in(b-a,b)\subset(0,b)$.
+So it lies in $\mathcal B$ and reads $1$.
+\item If $i=a$, the tap $2a\in S$ reads $3a$, which is odd, has
+$3a-a=2a\in(b,2b)$, and lies in $(a,k-a)$, since $2a<2b\le Mb$. So it
+lies in $\mathcal B$ and reads $1$.
+\item If $i>a$, the tap $k-a$ is wrapped, with residue $y=i-a\in(0,k-a)$. If
+$y\notin \mathcal B$ and $y\ne z$, it survives and reads $1$.
+\item If $i>a$ and $i-a=z$, then $z\ne k-a$, so $z=a$ and $i=2a$. The tap $k-b$ is
+wrapped (as $2a>b$), with residue $2a-b\in(0,a)$, which is neither in $\mathcal B$
+nor $z$; so it survives and reads $1$.
+\item If $i>a$ and $i-a\in \mathcal B$, then $a<i-a<k-a$, and (N3) with $x=i-a$ gives $j\in S$
+with $i-a\le j<i$. The tap $k-j$ is wrapped, with residue $y=i-j\in(0,a]$,
+which is not in $\mathcal B$. If $y=z$, then $z\le a<k-a$ forces $z=a$, so
+$j=i-a\in \mathcal B$, which is impossible as $j\in S$. So $y\ne z$, and the tap
+survives and reads $1$.
+\end{itemize}
+With $z=a$ this gives a read of $1$ at every index for $(a,Q)$. With $z=k-a$
+at the index $k-i$, \autoref{lem:nao-mirror} gives a surviving read of $0$
+at $i$ for $(a,Q)$. So (B2) holds.
+\end{proof}
+
+\begin{corollary}[the both-failing supports]
+\label{cor:nao-bothfailing}
+Under the hypotheses of \autoref{thm:nao-struct}, $S$ carries a $\sigma$-bump
+at $\sigma=a$.
+\end{corollary}
+
+\begin{proof}
+If $M\ge2$ this is \autoref{lem:nao-bfshadow}. If $M=1$, then $k=2a+b$, the
+odd elements of $S$ are $a$ and $a+b$, and every even element $s$ has
+$b\le s$ and $b\le k-s$, so $s\in[b,2a]$. This is
+\autoref{lem:nao-bfone}.
+\end{proof}
+
+\subsection{Proof of \autoref{thm:notallodd}}
+
+\begin{proof}[Proof of \autoref{thm:notallodd}]
+Let $a=\min S$. If $a$ is even, \autoref{thm:nao-evenmin} gives a
+$\sigma$-bump on a parity carrier. If $a$ is odd, either
+$(\sigma,Q_\sigma)$ is a $\sigma$-bump for some $\sigma\in S$, or $S$
+satisfies the hypotheses of \autoref{thm:nao-struct}, since it is primitive,
+palindromic, not full and has an even element; and then
+\autoref{cor:nao-bothfailing} gives a $\sigma$-bump at $\sigma=a$.
+\end{proof}
+
+By \autoref{thm:sigmabump}, no equation \eqref{eq:familya} whose support
+satisfies the hypotheses of \autoref{thm:notallodd} is globally periodic,
+for either value of $\theta$.

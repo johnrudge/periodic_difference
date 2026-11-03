@@ -1,0 +1,174 @@
+\section{The full support}
+\label{sec:fullsupport}
+
+The full support $S=\{1,\dots,k-1\}$ never carries a $\sigma$-bump. Indeed,
+(B1) forces $Q=\{\sigma\}$, and then at $i=k-1$ every position $i+j$ with
+$j\in S$ lies in $\{k,\dots,2k-2\}$, where the only position that can lie outside $P$ is
+$k+\sigma$, which (B2) excludes. So the full support has to be treated on its
+own. It is also the classical case: the full-support recursion, in which every
+term of the window appears in the numerator, was settled, even for complex
+coefficients, by \citet{CsornyeiLaczkovich2001}. They also passed to its
+piecewise-linear shadow and showed, by exhibiting a non-periodic real solution
+at every order other than these, that it is periodic only at order $2$ and,
+with $c_0>0$, at order $3$ (their Theorems~9--11). The periods of the shadow at order $4$ with $c_0>0$ are determined by
+\citet{LineroBasNievesRoldan2021}, and, with $c_0>0$, every solution with monotone initial
+data has period $3k-1$ \citep{GolombCallan1992}. The carrier $Q=\{1\}$ satisfies (B1) with $\sigma=1$ but fails (B2), so the bump
+is not a tangent solution along it; but every window of the full support
+meets this carrier, so \autoref{lem:trop-carrier} applies, and here I give a
+different unbounded tangent solution along its orbit, written down in closed
+form and checked by hand.
+
+\begin{theorem}
+\label{thm:fullsupport}
+Let $k\ge4$. No equation \eqref{eq:familya} with full support
+$S=\{1,\dots,k-1\}$ is globally periodic, for either value of $\theta$ and for any
+choice of positive coefficients.
+\end{theorem}
+
+The bound $k\ge4$ is sharp: at $k=2$ and $k=3$ the full supports $\{1\}$ and
+$\{1,2\}$ carry the period-$6$, Lyness and period-$8$ equations of
+\eqref{eq:fivefamilies}.
+
+\subsection{The carrier}
+\label{sec:fs-carrier}
+
+Throughout this section $k\ge4$ and $S=\{1,\dots,k-1\}$. Let $P\subseteq\Z/2k$ be
+the anti-periodic set coded by $Q=\{1\}$ (\autoref{def:bump}), that is
+\[
+P=\{1,\,k\}\cup\{k+2,k+3,\dots,2k-1\},
+\]
+and let $E$ be its orbit. Write every $n\ge0$ as $n=\ell k+i$ with $\ell\ge0$ and
+$0\le i<k$, and call $\ell$ the \textit{block} and $i$ the \textit{column} of $n$.
+
+\begin{lemma}
+\label{lem:fs-carrier}
+The orbit $E$ is a solution of the min-plus recursion for both values of $\theta$,
+with $m_n(E)=-1$, and its attaining sets are
+\[
+A_{\ell k+i}(E)=\begin{cases}
+\{1\}, & \ell\ \text{even},\ i=0,\\
+\{k-i\}\cup\{k+2-i,\dots,k-1\}, & \ell\ \text{even},\ i\ge1,\\
+\{2,\dots,k-1\}, & \ell\ \text{odd},\ i=0,\\
+\{1,\dots,k-1-i\}\cup\bigl(\{k+1-i\}\cap S\bigr), & \ell\ \text{odd},\ i\ge1.
+\end{cases}
+\]
+\end{lemma}
+
+\begin{proof}
+Let $1\le j\le k-1$. If $\ell$ is even, $n+j\equiv i+j\pmod{2k}$, with
+$1\le i+j\le2k-2$. When $i+j<k$ this lies in $P$ only if $i+j=1$, that is $i=0$
+and $j=1$; when $i+j\ge k$ it lies in $P$ exactly when $i+j=k$ or $i+j\ge k+2$.
+If $\ell$ is odd, $n+j\equiv k+i+j\pmod{2k}$. When $i+j<k$ this lies in $P$
+exactly when $i+j\ne1$, which for $j\ge1$ means $i\ge1$ or $j\ge2$; when $i+j\ge k$
+the residue is $i+j-k\in\{0,\dots,k-2\}$, which lies in $P$ only if $i+j=k+1$.
+This gives the four sets $\{j\in S:n+j\in P\}$ listed, and each of them is nonempty
+(it contains $1$, $k-i$, $2$, and $1$ or $2$ respectively). So
+\autoref{lem:trop-carrier} applies.
+\end{proof}
+
+In words, a tap $j$ at $n=\ell k+i$ reads column $i+j$ of block $\ell$ if
+$i+j<k$, and column $i+j-k$ of block $\ell+1$ otherwise. So in an even block the
+attaining taps read column $1$ of the same block (if $i=0$), or column $0$ and
+columns $2,\dots,i-1$ of the next block (if $i\ge1$). In an odd block they read
+columns $i+1,\dots,k-1$ of the same block (columns $2,\dots,k-1$ if $i=0$), and
+also column $1$ of the next block when $i\ge2$. For example, at $k=5$ the
+columns read by the attaining taps are as follows, a prime marking a column of
+the next block:
+\begin{center}
+\small
+\begin{tabular}{l|ccccc}
+column $i$ of $n$ & $0$ & $1$ & $2$ & $3$ & $4$\\\hline
+$\ell$ even & $1$ & $0'$ & $0'$ & $0',2'$ & $0',2',3'$\\
+$\ell$ odd & $2,3,4$ & $2,3,4$ & $3,4,1'$ & $4,1'$ & $1'$
+\end{tabular}
+\end{center}
+Here the middle columns are $2$ and $3$.
+
+\subsection{The ray}
+
+Write the block as $\ell=8m+r$ with $m\ge0$ and $0\le r<8$, so that
+$n=8km+rk+i$. Define $d_n$ by \autoref{tab:fs-ray}: its value depends on $r$, on
+$m$, and on the column only through the four classes $i=0$, $i=1$,
+$2\le i\le k-2$ (the \textit{middle} columns) and $i=k-1$, which are distinct and
+nonempty because $k\ge4$. Write $a_r$, $b_r$, $c_r$ and $z_r$ for the entries of
+row $r$ in these four classes. Only the middle entries depend on $m$: they are
+$f-m$ in even blocks and $f+m$ in odd blocks, for a constant $f$ given by the row.
+Block $8$, which is block $0$ of the next group, has $a_8=a_0$, $b_8=b_0$,
+$z_8=z_0$ and $c_8=-(m+1)$. So $d$ is a ray (\autoref{def:trop-ray}) with $q=8k$: passing from $m$ to $m+1$ changes only the
+middle entries, by $-1$ in even blocks and by $+1$ in odd ones.
+
+\begin{table}
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{c|cccc|cccc}
+$r$ & $a_r$ & $b_r$ & $c_r$ & $z_r$ &
+$a_r+a_{r+1}$ & $b_r+b_{r+1}$ & $c_r+c_{r+1}$ & $z_r+z_{r+1}$\\
+& $(i=0)$ & $(i=1)$ & $(2\le i\le k-2)$ & $(i=k-1)$ &&&&\\
+\hline
+$0$ & $-1$ & $0$ & $-m$ & $0$ & $0$ & $1$ & $1$ & $1$\\
+$1$ & $1$ & $1$ & $m+1$ & $1$ & $1$ & $1$ & $0$ & $0$\\
+$2$ & $0$ & $0$ & $-m-1$ & $-1$ & $0$ & $0$ & $0$ & $0$\\
+$3$ & $0$ & $0$ & $m+1$ & $1$ & $1$ & $1$ & $1$ & $1$\\
+$4$ & $1$ & $1$ & $-m$ & $0$ & $1$ & $0$ & $0$ & $0$\\
+$5$ & $0$ & $-1$ & $m$ & $0$ & $0$ & $0$ & $0$ & $1$\\
+$6$ & $0$ & $1$ & $-m$ & $1$ & $1$ & $1$ & $1$ & $1$\\
+$7$ & $1$ & $0$ & $m+1$ & $0$ & $0$ & $0$ & $0$ & $0$\\
+\end{tabular}
+\caption{The ray of \autoref{lem:fs-ray}. Left: the value of $d_n$ at
+$n=8km+rk+i$, by column class. Right: the left-hand side $d_{n+k}+d_n$ of the
+tangent recursion, by column class; for $r=7$ the next block is block $0$ with $m$
+replaced by $m+1$.}
+\label{tab:fs-ray}
+\end{table}
+
+\begin{lemma}
+\label{lem:fs-ray}
+The sequence $d$ of \autoref{tab:fs-ray} is a tangent solution along $E$, for both
+values of $\theta$, and $d_{8km+2k+2}=-1-m$ for every $m\ge0$.
+\end{lemma}
+
+\begin{proof}
+Let $n=\ell k+i$ with $\ell=8m+r$. The left-hand side $d_{n+k}+d_n$ is the sum of
+the entries of rows $r$ and $r+1$ in the class of column $i$. In the middle class
+the terms in $m$ cancel, and the four sums are the right-hand half of
+\autoref{tab:fs-ray}.
+
+Now the right-hand side, the minimum of $d_{n+j}$ over $j\in A_n(E)$. Note first
+that in every odd row $c_r\ge a_r$ and $c_r\ge z_r$, since $m\ge0$. By the
+description after \autoref{lem:fs-carrier}, the middle columns are read only
+from odd blocks, and always alongside a column whose entry is no larger: in an
+even block $\ell$ at $i\ge3$ they are read from block $\ell+1$ together with its
+column $0$, and in an odd block at $i\le k-3$ they are read together with column
+$k-1$ of the same block. So the middle reads never lower the minimum and can be ignored,
+and the right-hand side is:
+\begin{itemize}
+\item for $r$ even: $b_r$ if $i=0$, and $a_{r+1}$ if $i\ge1$;
+\item for $r$ odd: $z_r$ if $i\in\{0,1\}$, $\min(z_r,b_{r+1})$ if
+$2\le i\le k-2$, and $b_{r+1}$ if $i=k-1$.
+\end{itemize}
+The tangent recursion \eqref{eq:trop-tangent} therefore reduces to the identities
+\[
+\begin{aligned}
+&r\ \text{even:}&& a_r+a_{r+1}=b_r,\quad
+b_r+b_{r+1}=c_r+c_{r+1}=z_r+z_{r+1}=a_{r+1};\\
+&r\ \text{odd:}&& a_r+a_{r+1}=b_r+b_{r+1}=z_r,\quad
+c_r+c_{r+1}=\min(z_r,b_{r+1}),\quad z_r+z_{r+1}=b_{r+1}.
+\end{aligned}
+\]
+These are read off \autoref{tab:fs-ray}. For the even rows $r=0,2,4,6$ the values
+$(b_r;a_{r+1})$ are $(0;1)$, $(0;0)$, $(1;0)$ and $(1;1)$, and for the odd rows
+$r=1,3,5,7$ the values $(z_r;\min(z_r,b_{r+1});b_{r+1})$ are $(1;0;0)$,
+$(1;1;1)$, $(0;0;1)$ and $(0;0;0)$; each matches the corresponding sums. By
+\autoref{lem:fs-carrier} the attaining sets, and hence this computation, are the
+same for both $\theta$.
+
+Finally, column $2$ is a middle column because $k\ge4$, so
+$d_{8km+2k+2}=c_2=-1-m$.
+\end{proof}
+
+\begin{proof}[Proof of \autoref{thm:fullsupport}]
+By \autoref{lem:fs-carrier} the orbit $E$ is an integer solution of the min-plus
+recursion, and by \autoref{lem:fs-ray} it carries an unbounded integer tangent
+solution, for both values of $\theta$. \autoref{thm:tangent} applies.
+\end{proof}

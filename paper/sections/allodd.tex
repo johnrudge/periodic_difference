@@ -1,0 +1,827 @@
+\section{Even orders: all-odd supports}
+\label{sec:allodd}
+
+This section treats the supports at even order all of whose elements are odd,
+the hardest supports for the $\sigma$-bump, because the clauses of
+\autoref{def:bump} then split by parity (\autoref{sec:allodd-parity}).
+
+\begin{theorem}[all-odd supports]
+\label{thm:alloddall}
+Let $k$ be even, and let $S\subseteq\{1,\dots,k-1\}$ be primitive and
+palindromic, with every element odd and $|S|\ge3$. Suppose that
+$(k,S)\ne(6,\{1,3,5\})$. Then $S$ carries a $\sigma$-bump.
+\end{theorem}
+
+The support $\{1,3,5\}$ at $k=6$ carries no $\sigma$-bump at all: condition
+(B1) leaves only $\sigma\in\{1,3,5\}$ and the two free positions $2$ and $4$
+of $Q$, and in each of the twelve cases (B2) fails. It is treated separately
+in \autoref{prop:order6cert}.
+
+Supports containing $1$ are handled in \autoref{sec:allodd-one} by small
+explicit carriers. For the others, with $a=\min S\ge3$, the carrier is a
+\emph{half-arc}: a free position $y$ is put in $Q$ when the phase
+$\nu y$ modulo $2k$ (shifted by $t\in\{0,k\}$ if $y$ is odd) lies in the
+lower half $[0,k)$, for a suitable odd multiplier $\nu$. At the index $i$ the
+reads of free positions are then governed by the translate $\nu i+\nu S$ of
+the phase set, and the clause at $i$ can fail only if that translate lies in
+one half of the circle, apart from pins and deleted taps. At odd indices
+there are no pins, and the phases of $S$, being symmetric under $z\mapsto
+k-z$, are spread too evenly to fit into one half once $\nu$ separates two
+elements of $S$ below $k/2$ (\autoref{sec:allodd-halfarc}). At even indices,
+for a unit $\nu$, failures for both choices of $t$ would make $\nu S$ contain
+a whole coset of a subgroup of $\Z/2k$, which is impossible
+(\autoref{sec:allodd-even}); the one gap is the index $2a$, closed by a
+three-point condition (T) on $\nu$, which a lemma on three-term
+progressions, \autoref{thm:lemmaA}, supplies (\autoref{sec:allodd-e3}). The
+supports $\{a,k/2,k-a\}$, with a single element below $k/2$, get an explicit
+$\nu$ (\autoref{sec:allodd-three}), and seventeen supports at orders
+$k\le42$ escape these arguments and are given a carrier in a table. On a
+first reading one can skip the case-by-case proofs and the finite checks.
+
+\subsection{The parity split}
+\label{sec:allodd-parity}
+
+Throughout this section $k$ is even, $S\subseteq\{1,\dots,k-1\}$ is
+palindromic, and reads are described in the vocabulary of
+\autoref{sec:nao-reading}, in particular \eqref{eq:read-reads} and
+\eqref{eq:read-pins}.
+
+Suppose now that every element of $S$ is odd. Then at an odd index every tap
+reads an even position, and at an even index an odd one. Two consequences are
+used repeatedly. First, the clauses at odd indices involve only the even
+elements of $Q$, and those at even indices only the odd ones. Second, at an
+odd index no position is a pin, and since $\sigma$ is odd the only deleted tap
+is $k-i$ (when it lies in $S$), which reads the position $k$. At an even index
+no position is $\equiv0\pmod k$, and the deleted taps are those reading
+$\sigma$ or $\sigma+k$.
+
+\subsection{Supports containing 1}
+\label{sec:allodd-one}
+
+When $1\in S$ the taps $1$ and $k-1$ read the two neighbours of every
+position, and very small carriers suffice.
+
+\begin{lemma}[a three-point carrier]
+\label{lem:allodd-mid}
+Let $k$ be even and $S$ palindromic and all-odd, with $1\in S$, and let $b\in S$
+with $5\le b\le k/2$. Then $\sigma=b$ and $Q=\{b-1,b,b+1\}$ form a $\sigma$-bump
+for $S$.
+\end{lemma}
+
+\begin{proof}
+(B1) holds because $b\pm1$ are even and $0\notin Q$. Note that $k\ge2b\ge10$,
+and that $1,b,k-b,k-1\in S$; only these four taps are used.
+
+\emph{Even indices.} Here every position is odd, and the only odd element of
+$Q$ is $b=\sigma$. So a surviving unwrapped tap reads $0$ and a surviving
+wrapped tap reads $1$. For a $1$: the tap $k-1$ reads $i+k-1$, which is wrapped
+and is deleted only if $i+k-1=k+b$, that is $i=b+1$; at $i=b+1$ the tap $k-b$
+reads $k+1$, wrapped and not deleted. For a $0$: the tap $1$ reads $i+1<k$,
+deleted only if $i+1=b$; at $i=b-1$ the tap $b$ reads $2b-1<k$, not deleted.
+
+\emph{Odd indices.} Here every position is even and the only deleted position
+is $k$. For a $1$: at $i\ge3$ the tap $k-1$ reads the wrapped position
+$i+k-1$, of residue $i-1$, which reads $1$ unless $i-1=b\pm1$. The remaining
+cases are $i=1$, where the tap $b$ reads $b+1\in Q$; $i=b$, where the tap $1$
+reads $b+1$; and $i=b+2$, where the tap $k-b$ reads $k+2$, of residue
+$2\notin Q$ (as $b-1\ge4$). For a $0$: unless $i=k-1$ the tap $1$ reads the
+unwrapped position $i+1$, which reads $0$ unless $i+1=b\pm1$. The remaining
+cases are $i=k-1$ and $i=b$, where the taps $b$ and $k-1$ respectively read
+$k+b-1$, of residue $b-1\in Q$; and $i=b-2$, where the tap $b$ reads
+$2b-2<k$, not in $Q$ because $b\ge5$.
+\end{proof}
+
+\begin{lemma}[a carrier when $3\in S$]
+\label{lem:allodd-three4}
+Let $k\ge8$ be even and $S$ palindromic and all-odd, with $1,3\in S$. Then
+$\sigma=3$ and $Q=\{2,3,6\}$ form a $\sigma$-bump for $S$.
+\end{lemma}
+
+\begin{proof}
+Since $k\ge8$, $Q\subseteq\{1,\dots,k-1\}$, and (B1) holds because $2$ and $6$
+are even. Only the taps $1$, $3$, $k-3$ and $k-1$ are used.
+
+\emph{Even indices.} As in \autoref{lem:allodd-mid}, every position is odd and
+the only odd element of $Q$ is $\sigma$, so a surviving tap reads $0$ if
+unwrapped and $1$ if wrapped. For a $1$: the tap $k-1$ reads the wrapped
+position $i+k-1$, of residue $i-1$, which is deleted only at $i=4$; there the
+tap $k-3$ reads $k+1$, wrapped and not deleted. For a $0$: the tap $1$ reads
+$i+1<k$, deleted only at $i=2$; there the tap $3$ reads $5<k$, not deleted.
+
+\emph{Odd indices.} Every position is even, the only deleted position is
+$k$, and the even elements of $Q$ are $2$ and $6$. So a surviving tap reads
+$1$ exactly when it is unwrapped with residue in $\{2,6\}$, or wrapped with
+residue outside $\{2,6\}$. For a $1$: at $i=1$ the tap $1$ reads $2$; at
+$i=3$ the tap $3$ reads $6$; at $i=7$ the tap $k-3$ reads $k+4$, of residue
+$4$; and at every other odd index, which has $i\ge5$ and $i\ne7$, the tap
+$k-1$ reads $k+i-1$, of residue $i-1\notin\{0,2,6\}$. For a $0$: at $i=1$ the
+tap $3$ reads $4$; at $i=5$ and at $i=k-1$ the taps $k-3$ and $3$
+respectively read $k+2$, of residue $2$; and at every other odd index, which
+has $i\le k-3$ and $i\ne1,5$, the tap $1$ reads $i+1<k$, of residue
+$i+1\notin\{0,2,6\}$.
+\end{proof}
+
+\begin{proposition}[all-odd supports containing $1$]
+\label{prop:allodd-one}
+Let $k$ be even and $S\subseteq\{1,\dots,k-1\}$ palindromic and all-odd, with
+$1\in S$, $|S|\ge3$ and $(k,S)\ne(6,\{1,3,5\})$. Then $S$ carries a
+$\sigma$-bump.
+\end{proposition}
+
+\begin{proof}
+If $3\in S$, then $k\ge8$: for $k\le6$ the odd elements of $\{1,\dots,k-1\}$
+are among $1,3,5$, so $|S|\ge3$ would force the excluded support
+$(6,\{1,3,5\})$. So \autoref{lem:allodd-three4} applies. If $3\notin S$, then
+$k-3\notin S$ either, by palindromy, and $S$ has an element other than $1$ and
+$k-1$; that element or its mirror is an odd $b\in S$ with $5\le b\le k/2$, and
+\autoref{lem:allodd-mid} applies.
+\end{proof}
+
+\subsection{Half-arc carriers and the odd indices}
+\label{sec:allodd-halfarc}
+
+From here on $1\notin S$. Write $a=\min S$, so that $a\ge3$ and $\sigma=a$
+throughout, and write $L=\{s\in S:2s<k\}$ for the lower half of $S$. Since $S$
+is palindromic, $S=L\cup(k-L)$, together with $k/2$ when $k/2\in S$; and
+$a\in L$ unless $S=\{k/2\}$.
+
+For integers $\nu$, $y$ and $z$ write
+\begin{equation}
+H(z)=\mathbf 1[\,z\bmod 2k<k\,],
+\qquad
+H_\nu(y)=H(\nu y),
+\label{eq:allodd-eps}
+\end{equation}
+where $z\bmod2k$ denotes the representative in $\{0,\dots,2k-1\}$. So
+$H_\nu(y)$ records in which half of $\Z/2k$ the \emph{phase} $\nu y$
+lies. Two elementary facts about the phases are used throughout. If $\nu$ is
+odd then $\nu k\equiv k\pmod{2k}$, so for every integer $z$ and $y$
+\begin{equation}
+H(z+k)=1-H(z),\qquad H_\nu(y+k)=1-H_\nu(y).
+\label{eq:allodd-flip}
+\end{equation}
+If also $y$ is odd, then $\nu y$ is odd, so $\nu y\not\equiv0,k\pmod{2k}$, and
+\begin{equation}
+H_\nu(-y)=1-H_\nu(y),\qquad H_\nu(k-y)=H_\nu(y),
+\label{eq:allodd-sym}
+\end{equation}
+the second because $\nu(k-y)\equiv k-\nu y$, and $z\mapsto k-z$ maps each of the
+open halves $U=\{1,\dots,k-1\}$ and $V=\{k+1,\dots,2k-1\}$ of $\Z/2k$ to
+itself.
+
+\begin{definition}[half-arc carrier]
+\label{def:allodd-halfarc}
+Let $\nu$ be odd and $t\in\{0,k\}$, and for an integer $y$ put $t_y=0$ if $y$
+is even and $t_y=t$ if $y$ is odd. The \emph{half-arc carrier} $Q(\nu;t)$ of $S$
+consists of $a$ together with every $y\in\{1,\dots,k-1\}\setminus S$ with
+$H(\nu y+t_y)=1$.
+\end{definition}
+
+So the even free positions follow the half-arc of $\nu$, and the odd ones the
+same half-arc shifted by $t$. By construction $Q\cap(\{0\}\cup S)=\{a\}$, so
+(B1) holds at $\sigma=a$. The point of the construction is that a tap reading
+a free position reads the half-arc pattern, wrapped or not.
+
+\begin{lemma}[free reads]
+\label{lem:allodd-free}
+Let $Q=Q(\nu;t)$ with $\nu$ odd, and let $0<p<2k$ be a free position. Then
+$p\in P$ if and only if $H(\nu p+t_p)=1$.
+\end{lemma}
+
+\begin{proof}
+If $p<k$ this is the definition, since $p\ne a$. If $p>k$, put $p'=p-k$, which
+has the parity of $p$ and lies outside $S\cup\{0\}$. Then $p\in P$ iff
+$p'\notin Q$ iff $H(\nu p'+t_p)=0$ iff $H(\nu p'+t_p+k)=1$, by \eqref{eq:allodd-flip},
+and $\nu p'+k\equiv \nu p\pmod{2k}$.
+\end{proof}
+
+The clauses at odd indices read only even positions, and all of these are free
+except the deleted position $k$. They are settled by the following lemma,
+whose idea is that the phases of $S$ are spread round the circle $\Z/2k$ too
+evenly to fit into one half, even after one of them is removed.
+
+\begin{lemma}[odd indices]
+\label{lem:allodd-oddhalf}
+Let $S$ be all-odd, let $\nu$ be odd and $t\in\{0,k\}$, and suppose that
+$H_\nu(u)\ne H_\nu(v)$ for some $u,v\in L$. Then, for
+$\sigma=a$ and $Q=Q(\nu;t)$, the clause at every odd index holds.
+\end{lemma}
+
+\begin{proof}
+Let $i$ be odd. As noted in \autoref{sec:allodd-parity}, the only deleted
+tap is $k-i$ (if it lies in $S$), and every other tap $j$ reads a free even
+position $p=i+j$, whose read is $H(\nu p)=H(\nu i+\nu j)$ by \autoref{lem:allodd-free}.
+So the clause fails exactly when the phases $\nu j\bmod2k$ of the surviving taps
+all lie in $\{-\nu i,\dots,-\nu i+k-1\}$ or all in $\{-\nu i+k,\dots,-\nu i+2k-1\}$.
+
+First I locate the phases. They are odd, so each lies in $U$ or in $V$, and
+by \eqref{eq:allodd-sym} the tap $k-j$ has phase $k-\nu j$, which lies in the
+same half as $\nu j$. Since $H_\nu(u)\ne H_\nu(v)$ both halves
+occur. Let $x_-$ be the least phase in $U$, attained at the tap $u_0$, and
+$y_-$ the least in $V$, attained at $v_0$. The taps $k-u_0$ and $k-v_0$ have
+the phases $k-x_-\in U$ and $3k-y_-\in V$, so $2x_-\le k$ and $2y_-\le3k$.
+Going round the circle, each of the four phases $x_-\le k-x_-<y_-\le3k-y_-$
+is followed by the next at distances $k-2x_-$, $x_-+y_--k$, $3k-2y_-$ and
+$x_-+y_--k$ respectively. Each distance is at most $k$, and equals $k$ only
+if $x_-=k/2$ and $y_-=3k/2$; so at most $k-1$ consecutive residues avoid all
+four phases, and $k-1$ only in that case. If $m$ consecutive residues contain
+all four phases, the other $2k-m$ residues are consecutive and avoid them, so
+$2k-m\le k-1$. Hence:
+\begin{itemize}
+\item[(a)] no $k$ consecutive residues contain all four phases;
+\item[(b)] if $k+1$ consecutive residues contain them, then $x_-=k/2$ and
+$y_-=3k/2$, and then every phase is $k/2$ or $3k/2$ (a phase $z\in U$ has
+$z\ge x_-$ and $k-z\ge x_-$, and similarly in $V$).
+\end{itemize}
+
+If $k-i\notin S$, nothing is deleted and the clause holds by (a). Suppose
+instead that $s_0=k-i\in S$. Then $\nu i\equiv k-\nu s_0$, and by
+\eqref{eq:allodd-flip} the tap $j\ne s_0$ reads $1-H(\nu j-\nu s_0)$. If these reads
+were all $0$, every phase would lie in the $k$ consecutive residues
+$\{\nu s_0,\dots,\nu s_0+k-1\}$, which (a) excludes. If they were all $1$,
+every phase other than $\nu s_0$ would lie in
+$\{\nu s_0+k,\dots,\nu s_0+2k-1\}$, and with $\nu s_0$ itself every phase would lie in
+the $k+1$ consecutive residues $\{\nu s_0+k,\dots,\nu s_0+2k\}$; so (b) gives
+every phase in $\{k/2,3k/2\}$, and then the tap $j\ne s_0$ reads $0$ when
+$\nu j\equiv \nu s_0$ and $1$ otherwise. The taps $u$ and $k-u$ are distinct (as
+$2u<k$) and share one phase; $v$ and $k-v$ share the other. At most one of the
+four taps is $s_0$, so the pair with the phase of $s_0$ contains a surviving
+tap reading $0$, and the other pair a surviving tap reading $1$. This
+contradicts the assumption that the reads were all $1$.
+\end{proof}
+
+\subsection{Supports with one element below \texorpdfstring{$k/2$}{k/2}}
+\label{sec:allodd-three}
+
+If $1\notin S$ and $L=\{a\}$, then $|S|\ge3$ forces $S=\{a,k/2,k-a\}$, with
+$k/2$ odd. Here \autoref{lem:allodd-oddhalf} does not apply, since $L$ has a
+single element, and a specific multiplier is used instead.
+
+\begin{theorem}[three-element supports]
+\label{thm:allodd-threeall}
+Let $k=2h$ with $h$ odd, and $S=\{a,h,k-a\}$ with $3\le a<h$ odd and
+$\gcd(a,h)=1$. Let $\beta\in\{2,4\}$ with $\beta\equiv a+h\pmod4$, suppose
+that $3\beta<h$ (that is, $h\ge7$ if $\beta=2$ and $h\ge13$ if $\beta=4$), and
+let $\nu\equiv a^{-1}(3h+\beta)\pmod{2k}$. Then $\sigma=a$ and $Q=Q(\nu;0)$ form a
+$\sigma$-bump for $S$.
+\end{theorem}
+
+\begin{proof}
+All residues in this proof are modulo $2k=4h$. Since $a$ is odd and prime to
+$h$, it is a unit, so $\nu$ is well defined and $\nu a\equiv3h+\beta$. As
+$a^2\equiv1\pmod 4$ and $3h+\beta\equiv3h+a+h\equiv a\pmod4$, one has
+$\nu\equiv a(3h+\beta)\equiv1\pmod4$; so $\nu$ is odd and $\nu h\equiv h$. The phases
+of the three taps are therefore
+\[
+\nu a\equiv3h+\beta,\qquad \nu h\equiv h,\qquad \nu(k-a)\equiv k-\nu a\equiv3h-\beta .
+\]
+(B1) holds by construction. By \autoref{lem:allodd-free}, a tap reading a free
+position $p$ reads $H(\nu p)=H(\nu i+\nu j)$, where $j$ is the tap.
+
+\emph{Deletions and pins.} The deleted positions are $k$, $a$ and $k+a$; the
+pins are $h$ and $k-a$, which read $0$, and $k+h$ and $2k-a$, which read $1$
+(the pins $a$ and $k+a$ are deleted). Solving $i+j=p$ for $j\in S$, $p$ in
+this list and $0<i<k$ shows that a tap is deleted or reads a pin only at the
+seven indices
+\[
+a,\quad h,\quad k-a,\quad h-a,\quad k-2a,\quad h+a,\quad 2a.
+\]
+
+\emph{Generic indices.} At any other index all three taps read free positions,
+with phases $\nu i+\{3h+\beta,\,h,\,3h-\beta\}$. Going round the circle, the
+three points $h<3h-\beta<3h+\beta$ cut it into arcs of lengths $2h-\beta$,
+$2\beta$ and $2h-\beta$, all less than $2h$, so no half
+$\{c,\dots,c+2h-1\}$ contains all three phases, and the reads are not all
+equal.
+
+\emph{The special indices.} At each of the seven special indices one names
+a tap reading $0$ and a tap reading $1$, using the rule that the phase of a
+position is the sum of the phases of the index and the tap, and that the
+position reads $1$ exactly when its phase lies in $\{0,\dots,2h-1\}$. The
+seven cases, and the check that every tap named survives, are in
+\autoref{app:checks-threeall}.
+\end{proof}
+
+\subsection{The even indices with a unit multiplier}
+\label{sec:allodd-even}
+
+Now let $\nu$ be a unit modulo $2k$. Multiplication by $\nu$ is then a bijection
+of $\Z/2k$, and it is convenient to work entirely with phases. Put
+\[
+\Phi=\{\nu s\bmod 2k: s\in S\},\qquad \alpha=\nu a\bmod2k .
+\]
+The elements of $\Phi$ are odd, and $\Phi=k-\Phi$ by \eqref{eq:allodd-sym}. Moreover
+$H_\nu$ is non-constant on $S$ exactly when $\Phi$ meets both $U$ and $V$.
+
+Let $t\in\{0,k\}$ and $Q=Q(\nu;t)$. Let $0<i<k$ be even, and put
+$\phi=\nu i\bmod2k$.
+Then $\phi$ is even, and $\phi\notin\{0,k\}$ because $\nu$ is a unit and
+$i\not\equiv0,k\pmod{2k}$; the same holds for $\phi+k$. The tap $j$ reads the
+odd position $p=i+j$, of phase $\nu p\equiv\phi+\nu j$. Since $p>j\ge a$, the tap is
+deleted exactly when $p=a+k$, that is, when the phase of $p$ is $\alpha+k$.
+Because $p\mapsto \nu p$ is a bijection, $p$ is an unwrapped pin iff $\nu p\in \Phi$,
+and a wrapped pin iff $\nu p\in \Phi+k$. So a surviving tap whose position has
+phase $z$ reads
+\begin{equation}
+0 \text{ if } z\in \Phi;\qquad 1 \text{ if } z\in \Phi+k;\qquad
+\text{otherwise } H(z+t)=\begin{cases}\mathbf 1[z\in U],&t=0,\\
+\mathbf 1[z\in V],&t=k,\end{cases}
+\label{eq:allodd-evenread}
+\end{equation}
+by \autoref{lem:allodd-free}; here $z$ is odd, so it lies in $U$ or in $V$.
+The phases read at $i$ form the \emph{read set} $\phi+\Phi$, less the point
+$\alpha+k$ when that point is the phase of a deleted tap. For a residue $\tau$
+consider the two conditions
+\[
+C_U(\tau):\ \ (\tau+\Phi)\cap U\subseteq \Phi,\qquad
+C_V(\tau):\ \ (\tau+\Phi)\cap V\subseteq \Phi.
+\]
+
+\begin{lemma}[failing read sets]
+\label{lem:allodd-windows}
+With the notation above, suppose that the clause at the even index $i$ fails.
+\begin{itemize}
+\item[(i)] If every surviving tap reads $1$, then $C_U(\phi+k)$ holds when
+$t=0$, and $C_V(\phi+k)$ when $t=k$.
+\item[(ii)] If every surviving tap reads $0$, then $C_U(\phi)$ holds when
+$t=0$, and $C_V(\phi)$ when $t=k$, unless some tap is deleted at $i$ and
+$\alpha+k$ lies in $U$ (for $t=0$), respectively in $V$ (for $t=k$).
+\item[(iii)] If some tap is deleted at $i$ and $i\ne2a$, then some surviving
+tap reads $1$.
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+(i) Take $t=0$. Let $x\in \Phi$ with $z=\phi+x\in V$. If $z$ is the deleted point
+then $z=\alpha+k\in \Phi+k$. Otherwise $z$ reads $1$; by
+\eqref{eq:allodd-evenread} it is not in $\Phi$, and since $z\notin U$ it must lie
+in $\Phi+k$. So $(\phi+\Phi)\cap V\subseteq \Phi+k$, and adding $k$ gives
+$C_U(\phi+k)$. The case $t=k$ is the same with $U$ and $V$ exchanged.
+
+(ii) Take $t=0$. Let $x\in \Phi$ with $z=\phi+x\in U$, and suppose $z$ is not
+the deleted point; this is automatic unless a tap is deleted and
+$\alpha+k\in U$. Then $z$ reads $0$, so $z\notin \Phi+k$, and as $z\in U$
+\eqref{eq:allodd-evenread} forces $z\in \Phi$. The case $t=k$ is the same.
+
+(iii) The deleted tap is $j_0=a+k-i$. The tap $k-a\in S$ reads
+$i+k-a=k+(k-j_0)$, a wrapped pin, since $k-j_0\in S$. It is deleted only if
+$k-j_0=a$, that is $i=2a$. So for $i\ne2a$ it reads $1$.
+\end{proof}
+
+Two failures of opposite type, one in $U$ and one in $V$, are incompatible. The
+reason is that together they force $\Phi$ to contain a whole coset of a
+subgroup, which a set of the form $\nu S$ cannot do.
+
+\begin{lemma}[no coset]
+\label{lem:allodd-nocoset}
+Let $\nu$ be a unit modulo $2k$ and $S\subseteq\{1,\dots,k-1\}$. Then $\Phi=\nu S$
+contains no coset $c+g\Z/2k\Z$ with $g\mid2k$ and $0<g<2k$.
+\end{lemma}
+
+\begin{proof}
+Multiplication by $\nu^{-1}$ is an automorphism of $\Z/2k$, so it maps such a
+coset onto a coset $s_0+g\Z/2k\Z$, which would then lie in $S$ (read modulo
+$2k$). Since $g\mid 2k$ and $g<2k$, $g\le k$. The integers $s_0,s_0+g,
+s_0+2g,\dots$ start below $k$ and increase in steps of at most $k$, so one of
+them lies in $\{k,\dots,2k-1\}$; its residue is in the coset but not in $S$.
+\end{proof}
+
+\begin{lemma}[two failures force a coset]
+\label{lem:allodd-cosetfail}
+Let $k$ be even, and let $\Phi$ be a set of odd residues modulo $2k$ with
+$\Phi=k-\Phi$ that meets both $U$ and $V$. Let $\phi,\phi'$ be even residues not in
+$\{0,k\}$, and suppose that $C_U(\phi)$ and $C_V(\phi')$ hold. Then $\Phi$
+contains a coset $c+g\Z/2k\Z$ with $g\mid 2k$ and $0<g<k$.
+\end{lemma}
+
+\begin{proof}
+\emph{Reductions.} $C_U(\phi)$ implies $C_U(-\phi)$: if $x\in \Phi$ and
+$z=x-\phi\in U$, then $k-x\in \Phi$ and $\phi+(k-x)=k-z\in U$, so $k-z\in \Phi$ and
+$z\in \Phi$. Likewise $C_V(\phi')$ implies $C_V(-\phi')$, since $z\mapsto k-z$
+also maps $V$ to itself. So I may take $0<\phi,\phi'<k$. The set $\Phi+k$ again
+consists of odd residues, satisfies $\Phi+k=k-(\Phi+k)$ and meets $U$ and $V$, and
+$C_U(\tau)$ for $\Phi$ is $C_V(\tau)$ for $\Phi+k$ and conversely. So passing
+from $\Phi$ to $\Phi+k$ swaps $C_U$ and $C_V$: the hypotheses $C_U(\phi)$ and
+$C_V(\phi')$ for $\Phi$ become $C_U(\phi')$ and $C_V(\phi)$ for $\Phi+k$, which
+are the hypotheses of the lemma for $\Phi+k$ with $\phi$ and $\phi'$
+interchanged. A coset in $\Phi+k$ gives one in $\Phi$, by adding $k$. So if
+$\phi>\phi'$ I may replace $\Phi$ by $\Phi+k$, and I may therefore also take
+$\phi\le\phi'$.
+
+\emph{Translation into $(0,k)$.} Put $Y_+=\Phi\cap U$ and $Y_-=\{z:z+k\in \Phi\cap
+V\}$, two nonempty sets of odd integers in $(0,k)$. By $\Phi=k-\Phi$ both are
+closed under $z\mapsto k-z$ (for $Y_-$: $k-(m+k)\equiv(k-m)+k$). The
+hypotheses give four rules:
+\begin{itemize}
+\item[(G1)] if $p\in Y_+$ and $p+\phi<k$, then $p+\phi\in Y_+$ (by $C_U(\phi)$);
+\item[(G2)] if $m\in Y_-$ and $m<\phi$, then $\phi-m\in Y_+$ (the point
+$2k-m\equiv k-(m+k)$ of $\Phi$ moves to $\phi-m\in U$);
+\item[(G3)] if $m\in Y_-$ and $m+\phi'<k$, then $m+\phi'\in Y_-$ (by $C_V(\phi')$);
+\item[(G4)] if $p\in Y_+$ and $p<\phi'$, then $\phi'-p\in Y_-$ (the point $k-p$ of
+$\Phi$ moves to $k+\phi'-p\in V$).
+\end{itemize}
+Call a set $\Pi$ of integers in $(0,k)$ \emph{$n$-periodic} if $p\in\Pi$,
+$0<z<k$ and $z\equiv p\pmod n$ imply $z\in\Pi$. The proof uses one
+mechanism twice.
+
+\emph{The engine.} Let $\Pi$ be $n$-periodic, $n>0$, and suppose that for
+every $p\in\Pi$ there is $p'\in\Pi$ with $p'\equiv p+f\pmod n$. Then $\Pi$ is
+$\gcd(n,f)$-periodic. Indeed, write $g=\gcd(n,f)$ and choose $y\ge0$ with
+$yf\equiv g\pmod n$. If $p\in\Pi$, $0<z<k$ and $z\equiv p\pmod g$, then
+$z\equiv p+jg\pmod n$ for some $j\ge0$; applying the hypothesis $jy$ times
+gives $p''\in\Pi$ with $p''\equiv p+jyf\equiv z\pmod n$, and so $z\in\Pi$.
+
+\emph{Step 1: $Y_+$ is $\gamma$-periodic, where $\gamma=\gcd(\phi,\phi')$.} By
+(G1) and the symmetry of $Y_+$ ($p-\phi=k-((k-p)+\phi)$), $Y_+$ is closed under
+$\pm\phi$ inside $(0,k)$, so it is $\phi$-periodic. Let $p\in Y_+$ and
+$p_0=p\bmod\phi$; it is odd, so $0<p_0<\phi$ and $p_0\in Y_+$. Let $r\ge0$ be
+largest with $p_0+r\phi<\phi'$. By (G1), $p_0+r\phi\in Y_+$, and by (G4),
+$m=\phi'-p_0-r\phi\in Y_-$. Now $0<m\le\phi$, and $m$ is odd, so $m<\phi$, and
+(G2) gives $\phi-m\in Y_+$. Since $(\phi-m)+\phi'=p_0+(r+1)\phi\equiv p
+\pmod\phi$, every $p\in Y_+$ has some $p'\in Y_+$ with $p'+\phi'\equiv p\pmod\phi$.
+Applying this to $k-p$ and reflecting, every $p\in Y_+$ has $p''=k-p'\in Y_+$ with
+$p''\equiv p+\phi'\pmod\phi$. The engine with $n=\phi$, $f=\phi'$ proves Step
+1.
+
+\emph{Step 2: if $0<z<k$ is odd and $z+p\equiv0\pmod\gamma$ for some $p\in Y_+$,
+then $z\in Y_-$.} Let $z_0=z\bmod\phi'$, which is odd, so $0<z_0<\phi'$. Then
+$\phi'-z_0\equiv-z\equiv p\pmod\gamma$, so $\phi'-z_0\in Y_+$ by Step 1, and
+(G4) gives $z_0\in Y_-$. Applying (G3) repeatedly, $z=z_0+q\phi'\in Y_-$.
+
+\emph{Step 3: $Y_+$ is $g$-periodic, where $g=\gcd(\gamma,2k)$.} Let $p\in Y_+$,
+and let $z=(k+p)\bmod\gamma$; it is odd, so $0<z<\gamma\le\phi$. Since
+$(k-z)+p\equiv0\pmod\gamma$, Step 2 gives $k-z\in Y_-$, hence $z\in Y_-$, and
+(G2) gives $\phi-z\in Y_+$, hence $k-\phi+z\in Y_+$. As $\gamma\mid\phi$,
+$k-\phi+z\equiv k+z\equiv p+2k\pmod\gamma$. The engine with $n=\gamma$,
+$f=2k$ proves Step 3.
+
+\emph{Step 4: the coset.} The number $g$ is even, divides $2k$, and
+$0<g\le\phi<k$. Fix $c\in Y_+$ and let $w$ be any residue $\equiv c\pmod g$,
+represented in $[0,2k)$; it is odd. If $w<k$ then $w\in Y_+\subseteq \Phi$ by Step
+3. If $w>k$, put $z=w-k$, so that $-z\equiv k-c\pmod g$. Let $z'=(-z)\bmod
+\gamma$, which is odd with $0<z'<\gamma<k$. Since $z'\equiv k-c\pmod g$ and
+$k-c\in Y_+$, Step 3 gives $z'\in Y_+$, and $z+z'\equiv0\pmod\gamma$, so $z\in Y_-$
+by Step 2; that is, $w\in \Phi$. So $c+g\Z/2k\Z\subseteq \Phi$.
+\end{proof}
+
+The coset lemma disposes of every pair of failures except one: the all-$0$
+failure of a read set that has lost its deleted point. By
+\autoref{lem:allodd-windows}(iii) this can only happen at the index $2a$.
+The following condition on $\nu$, which asks for an element of $L$ and a free
+position read at the index $2a$, both in the half opposite to $a$, prevents it
+there.
+
+\begin{definition}[the three-point condition]
+\label{def:allodd-e3}
+Let $1\notin S$ and $a=\min S$. A unit $\nu$ modulo $2k$ \emph{satisfies the three-point
+condition} (T) if
+\begin{itemize}
+\item[(Ta)] some $x\in L\setminus\{a\}$ has $H_\nu(x)\ne H_\nu(a)$,
+and
+\item[(Tb)] some $j\in S\setminus\{k-a\}$ with $(2a+j)\bmod k\notin S$ has
+$H_\nu(2a+j)\ne H_\nu(a)$.
+\end{itemize}
+\end{definition}
+
+\begin{proposition}[the half-arc carrier under (T)]
+\label{prop:allodd-e3bump}
+Let $S$ be all-odd with $1\notin S$, and let $\nu$ be a unit satisfying (T).
+Then for $t=0$ or for $t=k$, $\sigma=a$ and $Q(\nu;t)$ form a $\sigma$-bump
+for $S$.
+\end{proposition}
+
+\begin{proof}
+(B1) holds by construction, and the clauses at odd indices hold for both
+values of $t$ by \autoref{lem:allodd-oddhalf}, applied with $u=x$ from (Ta)
+and $v=a$. It remains to show that for one of the two values of $t$ the
+clause holds at every even index.
+
+By (Ta), $2a<2x<k$, so $2a$ is an index, and $\Phi$ meets $U$ and $V$. Suppose
+that both choices of $t$ fail, at the even indices $i_0$ (for $t=0$) and $i_1$
+(for $t=k$).
+
+I claim first that the failure at $i_0$ gives $C_U(\tau)$ for some even
+$\tau\notin\{0,k\}$. By \autoref{lem:allodd-windows}(i) and (ii) this holds
+with $\tau\in\{\nu i_0,\nu i_0+k\}$, unless every surviving tap at $i_0$ reads $0$,
+some tap is deleted there, and $\alpha+k\in U$. In that case $i_0=2a$ by
+\autoref{lem:allodd-windows}(iii). Moreover $\alpha\in V$, that is
+$H_\nu(a)=0$. Take $j$ from (Tb). The tap $j$ is not deleted at $2a$,
+since $2a+j\ne a+k$, and it reads a free position. By \autoref{lem:allodd-free}
+its read is $H(\nu(2a+j))=H_\nu(2a+j)=1$, a contradiction. In the same
+way the failure at $i_1$ gives $C_V(\tau')$ for some even
+$\tau'\notin\{0,k\}$. Here the exceptional case has $\alpha+k\in V$, so
+$H_\nu(a)=1$, and the tap $j$ reads $H(\nu(2a+j)+k)=
+1-H_\nu(2a+j)=1$.
+
+\autoref{lem:allodd-cosetfail} now puts a coset $c+g\Z/2k\Z$, $0<g<k$, inside
+$\Phi$, and \autoref{lem:allodd-nocoset} says that there is none.
+\end{proof}
+
+\subsection{The three-point condition}
+\label{sec:allodd-e3}
+
+It remains to find a unit satisfying (T). For $k>90$ there are
+two routes. Either some $x\in L\setminus\{a\}$ gives (T) through a unit that
+witnesses the progression $2a-x$, $a$, $x$, provided $x<2a$ or
+$x-2a\notin S$ (\autoref{lem:allodd-aproute}(i));
+or $L$ is the chain $a,3a,\dots,(2m+1)a$, and \autoref{thm:lemmaA}, applied
+to the rescaled triple $(k;1,2m+3)$, supplies the unit. Triples with
+$\gcd(a,x,k)>1$ may have no witness, but these are rescaled copies of the $59$
+failures at orders up to $90$ listed in \autoref{lem:allodd-pf} (see
+\autoref{lem:allodd-lift}), and \autoref{lem:allodd-nofail} shows that they
+cannot block both routes, except for $a=15$ at $k=120$, which is settled by
+hand. The orders $k\le90$ are a finite check.
+
+\begin{definition}[witnesses and admissible triples]
+\label{def:allodd-adm}
+Let $k$ be even and let $a,x$ be integers. A unit $\nu$ modulo $2k$
+\emph{witnesses} the triple $(k;a,x)$ if
+\begin{equation}
+H_\nu(2a-x)=H_\nu(a)\ne H_\nu(x),
+\label{eq:allodd-ap}
+\end{equation}
+and $(k;a,x)$ \emph{has a witness} if some unit does. The triple is
+\emph{admissible} if $a<x$ are odd positive integers with $2x<k$, $x\ne3a$
+and $\gcd(a,x,k)=1$. (The triple with $x=3a$ never has a witness, since then
+$2a-x=-a$ and $H_\nu(-a)=1-H_\nu(a)$ for every odd $\nu$, by
+\eqref{eq:allodd-sym}.)
+\end{definition}
+
+Note that $2a-x$, $a$ and $x$ form a three-term progression, so a witness
+separates the progression after its middle term but not before it. The main
+input of this section is \autoref{thm:lemmaA}, proved in
+\autoref{sec:lemmaA}: \emph{every admissible triple $(k;a,x)$ with $k>90$ has
+a witness}.
+
+\begin{lemma}[the progression route]
+\label{lem:allodd-aproute}
+Let $S$ be primitive and all-odd with $1\notin S$.
+\begin{itemize}
+\item[(i)] Let $x\in L\setminus\{a\}$, and suppose that $x<2a$ or
+$x-2a\notin S$. Then every unit $\nu$ witnessing $(k;a,x)$ satisfies (T).
+\item[(ii)] Suppose that $|L|\ge2$ and that every $x\in L\setminus\{a\}$ has
+$x>2a$ and $x-2a\in S$. Then $\gcd(a,k)=1$, and there is $m\ge1$ with
+$2(2m+1)a<k$, $(2i+1)a\in S$ for $0\le i\le m$, and $(2m+3)a\notin S$.
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+(i) (Ta) holds with this $x$, since $H_\nu(x)\ne H_\nu(a)$.
+For (Tb) take $j=k-x\in S$, which differs from $k-a$. If $x<2a$, then
+$(2a+j)\bmod k=2a-x\in(0,a)$, which is not in $S$ by the minimality of $a$. If
+$x>2a$ (equality is excluded by parity), then $2a+j=k-(x-2a)<k$, which lies in
+$S$ only if $x-2a$ does. Finally, by \eqref{eq:allodd-flip},
+$H_\nu(2a+j)=H_\nu(2a-x+k)=1-H_\nu(2a-x)=
+1-H_\nu(a)$.
+
+(ii) Each $x\in L\setminus\{a\}$ has $x-2a\in L$, and descending from $x$
+by steps of $2a$ stays in $L$ until it reaches $a$. So every element of $L$
+is $\equiv a\pmod{2a}$, in particular divisible by $a$. Let $f=\gcd(a,k)$,
+which is odd. It divides every element of $L$, every $k-x$ with $x\in L$, and
+$k/2$ (as $f$ is odd and divides $k$). So $f$ divides $\gcd(S\cup\{k\})=1$.
+Let $(2m+1)a$ be the largest element of $L$; $m\ge1$ since $|L|\ge2$, and the
+descent shows $(2i+1)a\in S$ for $0\le i\le m$. Suppose $y=(2m+3)a\in S$. Then
+$2y<k$ contradicts the maximality, $2y=k$ gives $a\mid k$, and $2y>k$ puts
+$k-y$ in $L$, so $a\mid k-y$ and again $a\mid k$. But $a\ge3$ and
+$\gcd(a,k)=1$.
+\end{proof}
+
+Up to order $90$ some admissible triples have no witness, and these failures
+propagate upwards by scaling.
+
+\begin{lemma}[small orders]
+\label{lem:allodd-pf}
+Let $(n;a,x)$ be admissible with $n\le90$. Then $(n;a,x)$ has a witness
+unless it is one of the $59$ triples
+\begin{center}
+\small
+\begin{tabular}{r|l}
+$n$ & $(a,x)$\\\hline
+12 & (1,5) (3,5)\\
+16 & (1,5) (1,7) (3,7)\\
+20 & (1,7) (3,5) (7,9)\\
+22 & (1,5) (1,9) (5,7)\\
+24 & (1,5) (1,11) (3,7) (5,7) (5,9) (7,9)\\
+28 & (1,7) (3,13) (7,9)\\
+30 & (1,11) (1,13) (7,13)\\
+36 & (1,7) (1,15) (1,17) (5,11) (5,13) (7,17) (11,15)\\
+40 & (1,5) (1,15) (3,15) (5,17) (7,19) (9,13) (15,19)\\
+42 & (1,5) (1,9) (1,17) (3,19) (5,7) (11,15) (11,19) (13,15)\\
+48 & (3,11) (15,23)\\
+60 & (1,23) (11,13) (13,27) (19,21)\\
+70 & (1,17) (3,25) (9,13) (13,15)\\
+90 & (1,33) (17,21) (19,41) (23,39)
+\end{tabular}
+\end{center}
+Denote this list by $\mathcal F$.
+\end{lemma}
+
+\begin{proof}
+This is a finite check: for every admissible triple with $n\le90$ not in
+$\mathcal F$, a search over the units $\nu$ modulo $2n$ finds a witness.
+\end{proof}
+
+\begin{lemma}[lifting]
+\label{lem:allodd-lift}
+If $(n;a,x)$ has a witness, then so does $(gn;ga,gx)$ for every $g\ge1$.
+Consequently, let $k>90$ and let $(k;a,x)$ satisfy every condition of
+admissibility except perhaps $\gcd(a,x,k)=1$. If $(k;a,x)$ has no witness,
+then, with $g=\gcd(a,x,k)$, the triple $(k/g;a/g,x/g)$ lies in $\mathcal F$.
+\end{lemma}
+
+\begin{proof}
+Let $\nu$ be a unit modulo $2n$ witnessing $(n;a,x)$. Reduction
+$\Z/2gn\to\Z/2n$ maps units onto units, so there is a unit $\nu'$ modulo $2gn$
+with $\nu'\equiv \nu\pmod{2n}$. For every integer $y$,
+$\nu'\,gy\bmod 2gn=g\,(\nu y\bmod2n)$, which is less than $gn$ exactly when
+$\nu y\bmod 2n<n$. So $H_{\nu'}(gy)$ at order $gn$ equals $H_\nu(y)$
+at order $n$, and $\nu'$ witnesses $(gn;ga,gx)$.
+
+For the second part, $g$ divides the odd number $a$, so it is odd; hence
+$k/g$ is even, and $(k/g;a/g,x/g)$ is admissible. It has no witness, by the
+first part. If $k/g>90$ this contradicts \autoref{thm:lemmaA}, so $k/g\le90$,
+and \autoref{lem:allodd-pf} puts the triple in $\mathcal F$.
+\end{proof}
+
+Above order $90$ the lifted failures can still occur, but only in a way that
+the three-point condition can absorb.
+
+\begin{lemma}[failures above order $90$]
+\label{lem:allodd-nofail}
+Let $k>90$ be even, and let $S$ be primitive and all-odd with $1\notin S$ and
+$(k,a)\ne(120,15)$. Suppose that every $x\in L\setminus\{a\}$ for which $(k;a,x)$ has
+a witness satisfies $x>2a$ and $x-2a\in S$; that is, route (i) of
+\autoref{lem:allodd-aproute} is available for no $x$. Then $(k;a,x)$ has a witness for
+every $x\in L\setminus\{a,3a\}$.
+\end{lemma}
+
+\begin{proof}
+Suppose that $(k;a,x_0)$ has no witness for some $x_0\in L\setminus\{a,3a\}$;
+I derive a contradiction. Let $\mathcal M$ be the set of orders $n$ such that
+$(n;a',x')\in\mathcal F$ for some $a',x'$ with $n\mid k$ and $a=(k/n)a'$, and
+let $\ell=\operatorname{lcm}\mathcal M$. For $y\in L\setminus\{a,3a\}$ write
+$g_y=\gcd(a,y,k)$. If $(k;a,y)$ has no witness, then
+\autoref{lem:allodd-lift} gives $(k/g_y;a/g_y,y/g_y)\in\mathcal F$, so
+$k/g_y\in\mathcal M$. In particular $\mathcal M$ is nonempty (take
+$y=x_0$). Every element of $\mathcal M$ divides $k$, so $\ell\mid k$; write
+$k=\ell f$. For every $n\in\mathcal M$, $n\mid\ell$, so $f$ divides $k/n$;
+hence $f\mid g_y$ whenever $(k;a,y)$ has no witness. In particular
+$f\mid g_{x_0}\mid a$, so $f$ is odd.
+
+I claim that $f$ divides every $y\in L$, by induction on $y$. For $y=a$ this
+was just shown. For $y\ne a$ there are three cases. If $(k;a,y)$ has a
+witness, then $y-2a\in L$ by hypothesis, $f\mid y-2a$ by induction, and so
+$f\mid y$. If it
+has none and $y=3a$, then $f\mid a\mid y$. If it has none and $y\ne3a$, then
+$f\mid g_y\mid y$. Since $f$ is odd and divides $k$, it also divides $k/2$
+and every $k-y$; so $f$ divides $\gcd(S\cup\{k\})=1$. Hence $\ell=k$.
+
+It remains to see that $\ell=k$ is impossible. Each $n\in\mathcal M$ comes
+from a failure $(n;a',x')\in\mathcal F$ with $a'/n=a/k$, so all the orders in
+$\mathcal M$ carry failures with one and the same ratio $a'/n$. Inspecting
+$\mathcal F$, a ratio occurs at two different orders only three times:
+$3/12=7/28$, $3/24=5/40$ and $1/16=3/48$. So either $\mathcal M$ is a single
+order, and $\ell\le90$, or $\ell$ divides $\operatorname{lcm}(12,28)=84$,
+$\operatorname{lcm}(24,40)=120$ or $\operatorname{lcm}(16,48)=48$. As
+$\ell=k>90$, this leaves $k=120$ with $a/k=1/8$, that is, $a=15$, which is
+excluded.
+\end{proof}
+
+\begin{theorem}[the three-point condition]
+\label{thm:allodd-e3all}
+Let $S$ be primitive and all-odd, with $1\notin S$ and $|L|\ge2$, and not one
+of the supports listed in \autoref{tab:allodd-base}. Then some unit $\nu$
+modulo $2k$ satisfies (T).
+\end{theorem}
+
+\begin{proof}
+\emph{Orders $k>90$.} If some $x\in L\setminus\{a\}$ has a witness
+for $(k;a,x)$ and satisfies $x<2a$ or $x-2a\notin S$,
+\autoref{lem:allodd-aproute}(i) gives (T). Otherwise, if
+$(k,a)\ne(120,15)$, \autoref{lem:allodd-nofail} applies, and every $x\in L\setminus\{a,3a\}$ has a
+witness, so it satisfies $x>2a$ and $x-2a\in S$; so does $x=3a$, since
+$a\in S$. So \autoref{lem:allodd-aproute}(ii) applies. It gives
+$\gcd(a,k)=1$ and $m\ge1$ with $(2i+1)a\in S$ for $i\le m$, $2(2m+1)a<k$
+and $(2m+3)a\notin S$. As $a\ge3$, $2(2m+3)<6(2m+1)\le2(2m+1)a<k$, so the
+triple $(k;1,2m+3)$ is admissible, and by \autoref{thm:lemmaA} some unit
+$\nu_1$ witnesses it:
+$H_{\nu_1}(-(2m+1))=H_{\nu_1}(1)\ne H_{\nu_1}(2m+3)$. By
+\eqref{eq:allodd-sym}, $H_{\nu_1}(2m+1)=1-H_{\nu_1}(-(2m+1))\ne
+H_{\nu_1}(1)$. Since $a$ is odd and prime to $k$, it has an inverse
+$\bar a$ modulo $2k$. Put $\nu=\nu_1\bar a$, a unit, so that
+$\nu\,ya\equiv\nu_1y\pmod{2k}$ and $H_\nu(ya)=H_{\nu_1}(y)$ for every
+integer $y$. Let $j=(2m+1)a$, which lies in $L\setminus\{a\}$. Then (Ta)
+holds with $x=j$, since
+$H_\nu(j)=H_{\nu_1}(2m+1)\ne H_{\nu_1}(1)=H_\nu(a)$.
+For (Tb), $j\ne k-a$ and $2a+j=(2m+3)a\le2(2m+1)a<k$, so
+$(2a+j)\bmod k=(2m+3)a\notin S$, and
+$H_\nu(2a+j)=H_{\nu_1}(2m+3)\ne H_{\nu_1}(1)=H_\nu(a)$.
+
+\emph{The order $k=120$ with $a=15$.} Suppose again that route (i) of
+\autoref{lem:allodd-aproute} is available for no $x$, so that every
+$x\in L\setminus\{a\}$ with a witness has $x>30$ and $x-30\in S$. Let
+$x\in L\setminus\{15,45\}$ have no witness. By \autoref{lem:allodd-lift},
+$(120/g;15/g,x/g)\in\mathcal F$ with $g=\gcd(15,x,120)$, and $g\ne1$ since the
+orders in $\mathcal F$ are at most $90$. The only entries of $\mathcal F$ of
+the forms $(40;5,\cdot)$, $(24;3,\cdot)$ and $(8;1,\cdot)$ are $(40;5,17)$ and
+$(24;3,7)$, so $x\in\{35,51\}$. Every element of $L$ therefore lies in
+$\{15,35,45,51\}$, by induction: an $x\in L$ with a witness has $x-30\in L$,
+and $x-30\in\{15,35,45,51\}$ with $x<60$ forces $x=45$. If $35\notin L$, then
+$3$ divides every element of $L$, hence every element of $S$ (as $k/2=60$ is
+even, $S=L\cup(k-L)$), contradicting primitivity; so $35\in L$, and in the same
+way, with $5$ in place of $3$, $51\in L$. Now the unit $\nu=11$ satisfies (T),
+with residues modulo $240$. First $H_{11}(15)=0$, as $11\cdot15=165$. (Ta)
+holds with $x=51$, since $11\cdot51\equiv81$. For (Tb), if $45\notin S$ take
+$j=15$, so that $2a+j=45\notin S$ and $11\cdot45\equiv15$; if $45\in S$ take
+$j=k-35=85$, so that $2a+j=115\notin S$ (as $5<a$) and $11\cdot115\equiv65$.
+
+\emph{Orders $k\le90$.} These are a finite check; since
+$1\notin S$ and $|L|\ge2$, $k\ge12$. For each such $k$ it has three steps.
+\begin{enumerate}
+\item Let $F_k$ be the set of the pairs $(a,3a)$ with $6a<k$, which have no
+witness by \eqref{eq:allodd-sym}, together with the pairs $(ga',gx')$ with
+$g$ odd and $(k/g;a',x')\in\mathcal F$; for instance
+$F_{44}=\{(1,3),(3,9),(5,15),(7,21)\}$. For every odd pair $a<x<k/2$ not in
+$F_k$, a witness of $(k;a,x)$ is found by a search over the units $\nu$ modulo $2k$.
+\item By \autoref{lem:allodd-aproute}(i), $S$ then satisfies (T) unless
+every $x\in L\setminus\{a\}$ has $(a,x)\in F_k$ or $x-2a\in L$. The lower
+halves $L$ with this property are enumerated, for each odd $a\ge3$ (as
+$1\notin S$) with $2a<k$, starting from $L=\{a\}$ and adding the
+candidates $x$ in increasing order. Each is completed to a support with and without $k/2$
+(when $k/2$ is odd), and the supports that are not primitive or have
+$|L|<2$ are discarded. This leaves $411$ supports.\footnote{Counts such as
+this one, and the numbers of triples and orders quoted in
+\autoref{sec:lemmaA} and \autoref{app:lemmaA-finite}, describe the size of
+the finite checks. They are not themselves formalised; what is formalised is
+that every case met by each check passes it (\autoref{app:lean}).}
+\item For each of these $411$ supports except the twelve with $|L|\ge2$ in
+\autoref{tab:allodd-base}, a unit $\nu$ satisfying (T) is recorded.
+\end{enumerate}
+\end{proof}
+
+\subsection{Proof of \autoref{thm:alloddall}}
+\label{sec:allodd-proof}
+
+The seventeen supports that escape the arguments above are listed in
+\autoref{tab:allodd-base}, each with a half-arc carrier. The multiplier $\nu$
+is a residue modulo $2k$, and it need not be a unit. Indeed, for the supports
+$\{3,9,13,19\}$ and $\{5,7,15,17\}$ at $k=22$ and $\{7,13,17,23\}$ at
+$k=30$ there is no half-arc carrier with a unit multiplier: for every unit
+$\nu$ modulo $2k$ and both $t\in\{0,k\}$, the pair $(\min S,Q(\nu;t))$ fails
+to be a $\sigma$-bump. Several entries of the table use non-units; for these
+three supports, with $\nu=11$, $11$ and $3$, no unit would do.
+
+\begin{table}
+\centering
+\small
+\begin{tabular}{rlrc@{\qquad}rlrc}
+$k$ & $S$ & $\nu$ & $t$ & $k$ & $S$ & $\nu$ & $t$\\\hline
+10 & $\{3,5,7\}$ & 3 & $0$ & 22 & $\{9,11,13\}$ & 7 & $0$\\
+14 & $\{5,7,9\}$ & 5 & $k$ & 24 & $\{5,9,15,19\}$ & 3 & $k$\\
+16 & $\{3,7,9,13\}$ & 3 & $0$ & 30 & $\{7,13,17,23\}$ & 3 & $0$\\
+18 & $\{7,9,11\}$ & 5 & $k$ & 30 & $\{7,13,15,17,23\}$ & 3 & $0$\\
+22 & $\{3,9,13,19\}$ & 11 & $k$ & 36 & $\{5,13,23,31\}$ & 3 & $k$\\
+22 & $\{3,9,11,13,19\}$ & 3 & $0$ & 40 & $\{3,9,31,37\}$ & 5 & $k$\\
+22 & $\{5,7,15,17\}$ & 11 & $0$ & 40 & $\{7,19,21,33\}$ & 3 & $0$\\
+22 & $\{5,11,17\}$ & 5 & $k$ & 40 & $\{9,13,27,31\}$ & 11 & $0$\\
+ & & & & 42 & $\{5,15,27,37\}$ & 3 & $k$
+\end{tabular}
+\caption{The supports of \autoref{lem:allodd-base}, with the parameters
+$(\nu,t)$ of a half-arc carrier $Q(\nu;t)$ that, with $\sigma=\min S$, forms a
+$\sigma$-bump. The multiplier $\nu$ is an odd residue modulo $2k$, not
+necessarily a unit. Five have three elements, of the form $\{a,k/2,k-a\}$ with
+$3\beta\ge k/2$ in the notation of \autoref{thm:allodd-threeall}, and the
+other twelve have $|L|\ge2$.}
+\label{tab:allodd-base}
+\end{table}
+
+\begin{lemma}[seventeen small supports]
+\label{lem:allodd-base}
+For each of the seventeen supports $S$ of \autoref{tab:allodd-base}, with the
+listed $\nu$ and $t$, $\sigma=\min S$ and $Q(\nu;t)$ form a $\sigma$-bump.
+\end{lemma}
+
+\begin{proof}
+This is a finite check of (B1) and (B2) for seventeen explicit pairs
+$(\sigma,Q)$.
+\end{proof}
+
+\begin{proof}[Proof of \autoref{thm:alloddall}]
+If $1\in S$, \autoref{prop:allodd-one} applies. Assume $1\notin S$, and let
+$a=\min S\ge3$; then $a\in L$, since otherwise $S=\{k/2\}$. If $S$ is listed
+in \autoref{tab:allodd-base}, \autoref{lem:allodd-base} applies. Otherwise
+there are two cases.
+
+\emph{$|L|\ge2$.} \autoref{thm:allodd-e3all} gives a unit $\nu$ satisfying
+(T), and \autoref{prop:allodd-e3bump} gives the $\sigma$-bump $(a,Q(\nu;t))$
+with $t\in\{0,k\}$.
+
+\emph{$|L|=1$.} Then $L=\{a\}$, and since $|S|\ge3$, $S=\{a,k/2,k-a\}$ with
+$h=k/2$ odd. Any common divisor of $a$ and $h$ divides $a$, $h$, $k-a$ and
+$k$, so $\gcd(a,h)=1$ by primitivity, and $3\le a<h$. Let $\beta$ be as in
+\autoref{thm:allodd-threeall}. If $3\beta\ge h$, then $h\le11$, and $(h,a)$ is
+one of $(5,3)$, $(7,5)$, $(9,7)$, $(11,5)$ and $(11,9)$, all with $\beta=4$
+(for $\beta=2$ the only candidate order, $h=5$, has no suitable $a$); so $S$
+would be listed in \autoref{tab:allodd-base}. Hence $3\beta<h$, and
+\autoref{thm:allodd-threeall} gives the $\sigma$-bump.
+\end{proof}

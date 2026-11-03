@@ -1,0 +1,98 @@
+\section{Detailed case checks}
+\label{app:checks}
+
+This appendix contains two elementary case checks that complete proofs in
+the main text.
+
+\subsection{The case \texorpdfstring{$M=1$}{M=1} of the both-failing supports}
+\label{app:checks-bfone}
+
+This completes the proof of \autoref{lem:nao-bfone}, in the notation of that
+proof and with the description of $Q$ given at its start.
+
+At each index $i$ the table names two taps among $a$, $b$, $2a$,
+$a+b$ whose reads differ, both surviving. It lists them in twelve numbered
+rows, with
+the residue of the position each reads (not the position itself, as in the
+example of \autoref{sec:nao-reading}), a star marking a wrapped tap; reads
+follow from \eqref{eq:read-reads} and \eqref{eq:read-pins}.
+\begin{center}\small
+\begin{tabular}{rlll}
+& index $i$ & tap reading $1$ & tap reading $0$\\\hline
+& \multicolumn{3}{l}{\emph{$i$ even}}\\
+(1) & $i<b$ & $2a\to i+2a\in(2a,k)$ & $a\to i+a$, odd\\
+(2) & $i=b$ & $b\to 2b\in(2a,k)$ & $a\to a+b\in S$\\
+(3) & $b<i<a+b$, $i\ne2a$ & $a+b\to^{*} i-a$, odd & $a\to i+a$, odd\\
+(4) & $i=2a$ & $a\to 3a$ & $2a\to^{*} 2a-b\in(0,b)$\\
+(5) & $i>a+b$, $i\ne2b$ & $a\to^{*} i-a-b\in(0,a)$, odd & $b\to^{*} i-2a\in(0,b)$\\
+(6) & $i=2b$ & $a+b\to^{*} 2b-a$, odd & $b\to^{*} 2b-2a\in(0,b)$\\[2pt]
+& \multicolumn{3}{l}{\emph{$i$ odd}}\\
+(7) & $i<a$ & $a+b\to i+a+b\in(2a,k)$ & $2a\to i+2a\in(2a,3a)$, odd\\
+(8) & $i=a$ & $2a\to 3a$ & $a\to 2a\in S$\\
+(9) & $a<i<a+b$ & $a\to i+a\in(2a,k)$ & $a+b\to^{*} i-a\in(0,b)$\\
+(10) & $i=a+b$ & $a+b\to^{*} b\in S$ & $b\to^{*} b-a$\\
+(11) & $i>a+b$, $i\ne3a$ & $b\to^{*} i-2a\in(b-a,b)$, odd & $a\to^{*} i-a-b\in(0,a)$\\
+(12) & $i=3a$ & $a+b\to^{*} 2a\in S$ & $a\to^{*} 2a-b\in(0,b)$
+\end{tabular}
+\end{center}
+Positions not described as odd or as elements of $S$ are even, and every
+even position named lies in $(0,b)\cup(2a,k)$, so it is free and lies in
+$Q$. An element of $S$ other than $a$ reads $0$ unwrapped and $1$ wrapped.
+For the odd positions: among the reads of $1$, the unwrapped odd position is
+$3a\in Q$ and the wrapped ones ($i-a$, $i-a-b$, $2b-a$, $i-2a$) are not in
+$\{a,3a,b-a\}$; among the reads of $0$, the unwrapped odd positions ($i+a$,
+$i+2a$) are not in $\{a,3a,b-a\}$ and the wrapped one is $b-a\in Q$.
+
+These memberships are checked with $a<b<2a$ and $k=2a+b$. In row (1)
+$i+a\in(a,a+b)$ is not $3a$ as $i<b<2a$, and exceeds $b-a$. In row (3)
+$i-a\in(b-a,b)$, so it is not $b-a$ or $3a$, and it is not $a$ as $i\ne2a$;
+and $i+a\in(a+b,k)$ is not $3a$ as $i\ne2a$. In row (5)
+$i-a-b\in(0,a)$ is not $b-a$ because $i\ne2b$. In row (6), $2b-a$ is not
+$a$, $3a$ or $b-a$ since $b\ne a,2a,0$. In row (7), $i+2a\in(2a,3a)$.
+In row (11), $i-2a\in(b-a,b)$ is not $a$ because $i\ne3a$, and is less
+than $3a$. Since $2a<a+b<3a<k$ and $a+b<2b<k$, the cases are exhaustive, and
+every tap marked with a star does wrap while the others do not. Finally, no
+residue named is $0$ or $\sigma=a$, so every tap named survives.
+
+This proves (B2), and with it \autoref{lem:nao-bfone}.
+
+\subsection{The special indices of the three-element supports}
+\label{app:checks-threeall}
+
+This completes the proof of \autoref{thm:allodd-threeall}, in its notation
+(residues modulo $4h$; the phases, pins and the rule for reads are as stated in that proof).
+
+In each case below, every position named that is not called a pin is free,
+and no tap used is deleted; this is checked after the list. The
+inequality $3\beta<h$, a hypothesis of the theorem, puts every
+phase below strictly inside one half.
+\begin{itemize}
+\item $i=a$, phase $3h+\beta$. The tap $a$ reads $2a$, of phase
+$6h+2\beta\equiv2h+2\beta$, a $0$; the tap $h$ reads $a+h$, of phase
+$4h+\beta\equiv\beta$, a $1$.
+\item $i=h$, phase $h$. The tap $a$ reads $a+h$, a $1$; the tap $k-a$ reads
+$k+h-a$, of phase $4h-\beta$, a $0$.
+\item $i=k-a$, phase $3h-\beta$. The tap $h$ reads $k+h-a$, a $0$; the tap
+$k-a$ reads $2k-2a$, of phase $6h-2\beta\equiv2h-2\beta$, a $1$.
+\item $i=h-a$, phase $\nu h-\nu a\equiv2h-\beta$. The tap $a$ reads the pin $h$, a
+$0$; the tap $k-a$ reads $3h-2a$, of phase $5h-2\beta\equiv h-2\beta$, a
+$1$.
+\item $i=k-2a$, phase $2h-2(3h+\beta)\equiv-2\beta$. The tap $a$ reads the pin
+$k-a$, a $0$; the tap $h$ reads $3h-2a$, of phase $h-2\beta$, a $1$.
+\item $i=h+a$, phase $\beta$. The tap $k-a$ reads the wrapped pin $k+h$, a
+$1$; the tap $a$ reads $h+2a$, of phase $3h+2\beta$, a $0$.
+\item $i=2a$, phase $2h+2\beta$. The tap $a$ reads $3a$, of phase
+$5h+3\beta\equiv h+3\beta$, a $1$; the tap $h$ reads $h+2a$, of phase
+$3h+2\beta$, a $0$.
+\end{itemize}
+The positions $2a$, $a+h$, $k+h-a$ and $2k-2a$ are even and $\not\equiv0\pmod
+k$, hence free. The positions $3h-2a$, $h+2a$ and $3a$ are odd and lie in
+$(0,2k)$; reduced modulo $k$, equality with $a$, $h$ or $k-a$ would force one
+of $h=a$, $h=3a$, $h=2a$ or $3a=2h$, and these are excluded by
+$a<h$, $\gcd(a,h)=1$ (with $a\ge3$) and the oddness of $a$ and $h$. None of
+these seven positions, nor the pins $h$, $k-a$, $k+h$ and $2k-a$, is $k$, $a$
+or $k+a$, by the same comparisons, so none
+of the taps used is deleted.
+
+So the clause holds at each of the seven special indices, which completes
+the proof of \autoref{thm:allodd-threeall}.
